@@ -1,7 +1,6 @@
 var agent_angle = 10;
 var agent_force = 10;  
 
-
 requirejs(
 
   // Dependencies ex: ['foo/bar', 'foobar'],
@@ -9,7 +8,6 @@ requirejs(
 
   // Module + passing of dependencies (if any)
   
-
   function ( App ) {
 
     // Variable setup
@@ -18,6 +16,8 @@ requirejs(
     app = new App();
     app.createScene();
 
+
+
     // Player 1 Information
     p1angle = document.getElementById( 'player_1_angle' );
     p1velocity = document.getElementById( 'player_1_velocity' );
@@ -25,6 +25,13 @@ requirejs(
     // Player 2 Information
     p2angle = document.getElementById( 'player_2_angle' );
     p2velocity = document.getElementById( 'player_2_velocity' );
+
+    execute = document.getElementById('clickMe');
+
+    execute.addEventListener( "click", function ( event ) {
+      executeTurn();
+      app.throwBanana(parseInt(agent_force), parseInt(agent_angle), 1);
+    });
 
     // TODO: clean this up and validate user input
     // Attach event listeners to player(s) info
@@ -41,7 +48,6 @@ requirejs(
         window.hidePlayerField( 'player_1', 'velocity' );
         var parameters = window.readAngleAndVelocity( 'player_1' );
         window.clearFields( 'player_1' );
-        runAgent(); 
         app.throwBanana( parseInt(agent_force), parseInt(agent_angle), 1 );
       }
     });

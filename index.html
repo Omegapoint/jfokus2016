@@ -14,12 +14,6 @@
       <div class="players">
         <div id="player_1">
           Player 1
-          <br/>
-          <label for="player_1_angle">Angle:</label>
-          <input id="player_1_angle" maxlength="3">
-          <br/>
-          <label for="player_1_velocity">Velocity:</label>
-          <input id="player_1_velocity" maxlength="3">
         </div>
         <div id="player_2">
           Player 2
@@ -37,14 +31,12 @@
 		<div id="textbox">
    		<label style="display:block; text-align:center;color:white" for="customImpl"></label>
   		<textarea id="customImpl" rows="20" cols="105%">
-        return {
-          agent_angle = 45
-          ,agent_force = 200;
-        }
+          this.agent_angle = 45;
+          this.agent_force = 200;
   		</textarea>
  	</div>
 		<div id="startbutton">
-  <input id="clickMe" type="button" value="Execute" onclick="execute();" />
+  <input id="clickMe" type="button" value="Execute" />
   </div>
     </div>
 
