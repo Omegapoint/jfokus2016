@@ -1,5 +1,7 @@
+var agent_memory = {};
+var lastColission;
 var agent_angle = 10;
-var agent_force = 10;  
+var agent_force = 10;
 
 
 requirejs(
@@ -8,7 +10,7 @@ requirejs(
   ['app/app'],
 
   // Module + passing of dependencies (if any)
-  
+
 
   function ( App ) {
 
@@ -41,7 +43,18 @@ requirejs(
         window.hidePlayerField( 'player_1', 'velocity' );
         var parameters = window.readAngleAndVelocity( 'player_1' );
         window.clearFields( 'player_1' );
-        runAgent(); 
+
+        var deltaX = app.player_2.x - app.player_1.x;
+        var deltaY = app.player_1.y - app.player_2.y;
+        var bananaHitPosition = [];
+
+        if (app.player_1.banana) {
+          var deltaBananaX = app.player_1.banana.x() - app.player_1.x;
+          var deltaBananaY = app.player_1.y - app.player_1.banana.y();
+          bananaHitPosition = [deltaBananaX, deltaBananaY];
+        };
+
+        runAgent(app.wind, [deltaX, deltaY], bananaHitPosition);
         app.throwBanana( parseInt(agent_force), parseInt(agent_angle), 1 );
       }
     });

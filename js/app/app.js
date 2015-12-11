@@ -252,6 +252,7 @@ define(
           player.animateWin();
           that.animateWin( winner, that.startTime );
         }, this.frameRate );
+        agent_memory.lastThrow = undefined;
         return true;
       }
     };
