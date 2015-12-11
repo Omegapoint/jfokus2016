@@ -5,7 +5,7 @@ var agent_force = 10;
 requirejs(
 
   // Dependencies ex: ['foo/bar', 'foobar'],
-  ['app/app'],
+  ['app/app', 'agent'],
 
   // Module + passing of dependencies (if any)
   
