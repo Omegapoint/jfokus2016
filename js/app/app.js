@@ -158,6 +158,7 @@ define(
         that.startTime = new Date();
         that.animateBanana( player, that.startTime );
       }, this.frameRate );
+      agent_memory.lastThrow = undefined;
     };
 
     /**

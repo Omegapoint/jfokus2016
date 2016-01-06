@@ -123,6 +123,7 @@ define(
     Building.prototype.checkColission = function ( x, y ) {
       if ( this.positionAtY() - 25 <= y && ( x > this.x && x < this.x + this.width + 10 ) ) {
         this.colissions.push( [x - 20, y] );
+        lastColission = [x - 20, y];
         this.createColission( x - 20, y );
         return true;
       }

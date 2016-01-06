@@ -1,5 +1,10 @@
 var agent_angle = 10;
-var agent_force = 10;  
+var agent_force = 10;
+var agent_memory = {};
+var lastColission;  
+
+var agent_2_angle = 10;
+var agent_2_force = 10;
 
 requirejs(
 
@@ -42,7 +47,21 @@ requirejs(
 
         var parameters = window.readAngleAndVelocity( 'player_2' );
         window.clearFields( 'player_2' );
-        app.throwBanana( parseInt(parameters.velocity), parseInt(parameters.angle), 2 );
+        runAgent(); 
+ 
+        var deltaX = app.player_2.x - app.player_1.x;
+        var deltaY = app.player_1.y - app.player_2.y;
+        var bananaHitPosition = [];
+ 
+        if (app.player_1.banana) {
+          var deltaBananaX = app.player_1.banana.x() - app.player_1.x;
+          var deltaBananaY = app.player_1.y - app.player_1.banana.y();
+          bananaHitPosition = [deltaBananaX, deltaBananaY];
+        };
+ 
+        runAgent(app.wind, [deltaX, deltaY], bananaHitPosition);
+
+        app.throwBanana( parseInt(agent_force), parseInt(agent_angle), 2 );
         executeBtn.disabled = false;
       }
     });
