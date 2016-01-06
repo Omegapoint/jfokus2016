@@ -1,5 +1,5 @@
 # QBasic Gorillas
-### Monteruppgift för Jfokus 2015
+### Monteruppgift för Jfokus 2016
 
 #### TODO
 * Spelarens Agent får inte in alla variabler som den behöver i dagsläget. _Wind_, _OtherPlayerPosition_ och _bananHitPosition_ behöver skickas till agenten. Detta görs endast för default spelare idag.
