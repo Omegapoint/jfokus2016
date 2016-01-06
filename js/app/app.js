@@ -309,6 +309,7 @@ define(
 
     App.prototype.runPlayer= function ( player ) {
       if(player == 1) {
+        executeTurn ();
         console.log(agent_angle + " " + agent_force);
         this.throwBanana(agent_force, agent_angle, player);
       } else {
