@@ -38,17 +38,7 @@ requirejs(
         var currentPlayer = 1; //Player 1 starts
         var turn = 0;
         app.throwBanana( 10, 25, currentPlayer);
-        
-        while(turn < 20) {
-       
-          nextTurn = false;
-          
-
-        
-          console.log("Turn: " + turn + ", player: " + currentPlayer + " " + nextTurn);
-          currentPlayer = (currentPlayer + 2 ) % 2 + 1;   
-          turn++;
-        }
+      
     });
 
     //This is where we get the variables from player 1

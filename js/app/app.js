@@ -303,9 +303,18 @@ define(
       this.sunShock = false;
       player.timer = 0;
       var nextPlayer = ( player.playerNumber === 2 ) ? 1 : 2;
-      console.log("nextPlayerTurn " + nextPlayer);
       nextTurn = true;
-      this.throwBanana(10, 10, nextPlayer);
+      this.runPlayer(nextPlayer);
+    };
+
+    App.prototype.runPlayer= function ( player ) {
+      if(player == 1) {
+        console.log(agent_angle + " " + agent_force);
+        this.throwBanana(agent_force, agent_angle, player);
+      } else {
+        runAgent(2, [2,2], [2,2]);
+        this.throwBanana(agent_2_force, agent_2_angle, player);
+      }
     };
 
     /**
