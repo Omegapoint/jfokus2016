@@ -1,13 +1,9 @@
 
-function runPlayerAgent() {
-
-	var textboxt =  document.getElementById("customImpl");
-}
 
 function runAgent(wind, targetPosition, bananaHitPosition) {
   console.log("running agent");
 
-  if (agent_memory.lastThrow === undefined) {
+  if (agent_2_memory.lastThrow === undefined) {
     agent_angle = 70;
     // agent_angle = Math.floor(Math.random() * 90);
     // var min = (wind.windSpeed < 0) ? 20 : 8;
@@ -19,7 +15,7 @@ function runAgent(wind, targetPosition, bananaHitPosition) {
       agent_force += deltaPosition * 0.05;
       console.log("defined: " + agent_force);
   }
-  agent_memory.lastThrow = {
+  agent_2_memory.lastThrow = {
     angle: agent_angle,
     force: agent_force,
     forceDelta: 40,

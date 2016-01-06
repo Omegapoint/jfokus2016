@@ -5,6 +5,10 @@ var lastColission;
 
 var agent_2_angle = 10;
 var agent_2_force = 10;
+var agent_2_memory = {};
+
+var nextTurn = false;
+var player2Play = 1;
 
 requirejs(
 
@@ -25,8 +29,29 @@ requirejs(
     p2angle = document.getElementById( 'player_2_angle' );
     p2velocity = document.getElementById( 'player_2_velocity' );
 
+    play = document.getElementById('play');
     executeBtn = document.getElementById('clickMe');
 
+    play.addEventListener("click", function(event) {
+        nextTurn = true;
+        console.log("Let's play! :)");
+        var currentPlayer = 1; //Player 1 starts
+        var turn = 0;
+        app.throwBanana( 10, 25, currentPlayer);
+        
+        while(turn < 20) {
+       
+          nextTurn = false;
+          
+
+        
+          console.log("Turn: " + turn + ", player: " + currentPlayer + " " + nextTurn);
+          currentPlayer = (currentPlayer + 2 ) % 2 + 1;   
+          turn++;
+        }
+    });
+
+    //This is where we get the variables from player 1
     executeBtn.addEventListener( "click", function ( event ) {
       executeTurn();
       app.throwBanana(parseInt(agent_force), parseInt(agent_angle), 1);
@@ -47,7 +72,8 @@ requirejs(
 
         var parameters = window.readAngleAndVelocity( 'player_2' );
         window.clearFields( 'player_2' );
-        runAgent(); 
+      
+
  
         var deltaX = app.player_2.x - app.player_1.x;
         var deltaY = app.player_1.y - app.player_2.y;
@@ -81,10 +107,7 @@ requirejs(
     }
 
     window.showPlayerField = function ( player, field ) {
-      var el = document.getElementById( player + '_' + field );
-      el.style.display = "block";
-      el.previousElementSibling.style.display = "block";
-      el.focus();
+
     }
 
     window.readAngleAndVelocity = function ( player ) {

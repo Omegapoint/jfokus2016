@@ -158,7 +158,8 @@ define(
         that.startTime = new Date();
         that.animateBanana( player, that.startTime );
       }, this.frameRate );
-      agent_memory.lastThrow = undefined;
+      agent_2_memory.lastThrow = undefined;
+      return 5;
     };
 
     /**
@@ -302,7 +303,9 @@ define(
       this.sunShock = false;
       player.timer = 0;
       var nextPlayer = ( player.playerNumber === 2 ) ? 1 : 2;
-      window.showPlayerField( 'player_' + nextPlayer, 'angle' );
+      console.log("nextPlayerTurn " + nextPlayer);
+      nextTurn = true;
+      this.throwBanana(10, 10, nextPlayer);
     };
 
     /**

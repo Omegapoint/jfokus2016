@@ -1,13 +1,41 @@
 /* Main Styles */
+@font-face {
+font-family: 'FixedsysExcelsior301Regular';
+src: url('fsex300-webfont.eot');
+src: url('fsex300-webfont.eot?#iefix') format('embedded-opentype'),
+     url('fsex300-webfont.woff') format('woff'),
+     url('fsex300-webfont.ttf') format('truetype'),
+     url('fsex300-webfont.svg#FixedsysExcelsior301Regular') format('svg');
+font-weight: normal;
+font-style: normal;
+-webkit-font-smoothing:aliased;
+font-smooth:never;
+}
 
 body {
   background-color: #eee;
   margin: 0;
   padding: 0;
-  color: #fff;
+  color: #FCFCFC;
   font-size: 14px;
   font-weight: bold;
-  font-family: courier;
+  font-family: FixedsysExcelsior301Regular;
+}
+
+#play {
+
+  margin-left: 10px;
+  padding: 3px;
+  font-size: 20px;
+  font-family: FixedsysExcelsior301Regular;
+
+}
+
+#clickMe {
+  width: 80px;
+  padding: 3px;
+  font-size: 20px;
+  font-family: FixedsysExcelsior301Regular;
 }
 
 #top {

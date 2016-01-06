@@ -120,11 +120,6 @@ var requirejs, require, define;
         return target;
     }
 
-    function runAgent() {
-        agent_angle = 45;
-        agent_force = 20;
-        return 1;
-    }
 
     //Similar to Function.prototype.bind, but the 'this' object is specified
     //first, since it is easier to read/figure out what 'this' will be.
