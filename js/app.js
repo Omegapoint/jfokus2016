@@ -1,15 +1,13 @@
 var agent_angle = 10;
 var agent_force = 10;  
 
-
 requirejs(
 
   // Dependencies ex: ['foo/bar', 'foobar'],
-  ['app/app'],
+  ['app/app', 'agent'],
 
   // Module + passing of dependencies (if any)
   
-
   function ( App ) {
 
     // Variable setup
@@ -18,32 +16,16 @@ requirejs(
     app = new App();
     app.createScene();
 
-    // Player 1 Information
-    p1angle = document.getElementById( 'player_1_angle' );
-    p1velocity = document.getElementById( 'player_1_velocity' );
-
     // Player 2 Information
     p2angle = document.getElementById( 'player_2_angle' );
     p2velocity = document.getElementById( 'player_2_velocity' );
 
-    // TODO: clean this up and validate user input
-    // Attach event listeners to player(s) info
-    p1angle.addEventListener( "keydown", function ( event ) {
-      if ( event.keyCode === 13 ) {
-        app.clearTimeouts();
-        window.showPlayerField( 'player_1', 'velocity' );
-      }
-    });
+    executeBtn = document.getElementById('clickMe');
 
-    p1velocity.addEventListener( "keydown", function ( event ) {
-      if ( event.keyCode === 13 ) {
-        window.hidePlayerField( 'player_1', 'angle' );
-        window.hidePlayerField( 'player_1', 'velocity' );
-        var parameters = window.readAngleAndVelocity( 'player_1' );
-        window.clearFields( 'player_1' );
-        runAgent(); 
-        app.throwBanana( parseInt(agent_force), parseInt(agent_angle), 1 );
-      }
+    executeBtn.addEventListener( "click", function ( event ) {
+      executeTurn();
+      app.throwBanana(parseInt(agent_force), parseInt(agent_angle), 1);
+      executeBtn.disabled = true;
     });
 
     p2angle.addEventListener( "keydown", function ( event ) {
@@ -61,13 +43,9 @@ requirejs(
         var parameters = window.readAngleAndVelocity( 'player_2' );
         window.clearFields( 'player_2' );
         app.throwBanana( parseInt(parameters.velocity), parseInt(parameters.angle), 2 );
+        executeBtn.disabled = false;
       }
     });
-
-    // Initial page load styling / cleanup
-    p1angle.style.display = 'block';
-    p1angle.previousElementSibling.style.display = 'block';
-    p1angle.focus();
 
     p2angle.style.display = 'none';
     p2angle.previousElementSibling.style.display = 'none';

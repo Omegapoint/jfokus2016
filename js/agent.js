@@ -1,5 +1,5 @@
 
-function runAgent() {
-  agent_angle = 90;
-  agent_force = 90;
+function runPlayerAgent() {
+
+	var textboxt =  document.getElementById("customImpl");
 }
