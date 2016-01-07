@@ -10,6 +10,9 @@ var agent_2_memory = {};
 var nextTurn = false;
 var player2Play = 1;
 
+var turnsInGame = 0;
+var maximumNumberOfTurns = 20;
+
 
 requirejs(
 
@@ -55,6 +58,7 @@ requirejs(
     });
 
     play.addEventListener("click", function(event) {
+      turnsInGame = 0;
         nextTurn = true;
         console.log("Let's play! :)");
         var currentPlayer = 1; //Player 1 starts

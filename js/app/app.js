@@ -147,6 +147,7 @@ define(
      * params {Integer} player Which player are we doing this for?
      */
     App.prototype.throwBanana = function ( force, angle, player ) {
+      
       var that = this;
       if ( player === 2 ) {
         angle = -angle;
@@ -210,7 +211,7 @@ define(
       var x = player.banana.x();
       var y = player.banana.y();
       if ( x <= (this.width / 2) + 10 && x >= (this.width / 2) - 10 && y <= 27 && y >= 17 ) {
-          this.scores['player_' + winner.playerNumber]++;
+          this.scores['player_' + player]++;
        
 
         return true;
@@ -307,7 +308,11 @@ define(
       player.timer = 0;
       var nextPlayer = ( player.playerNumber === 2 ) ? 1 : 2;
       nextTurn = true;
-      this.runPlayer(nextPlayer);
+      turnsInGame++;
+      if(turnsInGame <= maximumNumberOfTurns) {
+        this.runPlayer(nextPlayer);
+      }
+      
     };
 
     App.prototype.runPlayer= function ( player ) {
