@@ -36,12 +36,39 @@
  	</div>
 		<div id="startbutton">
   
-  <input id="play" type="button" value="Play" />
-  <input id="api" type="button" value="API" />
+  <input id="play"  type="button" value="PLAY" />
+  <input id="api"   type="button" value="API" />
+  <input id="rules" type="button" value="RULES" />
    
   </div>
+  <br><br>
+  <div id="api_info" class="info">
+  ********************* API ********************* <br />
+  <table>
+    <tr><td>INPUT</td><td>VARIABLE</td><TD>MEANING<TD></tr>
+    <tr><td></td>  <td>wind</td><td>THE GAME HAS WIND... THE WIND IS AN INTEGER, NEGATIVE OR POSITIVE.</td></tr>
+    <tr><td></td>  <td>lastBananaHitPosition</td><td></td></tr>
+    <tr><td></td>  <td>opponentPosition</td><td></td></tr>
+
+    <tr><td>RETURN</td><td>5 pts</td><td></td></tr>
+  </table>
+  </div>
+  <div id="rules_info" class="info">
+  ******************** RULES ******************** <br />
+  POINTS GIVEN WHEN:<br />
+  <table>
+    <tr><td>Monkey-hit</td><td>10 pts</td></tr>
+    <tr><td>Sun-hit</td><td>5 pts</td></tr>
+  </table>
+  <br>
+  EACH MONKEY HAS 10 (TEN) TURNS. IF NO MONKEY HAS MANAGED TO HIT THE OTHER, A DRAW IS CALLED. A DRAW GENERATES 0 (ZERO) POINTS.
+  FOR EACH MISS THE WINNER GET -1 (MINUS ONE) POINT.
+
+  </div>
+
 
     </div>
+    
     <script id="playerImplementation">var impl = "function customPlayer() var agent_angle = 45; var agent_force = 200;}";</script>
   </body>
 </html>

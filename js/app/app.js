@@ -210,6 +210,9 @@ define(
       var x = player.banana.x();
       var y = player.banana.y();
       if ( x <= (this.width / 2) + 10 && x >= (this.width / 2) - 10 && y <= 27 && y >= 17 ) {
+          this.scores['player_' + winner.playerNumber]++;
+       
+
         return true;
       }
       return false;
@@ -245,7 +248,7 @@ define(
         this.timeout = setTimeout( function () {
           that.animateColission( deadPlayer );
         }, 5 );
-        this.scores['player_' + winner.playerNumber]++;
+        this.scores['player_' + winner.playerNumber] = this.scores['player_' + winner.playerNumber] + 10;
         this.updateScore();
         this.timeout = setTimeout( function () {
           that.startTime = new Date();

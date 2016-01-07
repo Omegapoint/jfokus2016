@@ -13,34 +13,59 @@ font-smooth:never;
 }
 
 body {
-  background-color: #eee;
+  background-color: #0000a0;
   margin: 0;
   padding: 0;
-  color: #FCFCFC;
+  color: grey;
   font-size: 14px;
   font-weight: bold;
   font-family: FixedsysExcelsior301Regular;
 }
 
 #play {
+  background-color: grey;
+  color: #000000;
   padding: 3px;
   font-size: 20px;
   font-family: FixedsysExcelsior301Regular;
   margin-right: 10px;
 }
 
+.info {
+  background-color: grey;
+  padding: 3px;
+  font-family: FixedsysExcelsior301Regular;
+  color: #000000;;
+  font-size: 16px;
+}
+
 #api {
+  background-color: grey;
+  color: #000000;
   padding: 3px;
   font-size: 20px;
   font-family: FixedsysExcelsior301Regular;
+  margin-right: 10px;
+}
+
+#rules {
+  background-color: grey;
+  color: #000000;
+  padding: 3px;
+  font-size: 20px;
+  font-family: FixedsysExcelsior301Regular;
+  width: 60px;
   margin-right: 10px;
 }
 
 
 
 #top {
-  color: #0000a0;
-  text-align: center
+  width: 200px;
+  padding: 4px;
+  background-color: grey;
+  color: #000000;
+  margin: auto;
 }
 
 #container {

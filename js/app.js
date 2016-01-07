@@ -10,6 +10,7 @@ var agent_2_memory = {};
 var nextTurn = false;
 var player2Play = 1;
 
+
 requirejs(
 
   // Dependencies ex: ['foo/bar', 'foobar'],
@@ -18,7 +19,8 @@ requirejs(
   // Module + passing of dependencies (if any)
   
   function ( App ) {
-
+    document.getElementById('rules_info').style.display = 'none';
+    document.getElementById('api_info').style.display = 'none';
     // Variable setup
     var app, p1angle, p1velocity, p2angle, p2velocity;
 
@@ -31,6 +33,26 @@ requirejs(
 
     play = document.getElementById('play');
     executeBtn = document.getElementById('clickMe');
+    rules = document.getElementById('rules');
+    api = document.getElementById('api');
+
+    rules.addEventListener("click", function(event) {
+        if(document.getElementById('rules_info').style.display == 'none') {     
+          document.getElementById('rules_info').style.display = 'block';
+        } else {
+          document.getElementById('rules_info').style.display = 'none';
+        }
+       
+    });
+
+    api.addEventListener("click", function(event) {
+        if(document.getElementById('api_info').style.display == 'none') {     
+          document.getElementById('api_info').style.display = 'block';
+        } else {
+          document.getElementById('api_info').style.display = 'none';
+        }
+       
+    });
 
     play.addEventListener("click", function(event) {
         nextTurn = true;
