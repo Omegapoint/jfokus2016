@@ -309,7 +309,10 @@ define(
       var nextPlayer = ( player.playerNumber === 2 ) ? 1 : 2;
       nextTurn = true;
       turnsInGame++;
-      if(turnsInGame <= maximumNumberOfTurns) {
+
+      turnsLeft['player_' + player.playerNumber]++;
+      console.log("player " + player.playerNumber + " " + turnsLeft['player_' + player.playerNumber]);
+      if(turnsLeft['player_' + player.playerNumber]<= maximumNumberOfTurns) {
         this.runPlayer(nextPlayer);
       }
       

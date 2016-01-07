@@ -11,7 +11,8 @@ var nextTurn = false;
 var player2Play = 1;
 
 var turnsInGame = 0;
-var maximumNumberOfTurns = 20;
+var maximumNumberOfTurns = 3;
+var turnsLeft = {player_1: 0,player_2: 0};
 
 
 requirejs(
@@ -59,6 +60,8 @@ requirejs(
 
     play.addEventListener("click", function(event) {
       turnsInGame = 0;
+        turnsLeft['player_1'] = 0;
+        turnsLeft['player_1'] = 0;
         nextTurn = true;
         console.log("Let's play! :)");
         var currentPlayer = 1; //Player 1 starts
