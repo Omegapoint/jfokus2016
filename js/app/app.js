@@ -265,7 +265,10 @@ define(
            } else {
               w = "2";
            }
-           console.log("The winner is player " + w + ", score: " + this.scores['player_' + winner.playerNumber]);
+           gameIsFinished = true;
+           var winnerMsg = "The winner is player " + w + ", score: " + this.scores['player_' + w];
+           alert(winnerMsg); //Här kan vi ju exportera resultatet till en slags highscore också... eller?
+           console.log(winnerMsg);
         }
         this.updateScore();
         this.timeout = setTimeout( function () {
@@ -333,7 +336,7 @@ define(
 
       turnsLeft['player_' + player.playerNumber]++;
       console.log("player " + player.playerNumber + " " + turnsLeft['player_' + player.playerNumber]);
-      if(turnsLeft['player_' + player.playerNumber]<= maximumNumberOfTurns) {
+      if(turnsLeft['player_' + player.playerNumber]<= maximumNumberOfTurns && !gameIsFinished) {
         this.runPlayer(nextPlayer);
       }
       
@@ -342,8 +345,6 @@ define(
     App.prototype.runPlayer= function ( player ) {
       if(player == 1) {
         executeTurn ();
-        console.log(agent_angle + " " + agent_force);
-
         this.throwBanana(agent_force, agent_angle, player);
       } else {
         runAgent(2, [2,2], [2,2]);

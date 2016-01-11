@@ -16,7 +16,9 @@ var turnsLeft = {player_1: 0,player_2: 0};
 
 var rounds = 0;           //Starting round
 var roundsInGame = 2;     //The total number of rounds in a game.
-var nThrows = {player_1: 0,player_2: 0}; //How many throws for each player
+var nThrows = {player_1: 0,player_2: 0}; //How many throws for each pal
+
+var gameIsFinished = false; //Variable for controlling the state of the game
 
 
 requirejs(
