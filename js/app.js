@@ -10,9 +10,13 @@ var agent_2_memory = {};
 var nextTurn = false;
 var player2Play = 1;
 
-var turnsInGame = 0;
-var maximumNumberOfTurns = 3;
+var turnsInGame = 0;      //The number of games in each round
+var maximumNumberOfTurns = 23;
 var turnsLeft = {player_1: 0,player_2: 0};
+
+var rounds = 0;           //Starting round
+var roundsInGame = 2;     //The total number of rounds in a game.
+var nThrows = {player_1: 0,player_2: 0}; //How many throws for each player
 
 
 requirejs(
@@ -32,11 +36,11 @@ requirejs(
     app.createScene();
 
     // Player 2 Information
-    p2angle = document.getElementById( 'player_2_angle' );
-    p2velocity = document.getElementById( 'player_2_velocity' );
+    p2angle     = document.getElementById( 'player_2_angle' );
+    p2velocity  = document.getElementById( 'player_2_velocity' );
 
     play = document.getElementById('play');
-    executeBtn = document.getElementById('clickMe');
+    executeBtn = document.getElementById('clickMe');  
     rules = document.getElementById('rules');
     api = document.getElementById('api');
 

@@ -103,6 +103,8 @@ define(
      * clear: Reset the canvas
      */
     App.prototype.clear = function () {
+
+
       return this.canvas.width = this.canvas.width;
     };
 
@@ -117,6 +119,7 @@ define(
      * createGorillas: Builds out Player_1 && Player_2
      */
     App.prototype.createGorillas = function () {
+
       var buildingOnePosition, buildingTwoPosition, building;
 
       // Build and position Player_1
@@ -136,6 +139,8 @@ define(
      * reCreateGorillas: Re-Build players on reCreate
      */
     App.prototype.reCreateGorillas = function () {
+
+
       this.player_1.reCreate();
       this.player_2.reCreate();
     };
@@ -168,6 +173,7 @@ define(
      */
     App.prototype.updateScore = function () {
       // TODO: Set fill Style and font to be a global object value
+
       this.context.fillStyle = 'rgb( 0, 0, 160 )';
       this.context.font = 'bold 14px courier';
       this.context.fillRect( this.width / 2 - 45, this.height - 40, 90, 13 );
@@ -212,9 +218,7 @@ define(
       var y = player.banana.y();
       if ( x <= (this.width / 2) + 10 && x >= (this.width / 2) - 10 && y <= 27 && y >= 17 ) {
           this.scores['player_' + player]++;
-       
-
-        return true;
+          return true;
       }
       return false;
     };
@@ -249,7 +253,20 @@ define(
         this.timeout = setTimeout( function () {
           that.animateColission( deadPlayer );
         }, 5 );
-        this.scores['player_' + winner.playerNumber] = this.scores['player_' + winner.playerNumber] + 10;
+        this.scores['player_' + winner.playerNumber] = this.scores['player_' + winner.playerNumber] + 10 - turnsLeft['player_' + winner.playerNumber];
+        
+        rounds++;
+       
+        if(rounds > roundsInGame) {
+           console.log("Another round is finished, total number of rounds played: " + rounds);
+           var w = null;
+           if(this.scores[1] > this.scores[2]) {
+              w = "1";
+           } else {
+              w = "2";
+           }
+           console.log("The winner is player " + w + ", score: " + this.scores['player_' + winner.playerNumber]);
+        }
         this.updateScore();
         this.timeout = setTimeout( function () {
           that.startTime = new Date();
@@ -258,6 +275,7 @@ define(
           player.animateWin();
           that.animateWin( winner, that.startTime );
         }, this.frameRate );
+        
         return true;
       }
     };
@@ -282,6 +300,8 @@ define(
      */
     App.prototype.animateWin = function ( player, startTime ) {
       var that = this;
+              turnsLeft = {player_1: 0,player_2: 0};
+
       this.startTime = startTime;
       this.timeout = setTimeout( function () {
         while ( !(player.animate === true && player.animations < 12) ) {
@@ -291,6 +311,7 @@ define(
           that.nextPlayerTurn( player );
           return;
         }
+
         var now = new Date();
         var time = now - that.startTime;
         that.createScene();
@@ -322,6 +343,7 @@ define(
       if(player == 1) {
         executeTurn ();
         console.log(agent_angle + " " + agent_force);
+
         this.throwBanana(agent_force, agent_angle, player);
       } else {
         runAgent(2, [2,2], [2,2]);

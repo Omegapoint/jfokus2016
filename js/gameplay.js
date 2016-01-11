@@ -6,7 +6,7 @@ function executeTurn () {
 
 	var a = {};
 	var funName = "player" + Date.now();
-	eval("a.func  = function "+funName+"(prev_angle, prev_velocity) {" + code + "};");
+	eval("a.func  = function " + funName + "(prev_angle, prev_velocity) {" + code + "};");
 
 	var newParams = a.func(1, 2);
 

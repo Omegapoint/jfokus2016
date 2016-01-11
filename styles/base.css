@@ -13,18 +13,18 @@ font-smooth:never;
 }
 
 body {
-  background-color: #0000a0;
+  background-color: #fcfcfc;
   margin: 0;
   padding: 0;
-  color: grey;
+  color: #fff;
   font-size: 14px;
   font-weight: bold;
   font-family: FixedsysExcelsior301Regular;
 }
 
 #play {
-  background-color: grey;
-  color: #000000;
+  background-color: #0000a0;
+  color: #fff;
   padding: 3px;
   font-size: 20px;
   font-family: FixedsysExcelsior301Regular;
@@ -32,16 +32,15 @@ body {
 }
 
 .info {
-  background-color: grey;
   padding: 3px;
   font-family: FixedsysExcelsior301Regular;
-  color: #000000;;
+  color: #0000a0;
   font-size: 16px;
 }
 
 #api {
-  background-color: grey;
-  color: #000000;
+  background-color: #0000a0;
+  color: #fff;
   padding: 3px;
   font-size: 20px;
   font-family: FixedsysExcelsior301Regular;
@@ -49,8 +48,8 @@ body {
 }
 
 #rules {
-  background-color: grey;
-  color: #000000;
+  background-color: #0000a0;
+  color: #fff;
   padding: 3px;
   font-size: 20px;
   font-family: FixedsysExcelsior301Regular;
@@ -62,9 +61,8 @@ body {
 
 #top {
   width: 200px;
-  padding: 4px;
-  background-color: grey;
-  color: #000000;
+
+  color: #0000a0;
   margin: auto;
 }
 
