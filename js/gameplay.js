@@ -2,7 +2,7 @@ function executeTurn () {
 
 	console.log("EXECUTE");
 
-	var code = document.getElementById("customImpl").value; 
+	var code = customImpl.getValue(); 
 
 	var a = {};
 	var funName = "player" + Date.now();
@@ -12,5 +12,5 @@ function executeTurn () {
 
 	agent_angle = a.agent_angle;
 	agent_force = a.agent_force;
-		
+
 }

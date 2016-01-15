@@ -3,9 +3,13 @@
   <head>
   <title>Omega Gorillas</title>
   <link href="styles/base.css" type="text/css" rel="stylesheet"></link>
+  <link href="node_modules/codemirror/lib/codemirror.css" type="text/css" rel="stylesheet"></link>
+  <link href="node_modules/codemirror/theme/the-matrix.css" type="text/css" rel="stylesheet"></link>
   <script data-main="js/app.js" src="js/require.js"></script>
   <script src="js/agent.js"></script>
   <script src="js/gameplay.js"></script>
+  <!--script src="node_modules/codemirror/lib/codemirror.js"></script>
+  <script src="node_modules/codemirror/mode/javascript/javascript.js"></script-->
   </head>
   <body>
 	<div id="top"><h1>Omega Gorillas</h1></div>
@@ -16,7 +20,7 @@
         </div>
         <div id="player_2">
           Player 2
-          
+
         </div>
       </div>
       <canvas id="canvas" width="640" height="350">
@@ -30,11 +34,11 @@
   		</textarea>
  	</div>
 		<div id="startbutton">
-  
+
   <input id="play"  type="button" value="PLAY" />
   <input id="api"   type="button" value="API" />
   <input id="rules" type="button" value="RULES" />
-   
+
   </div>
   <br><br>
   <div id="api_info" class="info">
@@ -63,7 +67,24 @@
 
 
     </div>
-    
+
     <script id="playerImplementation">var impl = "function customPlayer() var agent_angle = 45; var agent_force = 200;}";</script>
+    <script>
+      var customImpl;
+
+      require(["../node_modules/codemirror/lib/codemirror", "../node_modules/codemirror/mode/javascript/javascript", "../node_modules/codemirror/addon/hint/show-hint", "../node_modules/codemirror/addon/hint/javascript-hint"], function (CodeMirror, Javascript) {
+        customImpl = CodeMirror.fromTextArea(document.getElementById("customImpl"), {
+          "mode": "javascript",
+          "theme": "the-matrix",
+          "autofocus": true,
+          "lineNumbers": true,
+          "extraKeys": {
+            "Ctrl-Space": "autocomplete"
+          }
+        });
+
+      });
+
+    </script>
   </body>
 </html>
