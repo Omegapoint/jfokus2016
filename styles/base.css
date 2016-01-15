@@ -38,6 +38,10 @@ body {
   font-size: 16px;
 }
 
+#textbox {
+  font-weight: normal;
+}
+
 #api {
   background-color: #0000a0;
   color: #fff;
