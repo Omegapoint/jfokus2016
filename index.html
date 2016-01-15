@@ -72,12 +72,14 @@
     <script>
       var customImpl;
 
-      require(["../node_modules/codemirror/lib/codemirror", "../node_modules/codemirror/mode/javascript/javascript", "../node_modules/codemirror/addon/hint/show-hint", "../node_modules/codemirror/addon/hint/javascript-hint"], function (CodeMirror, Javascript) {
+      require(["../node_modules/codemirror/lib/codemirror", "../node_modules/codemirror/mode/javascript/javascript", "../node_modules/codemirror/addon/hint/show-hint", "../node_modules/codemirror/addon/hint/javascript-hint", "../node_modules/codemirror/addon/edit/closebrackets", "../node_modules/codemirror/addon/edit/matchbrackets"], function (CodeMirror) {
         customImpl = CodeMirror.fromTextArea(document.getElementById("customImpl"), {
           "mode": "javascript",
           "theme": "the-matrix",
           "autofocus": true,
           "lineNumbers": true,
+          "matchBrackets": true,
+          "autoCloseBrackets": true,
           "extraKeys": {
             "Ctrl-Space": "autocomplete"
           }
