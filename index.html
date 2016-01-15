@@ -4,15 +4,13 @@
   <title>Omega Gorillas</title>
   <link href="styles/base.css" type="text/css" rel="stylesheet"></link>
   <link href="node_modules/codemirror/lib/codemirror.css" type="text/css" rel="stylesheet"></link>
-  <link href="node_modules/codemirror/theme/the-matrix.css" type="text/css" rel="stylesheet"></link>
+  <link href="node_modules/codemirror/theme/qbasic.css" type="text/css" rel="stylesheet"></link>
   <script data-main="js/app.js" src="js/require.js"></script>
   <script src="js/agent.js"></script>
   <script src="js/gameplay.js"></script>
-  <!--script src="node_modules/codemirror/lib/codemirror.js"></script>
-  <script src="node_modules/codemirror/mode/javascript/javascript.js"></script-->
   </head>
   <body>
-	<div id="top"><h1>Omega Gorillas</h1></div>
+	<div id="top"></div>
     <div id="container">
       <div class="players">
         <div id="player_1">
@@ -26,20 +24,31 @@
       <canvas id="canvas" width="640" height="350">
         <p>Browser does not support the canvas tag</p>
       </canvas>
-		<div id="textbox">
-   		<label style="display:block; text-align:center;color:white" for="customImpl"></label>
-  		<textarea id="customImpl" rows="20" cols="105%">
-          this.agent_angle = 45;
-          this.agent_force = 200;
-  		</textarea>
- 	</div>
-		<div id="startbutton">
 
-  <input id="play"  type="button" value="PLAY" />
+
+      <input id="play"  type="button" value="PLAY" />
+      <input id="rules" type="button" value="CLEAR" />
   <input id="api"   type="button" value="API" />
   <input id="rules" type="button" value="RULES" />
 
+
+  <br><br><br><br>
+    <div id="startbutton">
+  
+
+
   </div>
+
+		<div id="textbox" style ="border: 2px solid #fff;">
+   		<label style="display:block; text-align:center;color:white" for="customImpl"></label>
+  		<textarea id="customImpl" rows="20" cols="105%">
+function runPlayer(lastBananaHit, opponent, wind, memory){
+  this.agent_angle = 45;
+  this.agent_force = 200;
+};
+  		</textarea>
+ 	</div>
+
   <br><br>
   <div id="api_info" class="info">
   ********************* API ********************* <br />

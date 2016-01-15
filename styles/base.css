@@ -13,7 +13,7 @@ font-smooth:never;
 }
 
 body {
-  background-color: #fcfcfc;
+  background-color: black;
   margin: 0;
   padding: 0;
   color: #fcfcfc;
@@ -29,6 +29,7 @@ body {
   font-size: 20px;
   font-family: FixedsysExcelsior301Regular;
   margin-right: 10px;
+   box-shadow: 4px 4px 0px #888888;
 }
 
 .info {
@@ -36,10 +37,12 @@ body {
   font-family: FixedsysExcelsior301Regular;
   color: #0000a0;
   font-size: 16px;
+
 }
 
 #api {
   background-color: #0000a0;
+   box-shadow: 4px 4px 0px #888888;
   color: #fff;
   padding: 3px;
   font-size: 20px;
@@ -49,6 +52,7 @@ body {
 
 #rules {
   background-color: #0000a0;
+   box-shadow: 4px 4px 0px #888888;
   color: #fff;
   padding: 3px;
   font-size: 20px;
