@@ -1,0 +1,9 @@
+{
+  "name": "JFokus",
+  "scripts": {
+    "start": "http-server . -p 8080 -o -c -1 -s"
+  },
+  "dependencies": {
+    "http-server": "0.8.5"
+  }
+}
