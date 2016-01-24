@@ -20,6 +20,8 @@ var nThrows = {player_1: 0,player_2: 0}; //How many throws for each pal
 
 var gameIsFinished = false; //Variable for controlling the state of the game
 
+var email = null;
+var playerName = null;
 
 requirejs(
 
@@ -42,9 +44,17 @@ requirejs(
     p2velocity  = document.getElementById( 'player_2_velocity' );
 
     play = document.getElementById('play');
-    executeBtn = document.getElementById('clickMe');  
+    
     rules = document.getElementById('rules');
     api = document.getElementById('api');
+    newPlayer1 = document.getElementById('newPlayer');
+
+    newPlayer1.addEventListener("click", function(event) {
+       console.log("New Game yao..!");
+       playerName = window.prompt("please enter your name");
+       email = window.prompt("please enter your e-mail");
+
+    });
 
     rules.addEventListener("click", function(event) {
         if(document.getElementById('rules_info').style.display == 'none') {     
@@ -64,6 +74,9 @@ requirejs(
        
     });
 
+  
+
+
     play.addEventListener("click", function(event) {
       turnsInGame = 0;
         turnsLeft['player_1'] = 0;
@@ -77,11 +90,7 @@ requirejs(
     });
 
     //This is where we get the variables from player 1
-    executeBtn.addEventListener( "click", function ( event ) {
-      executeTurn();
-      app.throwBanana(parseInt(agent_force), parseInt(agent_angle), 1);
-      executeBtn.disabled = true;
-    });
+
 
     p2angle.addEventListener( "keydown", function ( event ) {
       if ( event.keyCode === 13 ) {

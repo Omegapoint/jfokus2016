@@ -260,15 +260,28 @@ define(
         if(rounds > roundsInGame) {
            console.log("Another round is finished, total number of rounds played: " + rounds);
            var w = null;
+           var winningScore = null;
            if(this.scores[1] > this.scores[2]) {
               w = "1";
+              winningScore = this.scores[1];
            } else {
               w = "2";
+              winningScore = this.scores[2];
            }
            gameIsFinished = true;
            var winnerMsg = "The winner is player " + w + ", score: " + this.scores['player_' + w];
            alert(winnerMsg); //Här kan vi ju exportera resultatet till en slags highscore också... eller?
-           console.log(winnerMsg);
+           
+            var winningPlayer = "Mega Arne";
+            var email = "mega@ar.ne";
+            var jsonToSave = {"player":winningPlayer, "email":email, "score": this.scores['player_' + w]};
+            var textToSave = JSON.stringify(jsonToSave);
+
+            var doc1 = document.createElement('a');
+            doc1.setAttribute('href', 'data:text/plain;charset=utf-u,'+encodeURIComponent(textToSave));
+            doc1.setAttribute('download', "filename.json");
+            doc1.click();
+            console.log(winnerMsg);
         }
         this.updateScore();
         this.timeout = setTimeout( function () {
@@ -341,6 +354,8 @@ define(
       }
       
     };
+
+  
 
     App.prototype.runPlayer= function ( player ) {
       if(player == 1) {
