@@ -276,10 +276,11 @@ define(
             var email = "mega@ar.ne";
             var jsonToSave = {"player":winningPlayer, "email":email, "score": this.scores['player_' + w]};
             var textToSave = JSON.stringify(jsonToSave);
+            var filename = winningPlayer + ".json";
 
             var doc1 = document.createElement('a');
             doc1.setAttribute('href', 'data:text/plain;charset=utf-u,'+encodeURIComponent(textToSave));
-            doc1.setAttribute('download', "filename.json");
+            doc1.setAttribute('download', filename);
             doc1.click();
             console.log(winnerMsg);
         }
