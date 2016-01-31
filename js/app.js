@@ -39,6 +39,7 @@ requirejs(
     app = new App();
     app.createScene();
 
+
     // Player 2 Information
     p2angle     = document.getElementById( 'player_2_angle' );
     p2velocity  = document.getElementById( 'player_2_velocity' );
@@ -131,7 +132,7 @@ requirejs(
     p2velocity.style.display = 'none';
     p2velocity.previousElementSibling.style.display = 'none';
 
-    // Global app functions
+    // Global appfunctions
     // TODO: find a better solution for these
     // May create an event module to listen / fire events
     window.hidePlayerField = function ( player, field ) {
