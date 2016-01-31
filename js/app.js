@@ -50,7 +50,7 @@ requirejs(
     newPlayer1 = document.getElementById('newPlayer');
 
     newPlayer1.addEventListener("click", function(event) {
-       console.log("New Game yao..!");
+
        playerName = window.prompt("please enter your name");
        email = window.prompt("please enter your e-mail");
 
@@ -82,7 +82,7 @@ requirejs(
         turnsLeft['player_1'] = 0;
         turnsLeft['player_1'] = 0;
         nextTurn = true;
-        console.log("Let's play! :)");
+        
         var currentPlayer = 1; //Player 1 starts
         var turn = 0;
         app.throwBanana( 10, 25, currentPlayer);
