@@ -6,11 +6,19 @@ function executeTurn () {
 	var a = {};
 	var funName = "player" + Date.now();
 	//eval("a.func  = function " + funName + "(prev_angle, prev_velocity) {" + code + "};");
-	eval("a.func  = " +  code );
+	eval(code);
 
-	var newParams = a.func(1, 2);
 
-	agent_angle = a.agent_angle;
-	agent_force = a.agent_force;
+	//Ettorna måste bytas ut mot riktiga värden A.S.A.F.P.
+	var playerReturn = runPlayer(1,1,1,1);
+
+
+	console.log("JSON: " + playerReturn);	
+	agent_angle = playerReturn['angle'];
+	agent_force = playerReturn['velocity'];
+
+
+	console.log(agent_force + " <-> " + agent_angle);
+
 
 }

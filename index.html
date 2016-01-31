@@ -4,9 +4,6 @@
   <title>Omega Gorillas</title>
 
   
-
-
-
   <link href="styles/base.css" type="text/css" rel="stylesheet"></link>
 
   <link href="node_modules/codemirror/lib/codemirror.css" type="text/css" rel="stylesheet"></link>
@@ -37,7 +34,6 @@
         </div>
         <div id="player_2">
           Player 2
-
         </div>
       </div>
       <canvas id="canvas" width="640" height="350">
@@ -62,9 +58,14 @@
    		<label style="display:block; text-align:center;color:white" for="customImpl"></label>
   		<textarea id="customImpl" rows="20" cols="105%">
 function runPlayer(lastBananaHit, opponent, wind, memory){
-  this.agent_angle = 45;
-  this.agent_force = 20;
-};
+  var angle = 45;
+  var velocity = 20;
+  
+  var returnValues = new Object();
+  returnValues['velocity'] = velocity;
+  returnValues['angle'] = angle;
+  return returnValues;
+}
   		</textarea>
  	</div>
 
