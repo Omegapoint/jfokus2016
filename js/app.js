@@ -1,5 +1,5 @@
-var agent_angle = 10;
-var agent_force = 10;
+var agent_angle = Number.MIN_VALUE;
+var agent_force = Number.MIN_VALUE;
 var agent_memory = {};
 var lastColission;
 
@@ -84,9 +84,28 @@ requirejs(
         turnsLeft['player_1'] = 0;
         nextTurn = true;
 
+      var playerWind = app.wind.windSpeed;
+
         var currentPlayer = 1; //Player 1 starts
         var turn = 0;
-        app.throwBanana( 10, 25, currentPlayer);
+
+         var deltaX = app.player_2.x - app.player_1.x;
+        var deltaY = app.player_1.y - app.player_2.y;
+            var playerPos = [deltaX, deltaY];
+
+            
+        var bananaHitPosition = [0,0];
+
+        if (app.player_1.banana) {
+          var deltaBananaX =  app.player_2.x - app.player_2.banana.x();
+          var deltaBananaY = app.player_2.banana.y() - app.player_2.y ;
+          bananaHitPosition = [deltaBananaX, deltaBananaY];
+        } 
+        
+
+        executeTurn(playerPos, bananaHitPosition, playerWind);
+  
+        app.throwBanana(agent_force, agent_angle, currentPlayer);
 
     });
 
