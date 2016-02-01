@@ -31,6 +31,7 @@ define(
             this.clear();
             this.createSun();
             if (this.empty) {
+                console.log("create scene, empty...");
                 this.empty = false;
                 this.createBuildings();
                 this.createGorillas();
@@ -271,7 +272,7 @@ define(
                     var winnerMsg = "The winner is player " + w + ", score: " + this.scores['player_' + w];
                     alert(winnerMsg); //Här kan vi ju exportera resultatet till en slags highscore också... eller?
 
-                    var winningPlayer = "Mega Arne";
+                    var winningPlayer = "Mega";
                     var email = "mega@ar.ne";
                     var jsonToSave = {
                         "player": winningPlayer,
@@ -357,7 +358,19 @@ define(
             turnsLeft['player_' + player.playerNumber]++;
             if (turnsLeft['player_' + player.playerNumber] <= maximumNumberOfTurns && !gameIsFinished) {
                 this.runPlayer(nextPlayer);
+            } else if (turnsLeft['player_' + player.playerNumber] > maximumNumberOfTurns){
+              this.empty = true;
+              this.buildings = [];
+              this.createScene();
+              turnsLeft['player_1'] = 0;
+              turnsLeft['player_2'] = 0;
+              
+              rounds++;
+              this.nextPlayerTurn(player);
+                    
+              console.log("Too many turns... do something...");
             }
+            console.log("arne");
 
         };
 

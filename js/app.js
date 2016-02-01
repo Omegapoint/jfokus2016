@@ -11,7 +11,7 @@ var nextTurn = false;
 var player2Play = 1;
 
 var turnsInGame = 0;      //The number of games in each round
-var maximumNumberOfTurns = 23;
+var maximumNumberOfTurns = 3;
 var turnsLeft = {player_1: 0,player_2: 0};
 
 var rounds = 0;           //Starting round
@@ -96,7 +96,7 @@ requirejs(
             
         var bananaHitPosition = [0,0];
 
-        if (app.player_1.banana) {
+        if (app.player_1.banana && app.player_2.banana) {
           var deltaBananaX =  app.player_2.x - app.player_2.banana.x();
           var deltaBananaY = app.player_2.banana.y() - app.player_2.y ;
           bananaHitPosition = [deltaBananaX, deltaBananaY];

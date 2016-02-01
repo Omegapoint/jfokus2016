@@ -50,8 +50,9 @@
    		<label style="display:block; text-align:center;color:white" for="customImpl"></label>
   		<textarea id="customImpl" rows="20" cols="105%">
 function runPlayer(lastBananaHit, opponent, wind, memory){
-    var angle = 30 + opponent['y'];
-    var velocity = 5 - wind + (opponent['x'] * 0.05);
+    var randomNumber = Math.random() * 10;
+    var angle = 30 + Math.abs(opponent['y']);
+    var velocity = 5 - wind + (opponent['x'] * 0.05 + randomNumber);
     var returnValues = new Object();
 
     returnValues['velocity'] = velocity;
