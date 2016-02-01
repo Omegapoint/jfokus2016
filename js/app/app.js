@@ -257,7 +257,7 @@ define(
                 this.scores['player_' + winner.playerNumber] = this.scores['player_' + winner.playerNumber] + 10 - turnsLeft['player_' + winner.playerNumber];
 
                 rounds++;
-
+                this.updateScore();
                 if (rounds > roundsInGame) {
                     var w = null;
                     var winningScore = null;
@@ -272,7 +272,7 @@ define(
                     var winnerMsg = "The winner is player " + w + ", score: " + this.scores['player_' + w];
                     alert(winnerMsg); //Här kan vi ju exportera resultatet till en slags highscore också... eller?
 
-                    var winningPlayer = "Mega";
+                    var winningPlayer = "Mega" + Math.random();
                     var email = "mega@ar.ne";
                     var jsonToSave = {
                         "player": winningPlayer,
@@ -288,7 +288,7 @@ define(
                     doc1.click();
 
                 }
-                this.updateScore();
+                
                 this.timeout = setTimeout(function() {
                     that.startTime = new Date();
                     winner.animate = true;
@@ -376,7 +376,7 @@ define(
 
         };
 
-   
+
         App.prototype.runPlayer = function(player) {
 
             //TODO: Här ska vi ta reda på wind och skit och ge detta till spelarna...! 

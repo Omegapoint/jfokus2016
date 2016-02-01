@@ -79,10 +79,15 @@ requirejs(
 
 
     play.addEventListener("click", function(event) {
+      rounds  = 0;
+      app.scores['player_1'] = 0;
+      app.scores['player_2'] = 0;
+
       turnsInGame = 0;
-        turnsLeft['player_1'] = 0;
-        turnsLeft['player_1'] = 0;
-        nextTurn = true;
+      gameIsFinished = false;
+      turnsLeft['player_1'] = 0;
+      turnsLeft['player_1'] = 0;
+      nextTurn = true;
 
       var playerWind = app.wind.windSpeed;
 
