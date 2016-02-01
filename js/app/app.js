@@ -24,6 +24,7 @@ define(
             this.wind = new Wind(this.context);
         }
 
+
         /**
          * createScene: Sets up and rerenders the main scene
          */
@@ -31,7 +32,7 @@ define(
             this.clear();
             this.createSun();
             if (this.empty) {
-                console.log("create scene, empty...");
+
                 this.empty = false;
                 this.createBuildings();
                 this.createGorillas();
@@ -238,6 +239,8 @@ define(
             return false;
         };
 
+
+
         /**
          * bananaHitGorilla: Check if banana has hit a player
          * params {Object} player Which player tossed the banana
@@ -370,9 +373,7 @@ define(
               rounds++;
               this.nextPlayerTurn(player);
                     
-              console.log("Too many turns... do something...");
             }
-            console.log("arne");
 
         };
 
@@ -380,7 +381,6 @@ define(
         App.prototype.runPlayer = function(player) {
 
             //TODO: Här ska vi ta reda på wind och skit och ge detta till spelarna...! 
-            //console.log("Wind: " + this.player_1.x);
             var playerWind = this.wind.windSpeed;
         
 
