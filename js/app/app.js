@@ -358,13 +358,15 @@ define(
             turnsLeft['player_' + player.playerNumber]++;
             if (turnsLeft['player_' + player.playerNumber] <= maximumNumberOfTurns && !gameIsFinished) {
                 this.runPlayer(nextPlayer);
-            } else if (turnsLeft['player_' + player.playerNumber] > maximumNumberOfTurns){
+            } else if(gameIsFinished) {
+              return;
+            }else if (turnsLeft['player_' + player.playerNumber] > maximumNumberOfTurns){
               this.empty = true;
               this.buildings = [];
               this.createScene();
               turnsLeft['player_1'] = 0;
               turnsLeft['player_2'] = 0;
-              
+
               rounds++;
               this.nextPlayerTurn(player);
                     
@@ -374,8 +376,7 @@ define(
 
         };
 
-
-
+   
         App.prototype.runPlayer = function(player) {
 
             //TODO: Här ska vi ta reda på wind och skit och ge detta till spelarna...! 
