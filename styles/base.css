@@ -22,14 +22,24 @@ body {
   font-family: FixedsysExcelsior301Regular;
 }
 
-#play {
-  background-color: #0000a0;
+.menu{
+  background-color: #888888;
   color: #fff;
-  padding: 3px;
-  font-size: 20px;
+  height: 26px;
+}
+
+.menu-button {
+  background-color: #888888;
+  color: #000;
   font-family: FixedsysExcelsior301Regular;
-  margin-right: 10px;
-   box-shadow: 4px 4px 0px #888888;
+  font-size: 20px;
+  width: auto;
+  padding: 3px 10px 3px 10px;
+}
+
+.menu-button:hover{
+  background-color: #0000a0;
+  color: #888888;
 }
 
 .info {
@@ -42,47 +52,6 @@ body {
 
 #textbox {
   font-weight: normal;
-}
-
-#api {
-  background-color: #0000a0;
-   box-shadow: 4px 4px 0px #888888;
-  color: #fff;
-  padding: 3px;
-  font-size: 20px;
-  font-family: FixedsysExcelsior301Regular;
-  margin-right: 10px;
-}
-
-#newPlayer {
-  background-color: #0000a0;
-   box-shadow: 4px 4px 0px #888888;
-  color: #fff;
-  padding: 3px;
-  width: 110px;
-  font-size: 20px;
-  font-family: FixedsysExcelsior301Regular;
-  margin-right: 10px;
-}
-
-#rules {
-  background-color: #0000a0;
-   box-shadow: 4px 4px 0px #888888;
-  color: #fff;
-  padding: 3px;
-  font-size: 20px;
-  font-family: FixedsysExcelsior301Regular;
-  width: 60px;
-  margin-right: 10px;
-}
-
-
-
-#top {
-  width: 200px;
-
-  color: #0000a0;
-  margin: auto;
 }
 
 #container {

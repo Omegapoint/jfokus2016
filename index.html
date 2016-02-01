@@ -3,7 +3,7 @@
   <head>
   <title>Omega Gorillas</title>
 
-  
+
   <link href="styles/base.css" type="text/css" rel="stylesheet"></link>
 
   <link href="node_modules/codemirror/lib/codemirror.css" type="text/css" rel="stylesheet"></link>
@@ -12,7 +12,7 @@
 
   <script src="js/agent.js"></script>
   <script src="js/gameplay.js"></script>
- 
+
 
 
 
@@ -25,8 +25,14 @@
 
   </head>
   <body>
+  <div class=menu>
+    <input id="play"      class="menu-button" type="button" value="Play" />
+    <input id="newPlayer" class="menu-button" type="button" value="New Player" />
+    <input id="clear"     class="menu-button" type="button" value="Clear" />
+    <input id="api"       class="menu-button" type="button" value="Api" />
+    <input id="rules"     class="menu-button" type="button" value="Rules" />
+  </div>
 
-	<div id="top"></div>
     <div id="container">
       <div class="players">
         <div id="player_1">
@@ -40,20 +46,6 @@
         <p>Browser does not support the canvas tag</p>
       </canvas>
 
-      <input id="play"  type="button" value="PLAY" />
-      <input id="newPlayer"  type="button" value="NEW PLAYER" />
-      <input id="rules" type="button" value="CLEAR" />
-  <input id="api"   type="button" value="API" />
-  <input id="rules" type="button" value="RULES" />
-
-
-  <br><br><br><br>
-    <div id="startbutton">
-  
-
-
-  </div>
-
 		<div id="textbox" style ="border: 2px solid #fff;">
    		<label style="display:block; text-align:center;color:white" for="customImpl"></label>
   		<textarea id="customImpl" rows="20" cols="105%">
@@ -61,7 +53,7 @@ function runPlayer(lastBananaHit, opponent, wind, memory){
     var angle = 30 + opponent['y'];
     var velocity = 5 - wind + (opponent['x'] * 0.05);
     var returnValues = new Object();
-    
+
     returnValues['velocity'] = velocity;
     returnValues['angle'] = angle;
     returnValues['memory'] = "OP Gorillas is fun! :)";
