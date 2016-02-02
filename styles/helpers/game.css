@@ -1,0 +1,41 @@
+#container {
+  width: 650px;
+  height: 360px;
+  margin: 10px auto;
+  position: relative;
+  background-color: #0000a0;
+  padding: 5px;
+}
+#canvas {
+  margin: 0 auto;
+  border: 5px solid #888888;
+}
+.players {
+  position: absolute;
+  padding: 10px;
+  width: 630px;
+}
+
+#player_1 {
+  text-align: left;
+  float: left;
+  width: 300px;
+}
+
+#player_2 {
+  text-align: right;
+  float: right;
+  width: 135px;
+}
+.ai_input{
+  border: 5px solid #888888;
+  margin: 10px;
+  font-weight: normal;
+  font-size: 14px;
+  background-color: #0000a0;
+}
+.ai_input_label{
+  display:block;
+  text-align:center;
+  color:white;
+}
