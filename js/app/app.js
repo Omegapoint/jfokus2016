@@ -267,25 +267,22 @@ define(
                         winningScore = this.scores[2];
                     }
                     gameIsFinished = true;
-                    var winnerMsg = "The winner is player " + w + ", score: " + this.scores['player_' + w];
-                    //TODO: remove alert with modal
-                    alert(winnerMsg); //Här kan vi ju exportera resultatet till en slags highscore också... eller?
+                    openWinnerModal("The winner is player " + w + ", score: " + this.scores['player_' + w]);
 
-                    var winningPlayer = "Mega" + Math.random();
-                    var email = "mega@ar.ne";
                     var jsonToSave = {
-                        "player": winningPlayer,
-                        "email": email,
+                        "player": playerName,
+                        "email": playerEmail,
                         "score": this.scores['player_' + w]
                     };
-                    var textToSave = JSON.stringify(jsonToSave);
-                    var filename = winningPlayer + ".json";
+                    highscoreList.push(jsonToSave);
+                    highscoreTableUpdate();
+                    var textToSave = JSON.stringify(highscoreList);
+                    var filename = 'scores-'+Date.now()+".json";
 
                     var doc1 = document.createElement('a');
                     doc1.setAttribute('href', 'data:text/plain;charset=utf-u,' + encodeURIComponent(textToSave));
                     doc1.setAttribute('download', filename);
                     doc1.click();
-
                 }
 
                 this.timeout = setTimeout(function() {

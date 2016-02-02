@@ -1,3 +1,0 @@
-/Users/nickfirouzi/jfokus2016/highscore/toFolder/fileNames copy 2.json
-/Users/nickfirouzi/jfokus2016/highscore/toFolder/fileNames.json
-/Users/nickfirouzi/jfokus2016/highscore/toFolder/kalle.json

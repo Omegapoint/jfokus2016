@@ -7,13 +7,17 @@ function closeModal(modalId){
   modal = document.getElementById(modalId);
   modal.style.display = "none";
 }
+function openWinnerModal(winnerMsg){
+  document.getElementById('winner_modal_msg').innerHTML = winnerMsg;
+  document.getElementById('winner_modal').style.display = "block";
+}
 function closeModalAndCreatePlayer(){
   closeModal('new_player');
   createNewPlayer();
 }
 function createNewPlayer(){
   playerName = document.getElementById('player_name').value;
-  email = document.getElementById('player_email').value;
+  playerEmail = document.getElementById('player_email').value;
 }
 window.addEventListener("keydown", function (event) {
   if (event.defaultPrevented) {

@@ -1,10 +1,9 @@
 #container {
+  text-align: center;
+  margin: 15px;
   width: 650px;
   height: 360px;
-  margin: 10px auto;
-  position: relative;
   background-color: #0000a0;
-  padding: 5px;
 }
 #canvas {
   margin: 0 auto;
@@ -28,11 +27,14 @@
   width: 135px;
 }
 .ai_input{
+  position: absolute;
+  bottom: 0px;
   border: 5px solid #888888;
-  margin: 10px;
+  margin: 10px auto;
   font-weight: normal;
   font-size: 14px;
   background-color: #0000a0;
+  width: 99%;
 }
 .ai_input_label{
   display:block;

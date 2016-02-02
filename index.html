@@ -12,6 +12,7 @@
   <script data-main="js/app.js" src="js/require.js"></script>
   <script src="js/helpers/customImpl.js"></script>
   <script src="js/helpers/modal.js"></script>
+  <script src="js/helpers/highscore.js"></script>
   <script src="js/agent.js"></script>
   <script src="js/gameplay.js"></script>
 </head>
@@ -24,41 +25,57 @@
     <input id="rules"     class="menu-button" type="button" onclick="openModal('rules_info')" value="Rules" />
     <span class="menu_title">by Omegapoint</span>
   </div>
+  <table class="top-container">
+    <tr>
+      <td class="highscore"> <!-- Start highscore -->
+        <h1>Highscore</h1>
+        <br>
+        <table id="highscore-table"  class="highscore-table">
+        </table>
+      </td> <!-- end highscore -->
 
-  <div id="container">
-    <div class="players">
-      <div id="player_1">
-        Player 1<br>
-        Score: <span id="player_1_score">0</span>p
-      </div>
-      <div id="player_2">
-        Player 2<br>
-        Score: <span id="player_2_score">0</span>p
-      </div>
-    </div>
-    <canvas id="canvas" width="640" height="350">
-      <p>Browser does not support the canvas tag</p>
-    </canvas>
-  </div>
+      <td id="container"> <!-- Start game container -->
+        <div class="players">
+          <div id="player_1">
+            Player 1<br>
+            Score: <span id="player_1_score">0</span>p
+          </div>
+          <div id="player_2">
+            Player 2<br>
+            Score: <span id="player_2_score">0</span>p
+          </div>
+        </div>
+        <canvas id="canvas" width="640" height="350">
+          <p>Browser does not support the canvas tag</p>
+        </canvas>
+      </td> <!-- end game container -->
 
-  <div class="ai_input" id="textbox">
+      <td class="highscore-img">
+        <img src="img/twogorillas.gif" >
+      </td>
+
+    </tr>
+  </table>
+
+
+  <div class="ai_input" id="textbox">   <!-- Start input code -->
     <label class="ai_input_label" for="customImpl"></label>
     <textarea class="ai_input_code" id="customImpl" rows="20" cols="105%">
-function runPlayer(lastBananaHit, opponent, wind, memory){
-  var angle = 30 + opponent['y'];
-  var velocity = 5 - wind + (opponent['x'] * 0.05);
-  var returnValues = new Object();
+      function runPlayer(lastBananaHit, opponent, wind, memory){
+        var angle = 30 + opponent['y'];
+        var velocity = 5 - wind + (opponent['x'] * 0.05);
+        var returnValues = new Object();
 
-  returnValues['velocity'] = velocity;
-  returnValues['angle'] = angle;
-  returnValues['memory'] = "OP Gorillas is fun! :)";
-  return returnValues;
-}
+        returnValues['velocity'] = velocity;
+        returnValues['angle'] = angle;
+        returnValues['memory'] = "OP Gorillas is fun! :)";
+        return returnValues;
+      }
     </textarea>
-  </div>
+  </div>  <!-- end input code -->
 
-  <!-- start API modal -->
-  <div id="api_info" class="modal">
+
+  <div id="api_info" class="modal"> <!-- start API modal -->
     <div class="modal-content">
       <div class="modal-box">
         Api<br/>
@@ -76,11 +93,9 @@ function runPlayer(lastBananaHit, opponent, wind, memory){
         <br/>
       </div>
     </div>
-  </div>
-  <!-- end API modal -->
+  </div> <!-- end API modal -->
 
-  <!-- start Rules modal -->
-  <div id="rules_info" class="modal">
+  <div id="rules_info" class="modal"> <!-- start Rules modal -->
     <div class="modal-content">
       <div class="modal-box">
         <br/>
@@ -97,11 +112,9 @@ function runPlayer(lastBananaHit, opponent, wind, memory){
         <br/>
       </div>
     </div>
-  </div>
-  <!-- end Rules modal -->
+  </div> <!-- end Rules modal -->
 
-  <!-- start New Player modal -->
-  <div id="new_player" class="modal">
+  <div id="new_player" class="modal"> <!-- start New Player modal -->
     <div class="modal-content">
       <div class="modal-box">
         <br/>
@@ -110,8 +123,8 @@ function runPlayer(lastBananaHit, opponent, wind, memory){
         <label for="player_name">Enter name: </label>
         <input class="modal-input" type="text" id="player_name"><br>
         <div class="modal-input-group">
-        <label for="player_email">Enter mail: </label>
-        <input class="modal-input" type="email" id="player_email"><br>
+          <label for="player_email">Enter mail: </label>
+          <input class="modal-input" type="email" id="player_email"><br>
         </div>
         <hr>
         <button class="modal-btn-ok" onclick="closeModalAndCreatePlayer()">
@@ -120,7 +133,20 @@ function runPlayer(lastBananaHit, opponent, wind, memory){
         <br/>
       </div>
     </div>
-  </div>
-  <!-- end Rules modal -->
+  </div> <!-- end Rules modal -->
+
+  <div id="winner_modal" class="modal"> <!-- start winner modal -->
+    <div class="modal-content">
+      <div class="modal-box">
+        <span id="winner_modal_msg"></span>
+        <hr>
+        <button class="modal-btn-ok" onclick="closeModal('winner_modal')">
+          < <ok><u>O</u>k</ok> >
+        </button>
+        <br/>
+      </div>
+    </div>
+  </div> <!-- end winner modal -->
+
 </body>
 </html>

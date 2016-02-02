@@ -2,6 +2,7 @@
 @import 'helpers/menu.css';
 @import 'helpers/modal.css';
 @import 'helpers/game.css';
+@import 'helpers/highscore.css';
 @font-face {
 font-family: 'FixedsysExcelsior301Regular';
 src: url('vendors/fsex300-webfont.eot');
@@ -14,8 +15,16 @@ font-style: normal;
 -webkit-font-smoothing:aliased;
 font-smooth:never;
 }
+html, body {
+    height: 100%;
+}
+
+html {
+    margin: auto;
+}
 
 body {
+  vertical-align: middle;
   margin: 0;
   padding: 0;
   background-color: #0000a0;
@@ -23,13 +32,24 @@ body {
   font-size: 18px;
   font-weight: normal;
   font-family: FixedsysExcelsior301Regular;
+  width: 100%;
 }
 hr{
   border: none;
   height: 2px;
   background-color: black;
 }
-ul
-{
+ul{
   list-style-type: none;
+}
+table.top-container{
+  margin-left:auto;
+  margin-right:auto;
+  }
+}
+table.top-container tr{
+  vertical-align: top;
+}
+table.top-container td{
+  padding: 15px 20px 0 20px;
 }

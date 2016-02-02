@@ -1,0 +1,14 @@
+.highscore{
+  text-align: left;
+  height: 360px;
+  width: 200px;
+}
+.highscore-table{
+  width:50%;
+  border: 1px;
+}
+.highscore-img {
+  text-align: right;
+  height: 360px;
+  width: 200px;
+}

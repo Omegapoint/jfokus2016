@@ -20,8 +20,23 @@ var nThrows = {player_1: 0,player_2: 0}; //How many throws for each pal
 
 var gameIsFinished = false; //Variable for controlling the state of the game
 
-var email = null;
+var playerEmail = null;
 var playerName = null;
+
+var highscoreList = [{
+  playerName: 'Anna',
+  playerEmail: 'anna@amma.se',
+  score: 1000
+},
+{
+  playerName: 'Anna',
+  playerEmail: 'anna@amma.se',
+  score: 500
+},{
+  playerName: 'Anna',
+  playerEmail: 'anna@amma.se',
+  score: 9999
+}];
 
 requirejs(
 
