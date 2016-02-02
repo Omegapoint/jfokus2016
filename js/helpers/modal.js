@@ -26,5 +26,6 @@ window.addEventListener("keydown", function (event) {
     }else if (event.keyCode == 67) { // cC
       document.getElementById('new_player').style.display = "none";
     }
+    // TODO: add menu events for alt+event
   }
 }, true);
