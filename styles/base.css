@@ -1,11 +1,14 @@
 /* Main Styles */
+@import 'helpers/menu.css';
+@import 'helpers/modal.css';
+@import 'helpers/game.css';
 @font-face {
 font-family: 'FixedsysExcelsior301Regular';
-src: url('fsex300-webfont.eot');
-src: url('fsex300-webfont.eot?#iefix') format('embedded-opentype'),
-     url('fsex300-webfont.woff') format('woff'),
-     url('fsex300-webfont.ttf') format('truetype'),
-     url('fsex300-webfont.svg#FixedsysExcelsior301Regular') format('svg');
+src: url('vendors/fsex300-webfont.eot');
+src: url('vendors/fsex300-webfont.eot?#iefix') format('embedded-opentype'),
+     url('vendors/fsex300-webfont.woff') format('woff'),
+     url('fvendors/sex300-webfont.ttf') format('truetype'),
+     url('fvendors/sex300-webfont.svg#FixedsysExcelsior301Regular') format('svg');
 font-weight: normal;
 font-style: normal;
 -webkit-font-smoothing:aliased;
@@ -13,124 +16,20 @@ font-smooth:never;
 }
 
 body {
-  background-color: black;
   margin: 0;
   padding: 0;
-  color: #fcfcfc;
-  font-size: 14px;
-  font-weight: bold;
-  font-family: FixedsysExcelsior301Regular;
-}
-
-#play {
   background-color: #0000a0;
-  color: #fff;
-  padding: 3px;
-  font-size: 20px;
-  font-family: FixedsysExcelsior301Regular;
-  margin-right: 10px;
-   box-shadow: 4px 4px 0px #888888;
-}
-
-.info {
-  padding: 3px;
-  font-family: FixedsysExcelsior301Regular;
-  color: #0000a0;
-  font-size: 16px;
-
-}
-
-#textbox {
+  color: #888888;
+  font-size: 18px;
   font-weight: normal;
-}
-
-#api {
-  background-color: #0000a0;
-   box-shadow: 4px 4px 0px #888888;
-  color: #fff;
-  padding: 3px;
-  font-size: 20px;
   font-family: FixedsysExcelsior301Regular;
-  margin-right: 10px;
 }
-
-#newPlayer {
-  background-color: #0000a0;
-   box-shadow: 4px 4px 0px #888888;
-  color: #fff;
-  padding: 3px;
-  width: 110px;
-  font-size: 20px;
-  font-family: FixedsysExcelsior301Regular;
-  margin-right: 10px;
-}
-
-#rules {
-  background-color: #0000a0;
-   box-shadow: 4px 4px 0px #888888;
-  color: #fff;
-  padding: 3px;
-  font-size: 20px;
-  font-family: FixedsysExcelsior301Regular;
-  width: 60px;
-  margin-right: 10px;
-}
-
-
-
-#top {
-  width: 200px;
-
-  color: #0000a0;
-  margin: auto;
-}
-
-#container {
-  width: 650px;
-  height: 360px;
-  margin: 100px auto;
-  position: relative;
-  border-radius: 10px;
-  background: #000;
-}
-
-.players {
-  position: absolute;
-  padding: 10px;
-  width: 630px;
-}
-
-#player_1 {
-  text-align: left;
-  float: left;
-  width: 300px;
-}
-
-#player_2 {
-  text-align: right;
-  float: right;
-  width: 135px;
-}
-
-label, input {
-  float: left;
-}
-
-label {
-  margin-right: 5px;
-  clear: left;
-}
-
-input {
-  background: #0000a0;
-  width: 50px;
+hr{
   border: none;
-  color: #fff;
+  height: 2px;
+  background-color: black;
 }
-
-#canvas {
-  background-color: #0000a0;
-  margin: 0 auto;
-  border: 5px solid #000;
-  border-radius: 15px;
+ul
+{
+  list-style-type: none;
 }

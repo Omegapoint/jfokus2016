@@ -1,16 +1,19 @@
-function executeTurn () {
-
+function executeTurn(otherPlayerPos, hitPos, wind) {
 
 	var code = customImpl.getValue(); 
+	var bananaHitPos = hitPos;
+	var opponentAsJson = new Object();
+  		opponentAsJson['x'] = otherPlayerPos[0];
+  		opponentAsJson['y'] = otherPlayerPos[1];
 
-	var a = {};
+	var windCopy = wind;
+
 	var funName = "player" + Date.now();
-	//eval("a.func  = function " + funName + "(prev_angle, prev_velocity) {" + code + "};");
-	eval("a.func  = " +  code );
+	eval(code);
+	var playerReturn = runPlayer(bananaHitPos, opponentAsJson, windCopy, agent_memory);
 
-	var newParams = a.func(1, 2);
 
-	agent_angle = a.agent_angle;
-	agent_force = a.agent_force;
-
+	agent_angle = playerReturn['angle'];
+	agent_force = playerReturn['velocity'];
+	agent_memory = playerReturn['memory'];
 }
