@@ -24,6 +24,7 @@ define(
             this.wind = new Wind(this.context);
         }
 
+
         /**
          * createScene: Sets up and rerenders the main scene
          */
@@ -31,6 +32,7 @@ define(
             this.clear();
             this.createSun();
             if (this.empty) {
+
                 this.empty = false;
                 this.createBuildings();
                 this.createGorillas();
@@ -172,13 +174,8 @@ define(
          * updateScore: Draws/ReDraws the score with updated stats
          */
         App.prototype.updateScore = function() {
-            // TODO: Set fill Style and font to be a global object value
-
-            this.context.fillStyle = 'rgb( 0, 0, 160 )';
-            this.context.font = 'bold 14px courier';
-            this.context.fillRect(this.width / 2 - 45, this.height - 40, 90, 13);
-            this.context.fillStyle = 'rgb( 255, 255, 255 )';
-            this.context.fillText(this.scores.player_1 + '>Score<' + this.scores.player_2, this.width / 2 - 37, this.height - 30);
+            document.getElementById('player_2_score').innerHTML=this.scores.player_2;
+            document.getElementById('player_1_score').innerHTML=this.scores.player_1;
         };
 
         /**
@@ -237,6 +234,8 @@ define(
             return false;
         };
 
+
+
         /**
          * bananaHitGorilla: Check if banana has hit a player
          * params {Object} player Which player tossed the banana
@@ -256,7 +255,7 @@ define(
                 this.scores['player_' + winner.playerNumber] = this.scores['player_' + winner.playerNumber] + 10 - turnsLeft['player_' + winner.playerNumber];
 
                 rounds++;
-
+                this.updateScore();
                 if (rounds > roundsInGame) {
                     var w = null;
                     var winningScore = null;
@@ -269,9 +268,10 @@ define(
                     }
                     gameIsFinished = true;
                     var winnerMsg = "The winner is player " + w + ", score: " + this.scores['player_' + w];
+                    //TODO: remove alert with modal
                     alert(winnerMsg); //Här kan vi ju exportera resultatet till en slags highscore också... eller?
 
-                    var winningPlayer = "Mega Arne";
+                    var winningPlayer = "Mega" + Math.random();
                     var email = "mega@ar.ne";
                     var jsonToSave = {
                         "player": winningPlayer,
@@ -287,7 +287,7 @@ define(
                     doc1.click();
 
                 }
-                this.updateScore();
+
                 this.timeout = setTimeout(function() {
                     that.startTime = new Date();
                     winner.animate = true;
@@ -357,29 +357,42 @@ define(
             turnsLeft['player_' + player.playerNumber]++;
             if (turnsLeft['player_' + player.playerNumber] <= maximumNumberOfTurns && !gameIsFinished) {
                 this.runPlayer(nextPlayer);
+            } else if(gameIsFinished) {
+              return;
+            }else if (turnsLeft['player_' + player.playerNumber] > maximumNumberOfTurns){
+              this.empty = true;
+              this.buildings = [];
+              this.createScene();
+              turnsLeft['player_1'] = 0;
+              turnsLeft['player_2'] = 0;
+
+              rounds++;
+              this.nextPlayerTurn(player);
+
             }
 
         };
 
 
-
         App.prototype.runPlayer = function(player) {
 
-            //TODO: Här ska vi ta reda på wind och skit och ge detta till spelarna...! 
-            //console.log("Wind: " + this.player_1.x);
+            //TODO: Här ska vi ta reda på wind och skit och ge detta till spelarna...!
             var playerWind = this.wind.windSpeed;
-        
+
 
             var deltaX = this.player_2.x - this.player_1.x;
             var deltaY = this.player_1.y - this.player_2.y;
             var playerPos = [deltaX, deltaY];
 
             if (player == 1) {
-                var deltaBananaX =  this.player_2.x - this.player_2.banana.x();
-                var deltaBananaY = this.player_2.banana.y() - this.player_2.y ;
-                var bananaHitPosition = [deltaBananaX, deltaBananaY];
+                var bananaHitPosition = [0,0];
 
-        
+                if (this.player_1.banana) {
+                  var deltaBananaX =  this.player_2.x - this.player_2.banana.x();
+                  var deltaBananaY = this.player_2.banana.y() - this.player_2.y ;
+                  bananaHitPosition = [deltaBananaX, deltaBananaY];
+                }
+
 
                 executeTurn(playerPos, bananaHitPosition, playerWind);
                 this.throwBanana(agent_force, agent_angle, player);

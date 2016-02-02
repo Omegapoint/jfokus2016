@@ -10,35 +10,40 @@
   <link href="styles/base.css" type="text/css" rel="stylesheet"></link>
 
   <script data-main="js/app.js" src="js/require.js"></script>
-  <script src="js/modal.js"></script>
+  <script src="js/helpers/customImpl.js"></script>
+  <script src="js/helpers/modal.js"></script>
   <script src="js/agent.js"></script>
   <script src="js/gameplay.js"></script>
 </head>
 <body>
   <div class=menu>
-    <input id="play"      class="menu-button" type="button" value="Play" />
-    <input id="newPlayer" class="menu-button" type="button" value="New Player" />
-    <input id="clear"     class="menu-button" type="button" value="Clear" />
-    <input id="api"       class="menu-button" type="button" value="Api" />
-    <input id="rules"     class="menu-button" type="button" value="Rules" />
+    <input id="play"      class="menu-button" type="button" value="Start Game" />
+    <input id="newPlayer"  class="menu-button" type="button" onclick="openModal('new_player')" value="New Player" />
+    <input id="clear"     class="menu-button" type="button" value="Clear All Code" />
+    <input id="api"       class="menu-button" type="button" onclick="openModal('api_info')" value="Api" />
+    <input id="rules"     class="menu-button" type="button" onclick="openModal('rules_info')" value="Rules" />
+    <span class="menu_title">by Omegapoint</span>
   </div>
 
   <div id="container">
     <div class="players">
       <div id="player_1">
-        Player 1
+        Player 1<br>
+        Score: <span id="player_1_score">0</span>p
       </div>
       <div id="player_2">
-        Player 2
+        Player 2<br>
+        Score: <span id="player_2_score">0</span>p
       </div>
     </div>
     <canvas id="canvas" width="640" height="350">
       <p>Browser does not support the canvas tag</p>
     </canvas>
+  </div>
 
-    <div id="textbox" style ="border: 2px solid #fff;">
-      <label style="display:block; text-align:center;color:white" for="customImpl"></label>
-      <textarea id="customImpl" rows="20" cols="105%">
+  <div class="ai_input" id="textbox">
+    <label class="ai_input_label" for="customImpl"></label>
+    <textarea class="ai_input_code" id="customImpl" rows="20" cols="105%">
 function runPlayer(lastBananaHit, opponent, wind, memory){
   var angle = 30 + opponent['y'];
   var velocity = 5 - wind + (opponent['x'] * 0.05);
@@ -49,64 +54,71 @@ function runPlayer(lastBananaHit, opponent, wind, memory){
   returnValues['memory'] = "OP Gorillas is fun! :)";
   return returnValues;
 }
-      </textarea>
-    </div>
+    </textarea>
+  </div>
 
-    <div id="api_info" class="modal">
-      <div class="modal-content">
-        <div class="modal-box">
-          Api<br/>
-          <ul>
-            <li>lastBananaHit = ...</li>
-            <li>opponent = ...</li>
-            <li>wind = The game has wind, and it is an integer (can be negative or positive).</li>
-            <li>memory = ...</li>
-          </ul>
-          <br/>
-          Return, 5 pts
-          <hr>
-          < <span class="modal-btn-ok">Ok</span> ><br/>
-        </div>
+  <!-- start API modal -->
+  <div id="api_info" class="modal">
+    <div class="modal-content">
+      <div class="modal-box">
+        Api<br/>
+        <ul>
+          <li>lastBananaHit, </li>
+          <li>opponent, the game has wind, and it is an integer (can be negative or positive).</li>
+          <li>wind,</li>
+          <li>memory,</li>
+          <li>return, 5 pts</li>
+        </ul>
+        <hr>
+        <button class="modal-btn-ok" onclick="closeModal('api_info')">
+          < <ok><u>O</u>k</ok> >
+        </button>
+        <br/>
       </div>
     </div>
+  </div>
+  <!-- end API modal -->
 
-      <div id="rules_info" class="modal">
-        <div class="modal-content">
-          <div class="modal-box">
-            <br/>
-            Rules<br>
-            <br>
-            Points given when: Monkey-hit (10 pts), Sun-hit (5 pts)<br />
-            <br>
-            Each monkey has 10 (ten) turns. If no monkey has managed to hit the other, a draw is called.<br />
-            A draw generates 0 (zero) points. For each miss the winner get -1 (minus one) point.<br />
-            <hr>
-            < <span class="close" id="modal-btn-ok">Ok</span> ><br/>
-          </div>
-        </div>
+  <!-- start Rules modal -->
+  <div id="rules_info" class="modal">
+    <div class="modal-content">
+      <div class="modal-box">
+        <br/>
+        Rules<br>
+        <br>
+        Points given when: Monkey-hit (10 pts), Sun-hit (5 pts)<br />
+        <br>
+        Each monkey has 10 (ten) turns. If no monkey has managed to hit the other, a draw is called.<br />
+        A draw generates 0 (zero) points. For each miss the winner get -1 (minus one) point.<br />
+        <hr>
+        <button class="modal-btn-ok" onclick="closeModal('rules_info')">
+          < <ok><u>O</u>k</ok> >
+        </button>
+        <br/>
       </div>
-
     </div>
+  </div>
+  <!-- end Rules modal -->
 
-    <script id="playerImplementation">var impl = "function customPlayer() var agent_angle = 45; var agent_force = 200;}";</script>
-    <script>
-    var customImpl;
-    require(["../node_modules/codemirror/lib/codemirror", "../node_modules/codemirror/mode/javascript/javascript", "../node_modules/codemirror/addon/hint/show-hint", "../node_modules/codemirror/addon/hint/javascript-hint", "../node_modules/codemirror/addon/edit/closebrackets", "../node_modules/codemirror/addon/edit/matchbrackets", "../node_modules/codemirror/addon/lint/lint.js", "../node_modules/codemirror/addon/lint/javascript-lint.js"], function (CodeMirror) {
-      customImpl = CodeMirror.fromTextArea(document.getElementById("customImpl"), {
-        "mode": "javascript",
-        "theme": "the-matrix",
-        "lint": true,
-        "autofocus": true,
-        "lineNumbers": true,
-        "matchBrackets": true,
-        "autoCloseBrackets": true,
-        "gutters": ["CodeMirror-lint-markers"],
-        "extraKeys": {
-          "Ctrl-Space": "autocomplete"
-        }
-      });
-
-    });
-    </script>
+  <!-- start New Player modal -->
+  <div id="new_player" class="modal">
+    <div class="modal-content">
+      <div class="modal-box">
+        <br/>
+        New Player<br>
+        <br>
+        <label for="player_name">Enter name:</label>
+        <input type="text" id="player_name"><br>
+        <label for="player_email">Enter email:</label>
+        <input type="email" id="player_email"><br>
+        <hr>
+        <button class="modal-btn-ok" onclick="closeModalAndCreatePlayer()">
+          < <ok><u>C</u>reate new player</ok> >
+        </button>
+        <br/>
+      </div>
+    </div>
+  </div>
+  <!-- end Rules modal -->
 </body>
 </html>
