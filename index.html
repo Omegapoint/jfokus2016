@@ -107,10 +107,12 @@ function runPlayer(lastBananaHit, opponent, wind, memory){
         <br/>
         New Player<br>
         <br>
-        <label for="player_name">Enter name:</label>
-        <input type="text" id="player_name"><br>
-        <label for="player_email">Enter email:</label>
-        <input type="email" id="player_email"><br>
+        <label for="player_name">Enter name: </label>
+        <input class="modal-input" type="text" id="player_name"><br>
+        <div class="modal-input-group">
+        <label for="player_email">Enter mail: </label>
+        <input class="modal-input" type="email" id="player_email"><br>
+        </div>
         <hr>
         <button class="modal-btn-ok" onclick="closeModalAndCreatePlayer()">
           < <ok><u>C</u>reate new player</ok> >
