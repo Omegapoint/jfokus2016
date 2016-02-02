@@ -20,8 +20,8 @@ var nThrows = {player_1: 0,player_2: 0}; //How many throws for each pal
 
 var gameIsFinished = false; //Variable for controlling the state of the game
 
-var playerEmail = null;
-var playerName = null;
+var playerEmail = 'no@email.nu';
+var playerName = 'anonymous';
 
 var highscoreList = [{
   playerName: 'Anna',
