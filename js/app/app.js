@@ -281,16 +281,14 @@ define(
                         w = "2";
                         winningScore = this.scores[2];
                     }
-
-                    var scoreDiff = Math.abs(this.scores['player_1'] - this.scores['player_2']);
-
+                    var scoreToSave = this.scores['player_1'] - this.scores['player_2'];
+                    var scoreDiff = Math.abs(scoreToSave);
                     gameIsFinished = true;
-
                     var currentPlayer = JSON.parse(localStorage["currentPlayer"]);
                     var jsonToSave = {
                         "name": currentPlayer.name ,
                         "email": currentPlayer.email,
-                        "score": scoreDiff,
+                        "score": scoreToSave,
                         "code" : textareaPlayerCode.getValue()
                     };
 
@@ -298,10 +296,11 @@ define(
                     highscoreList.push(jsonToSave);
                     localStorage["highscoreList"] = JSON.stringify(highscoreList);
                     highscoreTableUpdate();
+                    
                     if(w == 1){
-                        w = currentPlayer.name
+                        w = currentPlayer.name;
                     }else{
-                        w = "CPU"
+                        w = "CPU";
                     }
                     openModalWith("The winner is " + w + "<br>Score: " + scoreDiff);
 

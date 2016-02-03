@@ -19,8 +19,7 @@ var roundsInGame = 3;     //The total number of rounds in a game.
 var nThrows = {player_1: 0,player_2: 0}; //How many throws for each pal
 
 var gameIsFinished = false; //Variable for controlling the state of the game
-document.getElementById("player_email").value = "no-one@mail.me";
-document.getElementById("player_name").value = "anonymous";
+document.getElementById("player_1_name").innerHTML = JSON.parse(localStorage['currentPlayer']).name;
 highscoreTableUpdate();
 
 requirejs(
