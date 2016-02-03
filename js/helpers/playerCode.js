@@ -62,3 +62,6 @@ function getCurrentTimestamp(){
   var now = new Date();
   return now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
 }
+function loadPlayerByEmail(){
+  document.getElementById('load_player_msg').innerHTML = "Not implemented yet.."
+}
