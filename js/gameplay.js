@@ -1,7 +1,8 @@
 function executeTurn(otherPlayerPos, hitPos, wind) {
 
 	var code = textareaPlayerCode.getValue(); 
-	textareaPlayerCode.setOption("readOnly", true);
+	textareaPlayerCode.setOption("readOnly", true); //Can't write code when playing
+
 	var bananaHitPos = hitPos;
 	var opponentAsJson = new Object();
   		opponentAsJson['x'] = otherPlayerPos[0];

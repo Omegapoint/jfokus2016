@@ -1,8 +1,3 @@
-window.onload = function () {
-  var highscoreList = [];
-  highscoreTableUpdate();
-};
-
 //creating a new comparator for sorting
 function compare(player1,player2) {
   if (player1.score < player2.score)
@@ -14,7 +9,7 @@ function compare(player1,player2) {
 };
 
 function highscoreTableUpdate(){
-  highscoreList = JSON.parse(localStorage["highscoreList"]);
+  highscoreList = JSON.parse(localStorage['highscoreList']);
   if(highscoreList.length>1){
     highscoreList.sort(compare);
     if(highscoreList[0].score < highscoreList[highscoreList.length-1].score){
@@ -42,7 +37,7 @@ function highscoreTableUpdate(){
     cell.innerHTML = "<b onclick="+"getUserInfo("+i+")"+">"+(i+1)+"</b>";
 
     var cell = row.insertCell(1);
-    cell.innerHTML = "<b onclick="+"getUserInfo("+i+")"+">"+highscoreList[i].playerName+"</b>";
+    cell.innerHTML = "<b onclick="+"getUserInfo("+i+")"+">"+highscoreList[i].name+"</b>";
     var cell = row.insertCell(2);
     cell.innerHTML = "<b onclick="+"getUserInfo("+i+")"+">"+highscoreList[i].score+"</b>";
   }

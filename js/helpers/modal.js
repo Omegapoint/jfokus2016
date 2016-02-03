@@ -26,9 +26,10 @@ function closeModalAndCreatePlayer(){
     email: document.getElementById('player_email').value,
     code: textareaPlayerCode.getValue()
   };
-  localStorage["currentPlayer"] = JSON.stringify(currentPlayer);
-  //document.getElementById('textarea_player_code').value = templateStartCode;
-  console.log(JSON.parse(localStorage["currentPlayer"]).code);
+  localStorage['currentPlayer'] = JSON.stringify(currentPlayer);
+
+  document.getElementById('player_1_name').innerHTML = document.getElementById('player_name').value;
+  enableStartGame = true;
   closeModal('new_player');
 }
 

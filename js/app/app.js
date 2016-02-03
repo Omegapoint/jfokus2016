@@ -270,7 +270,7 @@ define(
                     openModalWith("The winner is player " + w + ", score: " + this.scores['player_' + w]);
                     var currentPlayer = JSON.parse(localStorage["currentPlayer"]);
                     var jsonToSave = {
-                        "player": currentPlayer.name ,
+                        "name": currentPlayer.name ,
                         "email": currentPlayer.email,
                         "score": this.scores['player_' + w],
                         "code" : textareaPlayerCode.getValue()
