@@ -31,7 +31,8 @@ var templateStartCode = ""+
   "  returnValues['memory'] = \"OP Gorillas is fun! :)\";\n"+
   "  return returnValues;\n"+
   "};\n";
-highscoreList = [{
+  
+highscoreList = [{ 
   name :'Omegapoint',
   email:'info@omegapoint.se',
   code : templateStartCode+"//By OP",

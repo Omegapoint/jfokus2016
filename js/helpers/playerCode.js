@@ -1,14 +1,3 @@
-var templateStartCode = ""+
-  "function runPlayer(lastBananaHit, opponent, wind, memory){\n"+
-  "  var angle = 30 + opponent['y'];\n"+
-  "  var velocity = 5 - wind + (opponent['x'] * 0.05);\n"+
-  "  var returnValues = new Object();\n"+
-  "\n"+
-  "  returnValues['velocity'] = velocity;\n"+
-  "  returnValues['angle'] = angle;"+
-  "  returnValues['memory'] = \"OP Gorillas is fun! :)\";\n"+
-  "  return returnValues;\n"+
-  "};\n";
 var textareaPlayerCode;
 var lastestSave = "Code is not saved";
 require([
@@ -18,21 +7,20 @@ require([
   "../node_modules/codemirror/addon/edit/matchbrackets", "../node_modules/codemirror/addon/lint/lint.js",
   "../node_modules/codemirror/addon/lint/javascript-lint.js"], function (CodeMirror) {
   textareaPlayerCode = CodeMirror.fromTextArea(document.getElementById("textarea_player_code"), {
-    "mode": "javascript",
-    "theme": "the-matrix",
-    "tabSize":2,
-    "lint": true,
-    "autofocus": true,
-    "lineNumbers": true,
-    "matchBrackets": true,
-    "autoCloseBrackets": true,
-    "gutters": ["CodeMirror-lint-markers"],
-    "extraKeys": {
-      "Ctrl-Space": "autocomplete"
+    mode : 'javascript',
+    theme: 'the-matrix',
+    tabSize : 2,
+    lint : true,
+    autofocus : true,
+    lineNumbers : true,
+    matchBrackets : true,
+    autoCloseBrackets : true,
+    gutters: ['CodeMirror-lint-markers'],
+    extraKeys: {
+      'Ctrl-Space': 'autocomplete'
     }
   });
   textareaPlayerCode.setValue(templateStartCode);
-  //textareaPlayerCode.setOption('readOnly', true);
 });
 
 function savePlayerCode(){
@@ -69,6 +57,7 @@ function loadPlayerByEmail(){
     if(highscoreList[i].email == searchMail){
       textareaPlayerCode.setValue(highscoreList[i].code);
       localStorage['currentPlayer'] = JSON.stringify(highscoreList[i]);
+      document.getElementById('player_1_name').innerHTML = highscoreList[i].name;
       closeModal('load_player_modal');
       return;
     }
