@@ -183,6 +183,7 @@ define(
          * params {Object} player Which player is this banana coming from?
          */
         App.prototype.animateBanana = function(player) {
+     
             var that, now, time;
             that = this;
             this.timeout = setTimeout(function() {
@@ -214,7 +215,7 @@ define(
             var x = player.banana.x();
             var y = player.banana.y();
             if (x <= (this.width / 2) + 10 && x >= (this.width / 2) - 10 && y <= 27 && y >= 17) {
-                this.scores['player_' + player]++;
+                this.scores['player_' + player.playerNumber] = this.scores['player_' + player.playerNumber] + 5;
                 return true;
             }
             return false;
@@ -262,17 +263,22 @@ define(
                     if (this.scores[1] > this.scores[2]) {
                         w = "1";
                         winningScore = this.scores[1];
+                    } else if(this.scores[1] == this.scores[2]) {
+                      //It's a draw!!!! da da daaaa
                     } else {
                         w = "2";
                         winningScore = this.scores[2];
                     }
+
+                    var scoreDiff = Math.abs(this.scores['player_1'] - this.scores['player_2']);
+
                     gameIsFinished = true;
-                    openWinnerModal("The winner is player " + w + ", score: " + this.scores['player_' + w]);
+                    openWinnerModal("The winner is player " + w + ", score: " + scoreDiff);
 
                     var jsonToSave = {
                         "player": playerName,
                         "email": playerEmail,
-                        "score": this.scores['player_' + w]
+                        "score": scoreDiff
                     };
                     highscoreList.push(jsonToSave);
                     highscoreTableUpdate();
@@ -331,7 +337,6 @@ define(
                     that.nextPlayerTurn(player);
                     return;
                 }
-
                 var now = new Date();
                 var time = now - that.startTime;
                 that.createScene();
@@ -359,6 +364,7 @@ define(
             }else if (turnsLeft['player_' + player.playerNumber] > maximumNumberOfTurns){
               this.empty = true;
               this.buildings = [];
+
               this.createScene();
               turnsLeft['player_1'] = 0;
               turnsLeft['player_2'] = 0;

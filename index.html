@@ -21,8 +21,8 @@
     <input id="play"      class="menu-button" type="button" value="Start Game" />
     <input id="newPlayer"  class="menu-button" type="button" onclick="openModal('new_player')" value="New Player" />
     <input id="clear"     class="menu-button" type="button" value="Clear All Code" />
-    <input id="api"       class="menu-button" type="button" onclick="openModal('api_info')" value="Api" />
-    <input id="rules"     class="menu-button" type="button" onclick="openModal('rules_info')" value="Rules" />
+    <input id="api"       class="menu-button" type="button" onclick="openModal('api_info')" value="API" />
+    <input id="rules"     class="menu-button" type="button" onclick="openModal('rules_info')" value="About" />
     <span class="menu_title">by Omegapoint</span>
   </div>
   <table class="top-container">
@@ -78,14 +78,30 @@
   <div id="api_info" class="modal"> <!-- start API modal -->
     <div class="modal-content">
       <div class="modal-box">
-        Api<br/>
-        <ul>
-          <li>lastBananaHit, </li>
-          <li>opponent, the game has wind, and it is an integer (can be negative or positive).</li>
-          <li>wind,</li>
-          <li>memory,</li>
-          <li>return, 5 pts</li>
-        </ul>
+        Parameters<br/><br />
+
+        <table border=1>
+          <tr><td align="right">Variable</td><td align="left">Type</td> <td>Description</td></tr>
+           <tr><td align="right">lastBananaHit</td><td align="left">[float, float], undefined</td> <td>If no previous hit: undefined. Otherwise the variable contains the distance to the hit position of the previous throw.</td></tr>
+            <tr><td align="right">opponent</td><td align="left">[float, float]</td> <td>The distance to your opponent, [x-axis, y-axis].</td></tr>
+             <tr><td align="right">wind</td><td align="left">float</td> <td>The wind can be either positive or negative, depending on the direction.</td></tr>
+              <tr><td align="right">memory</td><td></td> <td>A variable free to use, each time the function is called the memory from last called is set as input parameter.</td></tr>
+
+        </table>
+
+        <br><br>
+         Return values<br/><br />
+         The function must return the Json-structure:<br> 
+         {"velocity": float,
+  "angle": float,
+  "memory": var}<br><br>
+        <table border=1>
+          <tr><td align="right">Variable</td><td align="left">Type</td> <td>Description</td></tr>
+           <tr><td align="right">velocity</td><td align="left">float</td> <td>The desired force of your throw.</td></tr>
+            <tr><td align="right">angle</td><td align="left">float</td> <td>The angle of the throw.</td></tr>
+              <tr><td align="right">memory</td><td></td> <td>A variable free to use, each time the function is called the memory from last called is set as input parameter.</td></tr>
+
+        </table>
         <hr>
         <button class="modal-btn-ok" onclick="closeModal('api_info')">
           < <ok><u>O</u>k</ok> >
@@ -99,12 +115,15 @@
     <div class="modal-content">
       <div class="modal-box">
         <br/>
-        Rules<br>
+        About<br>
         <br>
-        Points given when: Monkey-hit (10 pts), Sun-hit (5 pts)<br />
+        The Javascript code in the textbox below control Player 1 (The monkey to the left). A game consists of a total of 3 rounds with 10 throws per monkey and round. If no monkey has hit the other after 10 throws that round is considered a draw.
+        <br/><br />
+        Score<br>
         <br>
-        Each monkey has 10 (ten) turns. If no monkey has managed to hit the other, a draw is called.<br />
-        A draw generates 0 (zero) points. For each miss the winner get -1 (minus one) point.<br />
+        Hitting the opponent gives you 10 points minus the number of throws consumed during the round. So if you hit your opponent after three bananas you get 7 points for example. A draw means 0 points for both players. If you hit the sun you get an addional 10 points for that round, even if you lose that round. When the game is finished, the winner gets the difference between the two scores as the winning score.
+
+  
         <hr>
         <button class="modal-btn-ok" onclick="closeModal('rules_info')">
           < <ok><u>O</u>k</ok> >
