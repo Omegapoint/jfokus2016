@@ -1,17 +1,15 @@
 var modal = null;
 var audioButton = new Audio('audio/button-select.wav');
-var audioWinner = new Audio('audio/winner.wav');
-var audioLoser = new Audio('audio/losing.wav');
 var isAltPressed = false;
 function openModal(modalId){
   audioButton.play();
   modal = document.getElementById(modalId);
-  modal.style.display = "block";
+  modal.style.display = 'block';
 }
 
 function closeModal(modalId){
   modal = document.getElementById(modalId);
-  modal.style.display = "none";
+  modal.style.display = 'none';
 }
 
 function openModalWith(modalMsg){
@@ -20,17 +18,18 @@ function openModalWith(modalMsg){
 }
 
 function closeModalAndCreatePlayer(){
-  document.getElementById('player_1_name') = document.getElementById('player_name').value;
+  var playerName = document.getElementById('player_name').value;
   var currentPlayer = {
-    name: document.getElementById('player_name').value,
+    name: playerName,
     email: document.getElementById('player_email').value,
     code: textareaPlayerCode.getValue()
   };
   localStorage['currentPlayer'] = JSON.stringify(currentPlayer);
 
-  document.getElementById('player_1_name').innerHTML = document.getElementById('player_name').value;
   enableStartGame = true;
+  textareaPlayerCode.setOption("readOnly", false); //Ready to write code!
   closeModal('new_player');
+  document.getElementById('player_1_name').innerHTML = playerName;
 }
 
 window.addEventListener("keydown", function (event) {
@@ -43,7 +42,8 @@ window.addEventListener("keydown", function (event) {
     }
 
     if (event.keyCode == 79) { // o
-      document.getElementById('message_modal').style.display = "none";
+      document.getElementById('message_modal').style.display = 'none';
+      document.getElementById('api_info').style.display = 'none';
     }
     else if (event.keyCode == 67) { // c
        clearPlayerCode();
@@ -55,7 +55,7 @@ window.addEventListener("keydown", function (event) {
       openModal('new_player');
     }
     else if (event.keyCode == 65) { // a
-      openModalWith(ApiModalText);
+      openModal('api_info');
     }
     else if (event.keyCode == 82) { // r
       openModalWith(RulesModalText);
@@ -63,21 +63,22 @@ window.addEventListener("keydown", function (event) {
     else if (event.keyCode == 83) { // s
       savePlayerCode();
     }
+    else if (event.keyCode == 71) { // g
+      resetPlayerCode();
+    }
+    else if (event.keyCode == 80) { // p
+      document.getElementById('play').click();
+    }
     isAltPressed = false;
   }
 }, true);
 
-var RulesModalText = "Rules<br>Points given when: "+
-  "Monkey-hit (10 pts), Sun-hit (5 pts)<br><br>"+
-  "Each monkey has 10 (ten) turns. If no monkey has managed to hit the other, "+
-  "a draw is called.<br />"+
-  "A draw generates 0 (zero) points. "+
-  "For each miss the winner get -1 (minus one) point.<br />"+
-  "Can't edit code when play is pressed.<br>";
-var ApiModalText = "Api<br/><ul>"+
-  "<li>lastBananaHit, </li>"+
-  "<li>opponent, </li>"+
-  "<li>wind,the game has wind, and it is an integer (can be negative or positive).</li>"+
-  "<li>memory,</li>"+
-  "<li>return, 5 pts</li>"+
-  "</ul>";
+var RulesModalText = "About<br><br>"+
+  "The Javascript code in the textbox below control Player 1 (The monkey to the left). "+
+  "A game consists of a total of 3 rounds with 10 throws per monkey and round. If no "+
+  "monkey has hit the other after 10 throws that round is considered a draw.<br/><br />"+
+  "Score<br><br>Hitting the opponent gives you 10 points minus the number of throws "+
+  "consumed during the round. So if you hit your opponent after three bananas you get 7"+
+  " points for example. A draw means 0 points for both players. If you hit the sun you "+
+  "get an addional 10 points for that round, even if you lose that round. When the game "+
+  "is finished, the winner gets the difference between the two scores as the winning score.";

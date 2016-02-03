@@ -11,18 +11,16 @@ var nextTurn = false;
 var player2Play = 1;
 
 var turnsInGame = 0;      //The number of games in each round
-var maximumNumberOfTurns = 3;
+var maximumNumberOfTurns = 10;
 var turnsLeft = {player_1: 0,player_2: 0};
 
 var rounds = 0;           //Starting round
-var roundsInGame = 2;     //The total number of rounds in a game.
+var roundsInGame = 3;     //The total number of rounds in a game.
 var nThrows = {player_1: 0,player_2: 0}; //How many throws for each pal
 
 var gameIsFinished = false; //Variable for controlling the state of the game
-var enableStartGame = false; //Can't start game until created new player
-document.getElementById("player_email").value = "Anna@email.me";
-document.getElementById("player_name").value = "jkak";
-
+document.getElementById("player_email").value = "no-one@mail.me";
+document.getElementById("player_name").value = "anonymous";
 highscoreTableUpdate();
 
 requirejs(

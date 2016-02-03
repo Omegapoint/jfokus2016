@@ -1,4 +1,5 @@
 //creating a new comparator for sorting
+var nbrOfPlayersOnHighScore = 5;
 function compare(player1,player2) {
   if (player1.score < player2.score)
   return -1;
@@ -30,7 +31,7 @@ function highscoreTableUpdate(){
   var cell = row.insertCell(2);
   cell.innerHTML = "<u>Score</u>";
 
-  for (i = 0; i < highscoreList.length; i++) {
+  for (i = 0; i < (nbrOfPlayersOnHighScore || highscoreList.length); i++) {
     var row = table.insertRow(i+1);
 
     var cell = row.insertCell(0);

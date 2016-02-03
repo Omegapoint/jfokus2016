@@ -8,6 +8,12 @@ define(
 
         // App Constructor
         function App() {
+            this.audioBanana = new Audio('audio/banana.wav');
+            this.audioHit = new Audio('audio/hit.wav');
+            this.audioHitSun = new Audio('audio/sun_hit.ogg');
+            this.audioWinner = new Audio('audio/winner.wav');
+            this.audioLoser = new Audio('audio/losing.wav');
+            this.audioNewRound = new Audio('audio/level-up.wav');
             this.empty = true;
             this.canvas = document.getElementById('canvas');
             this.width = this.canvas.width;
@@ -154,7 +160,7 @@ define(
          * params {Integer} player Which player are we doing this for?
          */
         App.prototype.throwBanana = function(force, angle, player) {
-
+            this.audioBanana.play(); 
             var that = this;
             if (player === 2) {
                 angle = -angle;
@@ -183,6 +189,7 @@ define(
          * params {Object} player Which player is this banana coming from?
          */
         App.prototype.animateBanana = function(player) {
+     
             var that, now, time;
             that = this;
             this.timeout = setTimeout(function() {
@@ -214,7 +221,8 @@ define(
             var x = player.banana.x();
             var y = player.banana.y();
             if (x <= (this.width / 2) + 10 && x >= (this.width / 2) - 10 && y <= 27 && y >= 17) {
-                this.scores['player_' + player]++;
+                this.scores['player_' + player.playerNumber] = this.scores['player_' + player.playerNumber] + 5;
+                this.audioHitSun.play();
                 return true;
             }
             return false;
@@ -229,7 +237,10 @@ define(
             var x = player.banana.x();
             var y = player.banana.y();
             for (var i = 0; i < this.buildings.length; i++) {
-                if (this.buildings[i].checkColission(x, y)) return true;
+                if (this.buildings[i].checkColission(x, y)){
+                    this.audioHit.play(); 
+                    return true;
+                }
             }
             return false;
         };
@@ -260,25 +271,39 @@ define(
                     var w = null;
                     var winningScore = null;
                     if (this.scores[1] > this.scores[2]) {
+                        this.audioWinner.play();
                         w = "1";
                         winningScore = this.scores[1];
+                    } else if(this.scores[1] == this.scores[2]) {
+                        this.audioLoser.play();
                     } else {
+                        this.audioLoser.play();
                         w = "2";
                         winningScore = this.scores[2];
                     }
+
+                    var scoreDiff = Math.abs(this.scores['player_1'] - this.scores['player_2']);
+
                     gameIsFinished = true;
-                    openModalWith("The winner is player " + w + ", score: " + this.scores['player_' + w]);
+
                     var currentPlayer = JSON.parse(localStorage["currentPlayer"]);
                     var jsonToSave = {
                         "name": currentPlayer.name ,
                         "email": currentPlayer.email,
-                        "score": this.scores['player_' + w],
+                        "score": scoreDiff,
                         "code" : textareaPlayerCode.getValue()
                     };
+
+                    var highscoreList = JSON.parse(localStorage["highscoreList"]);
                     highscoreList.push(jsonToSave);
                     localStorage["highscoreList"] = JSON.stringify(highscoreList);
                     highscoreTableUpdate();
-                    textareaPlayerCode.setOption("readOnly", false);
+                    if(w == 1){
+                        w = currentPlayer.name
+                    }else{
+                        w = "CPU"
+                    }
+                    openWinnerModal("The winner is " + w + ", score: " + scoreDiff);
 
                     //Uncomment if we want to have a json as highscore backup ;)
                     // var textToSave = JSON.stringify(highscoreList);
@@ -287,6 +312,8 @@ define(
                     // doc1.setAttribute('href', 'data:text/plain;charset=utf-u,' + encodeURIComponent(textToSave));
                     // doc1.setAttribute('download', filename);
                     // doc1.click();
+                }else{
+                    this.audioNewRound.play();
                 }
 
                 this.timeout = setTimeout(function() {
@@ -335,7 +362,6 @@ define(
                     that.nextPlayerTurn(player);
                     return;
                 }
-
                 var now = new Date();
                 var time = now - that.startTime;
                 that.createScene();
@@ -363,6 +389,7 @@ define(
             }else if (turnsLeft['player_' + player.playerNumber] > maximumNumberOfTurns){
               this.empty = true;
               this.buildings = [];
+
               this.createScene();
               turnsLeft['player_1'] = 0;
               turnsLeft['player_2'] = 0;

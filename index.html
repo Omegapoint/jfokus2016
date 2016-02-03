@@ -21,7 +21,7 @@
     <!--<button id="play">Start Game</button>-->
     <button onclick="openModal('new_player')">New Player</button>
     <button id="load_player">Load Player</button>
-    <button onclick="openModalWith(ApiModalText)">Api</button>
+    <button onclick="openModal('api_info')">Api</button>
     <button onclick="openModalWith(RulesModalText)">Rules</button>
     <span class="menu_title">by Omegapoint</span>
   </div><!-- End menu -->
@@ -61,7 +61,7 @@
             <button onclick="savePlayerCode()">Save</button>
             <button onclick="resetPlayerCode()">Get latest save</button>
             <button onclick="clearPlayerCode()">Clear Code</button>
-            <span class="menu_title" id="message_to_player">Your code is not saved!</span>
+            <span class="menu_title" id="message_to_player"></span>
         </div>
         <textarea class="ai_input_code" id="textarea_player_code" rows="20" cols="50">
         </textarea>
@@ -69,7 +69,42 @@
     </tr>
   </table>
 
-  <!-- Start modals -->
+<!-- === START MODALS === -->
+  <div id="api_info" class="modal"> <!-- start API modal -->
+    <div class="modal-content">
+      <div class="modal-box">
+        Parameters<br/><br />
+
+        <table border=1>
+          <tr><td align="right">Variable</td><td align="left">Type</td> <td>Description</td></tr>
+           <tr><td align="right">lastBananaHit</td><td align="left">[float, float], undefined</td> <td>If no previous hit: undefined. Otherwise the variable contains the distance to the hit position of the previous throw.</td></tr>
+            <tr><td align="right">opponent</td><td align="left">[float, float]</td> <td>The distance to your opponent, [x-axis, y-axis].</td></tr>
+             <tr><td align="right">wind</td><td align="left">float</td> <td>The wind can be either positive or negative, depending on the direction.</td></tr>
+              <tr><td align="right">memory</td><td></td> <td>A variable free to use, each time the function is called the memory from last called is set as input parameter.</td></tr>
+
+        </table>
+        <br><br>
+         Return values<br/><br />
+         The function must return the Json-structure:<br> 
+         {"velocity": float,
+          "angle": float,
+          "memory": var}<br><br>
+        <table border=1>
+          <tr><td align="right">Variable</td><td align="left">Type</td> <td>Description</td></tr>
+           <tr><td align="right">velocity</td><td align="left">float</td> <td>The desired force of your throw.</td></tr>
+            <tr><td align="right">angle</td><td align="left">float</td> <td>The angle of the throw.</td></tr>
+              <tr><td align="right">memory</td><td></td> <td>A variable free to use, each time the function is called the memory from last called is set as input parameter.</td></tr>
+
+        </table>
+        <hr>
+        <button class="modal-btn-ok" onclick="closeModal('api_info')">
+          < <ok><u>O</u>k</ok> >
+        </button>
+        <br/>
+      </div>
+    </div>
+  </div> <!-- end API modal -->
+
   <div id="new_player" class="modal"> <!-- start New Player modal -->
     <div class="modal-content">
       <div class="modal-box">
@@ -121,8 +156,6 @@
       </div>
     </div>
   </div> <!-- end message modal -->
-
-  <!-- end modals -->
-
+<!-- === END MODALS === -->
 </body>
 </html>
