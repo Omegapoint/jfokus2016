@@ -303,7 +303,7 @@ define(
                     }else{
                         w = "CPU"
                     }
-                    openWinnerModal("The winner is " + w + ", score: " + scoreDiff);
+                    openModalWith("The winner is " + w + "<br>Score: " + scoreDiff);
 
                     //Uncomment if we want to have a json as highscore backup ;)
                     // var textToSave = JSON.stringify(highscoreList);
