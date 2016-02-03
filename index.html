@@ -10,38 +10,37 @@
   <link href="styles/base.css" type="text/css" rel="stylesheet"></link>
 
   <script data-main="js/app.js" src="js/require.js"></script>
-  <script src="js/helpers/customImpl.js"></script>
+  <script src="js/helpers/playerCode.js"></script>
   <script src="js/helpers/modal.js"></script>
   <script src="js/helpers/highscore.js"></script>
   <script src="js/agent.js"></script>
   <script src="js/gameplay.js"></script>
 </head>
 <body>
-  <div class=menu>
-    <input id="play"      class="menu-button" type="button" value="Start Game" />
-    <input id="newPlayer"  class="menu-button" type="button" onclick="openModal('new_player')" value="New Player" />
-    <input id="clear"     class="menu-button" type="button" value="Clear All Code" />
-    <input id="api"       class="menu-button" type="button" onclick="openModal('api_info')" value="Api" />
-    <input id="rules"     class="menu-button" type="button" onclick="openModal('rules_info')" value="Rules" />
+  <div class=menu><!-- Start menu -->
+    <!--<button id="play">Start Game</button>-->
+    <button onclick="openModal('new_player')">New Player</button>
+    <button id="load_player">Load Player</button>
+    <button onclick="openModalWith(ApiModalText)">Api</button>
+    <button onclick="openModalWith(RulesModalText)">Rules</button>
     <span class="menu_title">by Omegapoint</span>
-  </div>
+  </div><!-- End menu -->
+
   <table class="top-container">
     <tr>
       <td class="highscore"> <!-- Start highscore -->
-        <h1>Highscore</h1>
-        <br>
-        <table id="highscore-table"  class="highscore-table">
-        </table>
+        <h3>*** Highscore***</h3>
+        <table id="highscore-table"  class="highscore-table"></table>
       </td> <!-- end highscore -->
 
       <td id="container"> <!-- Start game container -->
         <div class="players">
           <div id="player_1">
-            Player 1<br>
+            P1: <span id="player_1_name"></span><br>
             Score: <span id="player_1_score">0</span>p
           </div>
           <div id="player_2">
-            Player 2<br>
+            P2: CPU<br>
             Score: <span id="player_2_score">0</span>p
           </div>
         </div>
@@ -55,98 +54,73 @@
       </td>
 
     </tr>
+    <tr>
+      <div class="ai_input" id="textbox">   <!-- Start input code -->
+        <div class="menu">
+            <button id="play">Play</button>
+            <button onclick="savePlayerCode()">Save</button>
+            <button onclick="clearPlayerCode()">Clear Code</button>
+        </div>
+        <textarea class="ai_input_code" id="textarea_player_code" rows="20" cols="50">
+        </textarea>
+      </div>  <!-- end input code -->
+    </tr>
   </table>
 
-
-  <div class="ai_input" id="textbox">   <!-- Start input code -->
-    <label class="ai_input_label" for="customImpl"></label>
-    <textarea class="ai_input_code" id="customImpl" rows="20" cols="105%">
-      function runPlayer(lastBananaHit, opponent, wind, memory){
-        var angle = 30 + opponent['y'];
-        var velocity = 5 - wind + (opponent['x'] * 0.05);
-        var returnValues = new Object();
-
-        returnValues['velocity'] = velocity;
-        returnValues['angle'] = angle;
-        returnValues['memory'] = "OP Gorillas is fun! :)";
-        return returnValues;
-      }
-    </textarea>
-  </div>  <!-- end input code -->
-
-
-  <div id="api_info" class="modal"> <!-- start API modal -->
-    <div class="modal-content">
-      <div class="modal-box">
-        Api<br/>
-        <ul>
-          <li>lastBananaHit, </li>
-          <li>opponent, the game has wind, and it is an integer (can be negative or positive).</li>
-          <li>wind,</li>
-          <li>memory,</li>
-          <li>return, 5 pts</li>
-        </ul>
-        <hr>
-        <button class="modal-btn-ok" onclick="closeModal('api_info')">
-          < <ok><u>O</u>k</ok> >
-        </button>
-        <br/>
-      </div>
-    </div>
-  </div> <!-- end API modal -->
-
-  <div id="rules_info" class="modal"> <!-- start Rules modal -->
-    <div class="modal-content">
-      <div class="modal-box">
-        <br/>
-        Rules<br>
-        <br>
-        Points given when: Monkey-hit (10 pts), Sun-hit (5 pts)<br />
-        <br>
-        Each monkey has 10 (ten) turns. If no monkey has managed to hit the other, a draw is called.<br />
-        A draw generates 0 (zero) points. For each miss the winner get -1 (minus one) point.<br />
-        <hr>
-        <button class="modal-btn-ok" onclick="closeModal('rules_info')">
-          < <ok><u>O</u>k</ok> >
-        </button>
-        <br/>
-      </div>
-    </div>
-  </div> <!-- end Rules modal -->
-
+  <!-- Start modals -->
   <div id="new_player" class="modal"> <!-- start New Player modal -->
     <div class="modal-content">
       <div class="modal-box">
         <br/>
         New Player<br>
         <br>
-        <label for="player_name">Enter name: </label>
-        <input class="modal-input" type="text" id="player_name"><br>
-        <div class="modal-input-group">
-          <label for="player_email">Enter mail: </label>
-          <input class="modal-input" type="email" id="player_email"><br>
-        </div>
-        <hr>
-        <button class="modal-btn-ok" onclick="closeModalAndCreatePlayer()">
-          < <ok><u>C</u>reate new player</ok> >
-        </button>
-        <br/>
+        <form onsubmit="closeModalAndCreatePlayer()">
+          <table>
+            <tr>
+              <td><label for="player_name">Enter handle: </label></td>
+              <td>
+                <input class="modal-input" type="text" id="player_name" required
+                  pattern="[A-Za-z0-9-_]{4,20}" placeholder="Enter your handle">
+              </td>
+              <td>
+                (Length: 4-20, Only letters, numbers, - and _ )
+              </td>
+            </tr>
+            <tr>
+              <td><label for="player_email"> Enter email: </label></td>
+              <td>
+                <input class="modal-input" type="email" id="player_email" required
+                  placeholder="Enter a valid email">
+              </td>
+              <td>
+                (To contact you when your winning ;) )
+              </td>
+            </tr>
+          </table>
+          <hr>
+          <button type="submit" class="modal-btn-ok">
+            < <ok>Create new player</ok> >
+          </button>
+        </form>
       </div>
     </div>
-  </div> <!-- end Rules modal -->
+  </div> <!-- end New Player modal -->
 
-  <div id="winner_modal" class="modal"> <!-- start winner modal -->
+  <div id="message_modal" class="modal"> <!-- start message modal -->
     <div class="modal-content">
       <div class="modal-box">
-        <span id="winner_modal_msg"></span>
+        <br>
+        <span id="message_modal_content"></span>
         <hr>
-        <button class="modal-btn-ok" onclick="closeModal('winner_modal')">
+        <button class="modal-btn-ok" onclick="closeModal('message_modal')">
           < <ok><u>O</u>k</ok> >
         </button>
         <br/>
       </div>
     </div>
-  </div> <!-- end winner modal -->
+  </div> <!-- end message modal -->
+
+  <!-- end modals -->
 
 </body>
 </html>

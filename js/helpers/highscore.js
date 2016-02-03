@@ -1,5 +1,5 @@
 window.onload = function () {
-  // TODO: read from latst highscore json in load and update that to highscoreList
+  var highscoreList = [];
   highscoreTableUpdate();
 };
 
@@ -14,7 +14,7 @@ function compare(player1,player2) {
 };
 
 function highscoreTableUpdate(){
-  console.log("we have "+ highscoreList.length+ " players");
+  highscoreList = JSON.parse(localStorage["highscoreList"]);
   if(highscoreList.length>1){
     highscoreList.sort(compare);
     if(highscoreList[0].score < highscoreList[highscoreList.length-1].score){
@@ -29,11 +29,11 @@ function highscoreTableUpdate(){
   //fill in with new information
   var row = table.insertRow(0);
   var cell = row.insertCell(0);
-  cell.innerHTML = "<b>Position</b>";
+  cell.innerHTML = "<u>#</u>";
   var cell = row.insertCell(1);
-  cell.innerHTML = "<b>Player</b>";
+  cell.innerHTML = "<u>Player</u>";
   var cell = row.insertCell(2);
-  cell.innerHTML = "<b>Score</b>";
+  cell.innerHTML = "<u>Score</u>";
 
   for (i = 0; i < highscoreList.length; i++) {
     var row = table.insertRow(i+1);
@@ -51,20 +51,10 @@ function highscoreTableUpdate(){
 
 function getUserInfo(playerindex){
   var p = highscoreList[playerindex];
-  alert("player: "+ p.playerName+ "\nemail: "+ p.playerEmail+ "\nscore: "+ p.score);
-  //TODO: change alert to modal
+  openModalWith(
+    "Player info<br>"+
+    "<br>Name: "+ p.name+
+    "<br>Email: "+ p.email+
+    "<br>Score: "+ p.score
+  );
 };
-
-// function readjsonFile(file, callback) {
-//
-//     console.log("Reading the "+file+" file.");
-//     var rawFile = new XMLHttpRequest();
-//     rawFile.overrideMimeType("application/json");
-//     rawFile.open("GET", file, true);
-//     rawFile.onreadystatechange = function() {
-//         if (rawFile.readyState === 4 && rawFile.status == "200") {
-//             callback(rawFile.responseText);
-//         }
-//     }
-//     rawFile.send(null);
-// };

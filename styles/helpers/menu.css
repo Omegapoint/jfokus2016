@@ -3,7 +3,7 @@
   color: #fff;
   height: 30px;
 }
-.menu-button {
+.menu button {
   border: none;
   background-color: #888888;
   color: #000;
@@ -14,11 +14,14 @@
   padding: 3px 15px 3px 15px;
   outline: none;
 }
-.menu-button:hover{
+.menu button::first-letter {
+ text-decoration: underline;
+}
+.menu button:hover{
   background-color: #0000a0;
   color: #888888;
 }
-.menu-button:focus{
+.menu button:focus{
   background-color: #888888;
   color: white;
 }

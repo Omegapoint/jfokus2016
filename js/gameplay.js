@@ -1,6 +1,7 @@
 function executeTurn(otherPlayerPos, hitPos, wind) {
 
-	var code = customImpl.getValue(); 
+	var code = textareaPlayerCode.getValue(); 
+	textareaPlayerCode.setOption("readOnly", true);
 	var bananaHitPos = hitPos;
 	var opponentAsJson = new Object();
   		opponentAsJson['x'] = otherPlayerPos[0];

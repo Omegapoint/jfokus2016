@@ -34,8 +34,8 @@ ok{
   color: #0000a0;
   font-family: FixedsysExcelsior301Regular;
   font-size: 20px;
-  outline: none;
   border: none;
+  outline: none;
   border-bottom: solid 2px black;
 }
 .modal-btn-ok{

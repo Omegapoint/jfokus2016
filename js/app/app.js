@@ -267,22 +267,26 @@ define(
                         winningScore = this.scores[2];
                     }
                     gameIsFinished = true;
-                    openWinnerModal("The winner is player " + w + ", score: " + this.scores['player_' + w]);
-
+                    openModalWith("The winner is player " + w + ", score: " + this.scores['player_' + w]);
+                    var currentPlayer = JSON.parse(localStorage["currentPlayer"]);
                     var jsonToSave = {
-                        "player": playerName,
-                        "email": playerEmail,
-                        "score": this.scores['player_' + w]
+                        "player": currentPlayer.name ,
+                        "email": currentPlayer.email,
+                        "score": this.scores['player_' + w],
+                        "code" : textareaPlayerCode.getValue()
                     };
                     highscoreList.push(jsonToSave);
+                    localStorage["highscoreList"] = JSON.stringify(highscoreList);
                     highscoreTableUpdate();
-                    var textToSave = JSON.stringify(highscoreList);
-                    var filename = 'scores-'+Date.now()+".json";
+                    textareaPlayerCode.setOption("readOnly", false);
 
-                    var doc1 = document.createElement('a');
-                    doc1.setAttribute('href', 'data:text/plain;charset=utf-u,' + encodeURIComponent(textToSave));
-                    doc1.setAttribute('download', filename);
-                    doc1.click();
+                    //Uncomment if we want to have a json as highscore backup ;)
+                    // var textToSave = JSON.stringify(highscoreList);
+                    // var filename = 'scores-'+Date.now()+".json";
+                    // var doc1 = document.createElement('a');
+                    // doc1.setAttribute('href', 'data:text/plain;charset=utf-u,' + encodeURIComponent(textToSave));
+                    // doc1.setAttribute('download', filename);
+                    // doc1.click();
                 }
 
                 this.timeout = setTimeout(function() {

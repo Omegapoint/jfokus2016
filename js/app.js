@@ -19,25 +19,8 @@ var roundsInGame = 2;     //The total number of rounds in a game.
 var nThrows = {player_1: 0,player_2: 0}; //How many throws for each pal
 
 var gameIsFinished = false; //Variable for controlling the state of the game
-
-var playerEmail = 'no@email.nu';
-var playerName = 'anonymous';
-
-var highscoreList = [{
-  playerName: 'Anna',
-  playerEmail: 'anna@amma.se',
-  score: 1000
-},
-{
-  playerName: 'Anna',
-  playerEmail: 'anna@amma.se',
-  score: 500
-},{
-  playerName: 'Anna',
-  playerEmail: 'anna@amma.se',
-  score: 9999
-}];
-
+document.getElementById("player_email").value = "Anna@email.me";
+document.getElementById("player_name").value = "jkak";
 requirejs(
 
   // Dependencies ex: ['foo/bar', 'foobar'],
@@ -51,6 +34,7 @@ requirejs(
 
     app = new App();
     app.createScene();
+
 
     play = document.getElementById('play');
     play.addEventListener("click", function(event) {
@@ -116,5 +100,4 @@ requirejs(
       document.getElementById( player + '_angle' ).value = '';
       document.getElementById( player + '_velocity' ).value = '';
     }
-
 });

@@ -34,6 +34,10 @@ body {
   font-family: FixedsysExcelsior301Regular;
   width: 100%;
 }
+h3{
+  text-align: center;
+  font-weight: normal;
+}
 hr{
   border: none;
   height: 2px;
@@ -45,8 +49,8 @@ ul{
 table.top-container{
   margin-left:auto;
   margin-right:auto;
-  }
 }
+
 table.top-container tr{
   vertical-align: top;
 }

@@ -29,12 +29,12 @@
 .ai_input{
   position: absolute;
   bottom: 0px;
+  box-sizing: border-box;
   border: 5px solid #888888;
-  margin: 10px auto;
   font-weight: normal;
   font-size: 14px;
   background-color: #0000a0;
-  width: 99%;
+  width: 100%;
 }
 .ai_input_label{
   display:block;
