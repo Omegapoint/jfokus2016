@@ -63,5 +63,15 @@ function getCurrentTimestamp(){
   return now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
 }
 function loadPlayerByEmail(){
-  document.getElementById('load_player_msg').innerHTML = "Not implemented yet.."
+  var searchMail = document.getElementById('search_email').value;
+  var highscoreList = JSON.parse(localStorage['highscoreList']);
+  for (var i = 0; i < highscoreList.length; i++) {
+    if(highscoreList[i].email == searchMail){
+      textareaPlayerCode.setValue(highscoreList[i].code);
+      localStorage['currentPlayer'] = JSON.stringify(highscoreList[i]);
+      closeModal('load_player_modal');
+      return;
+    }
+  }
+  document.getElementById('load_player_msg').innerHTML = "No player with that email found"
 }

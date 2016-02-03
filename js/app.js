@@ -20,6 +20,35 @@ var nThrows = {player_1: 0,player_2: 0}; //How many throws for each pal
 
 var gameIsFinished = false; //Variable for controlling the state of the game
 document.getElementById("player_1_name").innerHTML = JSON.parse(localStorage['currentPlayer']).name;
+var templateStartCode = ""+
+  "function runPlayer(lastBananaHit, opponent, wind, memory){\n"+
+  "  var angle = 30 + opponent['y'];\n"+
+  "  var velocity = 5 - wind + (opponent['x'] * 0.05);\n"+
+  "  var returnValues = new Object();\n"+
+  "\n"+
+  "  returnValues['velocity'] = velocity;\n"+
+  "  returnValues['angle'] = angle;"+
+  "  returnValues['memory'] = \"OP Gorillas is fun! :)\";\n"+
+  "  return returnValues;\n"+
+  "};\n";
+highscoreList = [{
+  name :'Omegapoint',
+  email:'info@omegapoint.se',
+  code : templateStartCode+"//By OP",
+  score:5
+},{
+  name :'Anna',
+  email:'anna@panna.se',
+  code :templateStartCode+"//By Me",
+  score:13
+},{
+  name  :'NoOne',
+  email :'noone@was.here',
+  code  :templateStartCode+"//By no one",
+  score :15
+}];
+localStorage['highscoreList'] = JSON.stringify(highscoreList);
+
 highscoreTableUpdate();
 
 requirejs(

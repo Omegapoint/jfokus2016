@@ -1,6 +1,7 @@
 var modal = null;
 var audioButton = new Audio('audio/button-select.wav');
 var isAltPressed = false;
+
 function openModal(modalId){
   audioButton.play();
   modal = document.getElementById(modalId);

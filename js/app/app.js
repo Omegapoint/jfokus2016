@@ -286,17 +286,17 @@ define(
                     gameIsFinished = true;
                     var currentPlayer = JSON.parse(localStorage["currentPlayer"]);
                     var jsonToSave = {
-                        "name": currentPlayer.name ,
-                        "email": currentPlayer.email,
-                        "score": scoreToSave,
-                        "code" : textareaPlayerCode.getValue()
+                        'name' : currentPlayer.name ,
+                        'email': currentPlayer.email,
+                        'score': scoreToSave,
+                        'code' : code //TODO: is this the code when starting the game? kan du byta till rätt variable annars
                     };
 
-                    var highscoreList = JSON.parse(localStorage["highscoreList"]);
+                    var highscoreList = JSON.parse(localStorage['highscoreList']);
                     highscoreList.push(jsonToSave);
-                    localStorage["highscoreList"] = JSON.stringify(highscoreList);
+                    localStorage['highscoreList'] = JSON.stringify(highscoreList);
                     highscoreTableUpdate();
-                    
+
                     if(w == 1){
                         w = currentPlayer.name;
                     }else{
@@ -304,7 +304,7 @@ define(
                     }
                     openModalWith("The winner is " + w + "<br>Score: " + scoreDiff);
 
-                    //Uncomment if we want to have a json as highscore backup ;)
+                    //TODO: Uncomment if you want to have a json as highscore backup ;)
                     // var textToSave = JSON.stringify(highscoreList);
                     // var filename = 'scores-'+Date.now()+".json";
                     // var doc1 = document.createElement('a');
