@@ -262,9 +262,8 @@ define(
                     that.animateColission(deadPlayer);
                 }, 5);
                 this.scores['player_' + winner.playerNumber] = this.scores['player_' + winner.playerNumber] + 10 - turnsLeft['player_' + winner.playerNumber];
-
-                rounds++;
                 this.updateScoreBoard();
+                rounds++;
                 if (rounds > roundsInGame) {
                     var w = null;
                     var winningScore = null;
@@ -301,7 +300,7 @@ define(
                         w = "CPU";
                     }
                     openModalWith("The winner is " + w + "<br>Score: " + scoreDiff);
-                    rounds = 1;
+
                     //TODO: Uncomment if you want to have a json as highscore backup ;)
                     // var textToSave = JSON.stringify(highscoreList);
                     // var filename = 'scores-'+Date.now()+".json";

@@ -35,16 +35,23 @@ function highscoreTableUpdate(){
   }else{
     lnbrOfPlayersOnHighScore = 5;
   }
-  for (i = 0; i < nbrOfPlayersOnHighScore; i++) {
-    var row = table.insertRow(i+1);
 
+  for (i = 0; i < nbrOfPlayersOnHighScore; i++) {
+    if(i == 0){
+      var a1 = "<font color=\"#FFFF52\">";
+      var a2 = "</font>";
+    }else{
+      var a1 = "<font color=\"white\">";
+      var a2 = "</font>";
+    }
+    var row = table.insertRow(i+1);
     var cell = row.insertCell(0);
-    cell.innerHTML = "<span onclick="+"getUserInfo("+i+")"+">"+(i+1)+"</span>";
+    cell.innerHTML = a1+"<span onclick="+"getUserInfo("+i+")"+">"+(i+1)+"</span>"+a2;
 
     var cell = row.insertCell(1);
-    cell.innerHTML = "<span onclick="+"getUserInfo("+i+")"+">"+highscoreList[i].name+"</span>";
+    cell.innerHTML = a1+"<span onclick="+"getUserInfo("+i+")"+">"+highscoreList[i].name+"</span>"+a2;
     var cell = row.insertCell(2);
-    cell.innerHTML = "<span onclick="+"getUserInfo("+i+")"+">"+highscoreList[i].score+"</span>";
+    cell.innerHTML = a1+"<span onclick="+"getUserInfo("+i+")"+">"+highscoreList[i].score+"</span>"+a2;
   }
 
 };

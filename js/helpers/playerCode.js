@@ -8,7 +8,7 @@ require([
   "../node_modules/codemirror/addon/lint/javascript-lint.js"], function (CodeMirror) {
   textareaPlayerCode = CodeMirror.fromTextArea(document.getElementById("textarea_player_code"), {
     mode : 'javascript',
-    theme: 'the-matrix',
+    theme: '3024-night',
     tabSize : 2,
     lint : true,
     autofocus : true,

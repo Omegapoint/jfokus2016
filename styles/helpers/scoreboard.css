@@ -7,8 +7,12 @@
 .player_row{
   text-decoration: underline;
 }
+.name_row{
+  color: white;
+}
 .score_row{
   font-size: 72px;
+  color: #FFFF52;
 }
 img .score_img{
   height: 26;
