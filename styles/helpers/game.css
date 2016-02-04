@@ -1,7 +1,7 @@
 #container {
   text-align: center;
   margin: 15px;
-  width: 650px;
+  width: 33%;
   height: 360px;
   background-color: #0000a0;
 }
@@ -9,22 +9,12 @@
   margin: 0 auto;
   border: 5px solid #888888;
 }
-.players {
+.game_info {
+  font-size: 20px;
+  text-align: left;
   position: absolute;
   padding: 10px;
-  width: 630px;
-}
-
-#player_1 {
-  text-align: left;
-  float: left;
-  width: 300px;
-}
-
-#player_2 {
-  text-align: right;
-  float: right;
-  width: 135px;
+  width: 620px;
 }
 .ai_input{
   position: absolute;

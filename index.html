@@ -29,30 +29,42 @@
 
   <table class="top-container">
     <tr>
-      <td class="highscore"> <!-- Start highscore -->
-        <h3>*** Highscore ***</h3>
-        <table id="highscore-table"  class="highscore-table"></table>
-      </td> <!-- end highscore -->
+      <td class="scoreboard">
+        <h3>*** Scoreboard ***</h3>
+        <table class="center">
+          <tr class="player_row">
+            <th>Player 1</th>
+            <th></th>
+            <th>Player 2</th>
+          </tr>
+          <tr class="name_row">
+            <td><span id="player_1_name">No one</span></td>
+            <td> vs.</td>
+            <td>CPU</td>
+          </tr>
+          <tr class="score_row"><!-- <tr class="players"> -->
+            <td><span id="player_1_score">0</span></td>
+            <td> :</td>
+            <td><span id="player_2_score">0</span></td>
+          </tr>
+        </table>
+      </td>
 
       <td id="container"> <!-- Start game container -->
-        <div class="players">
-          <div id="player_1">
-            P1: <span id="player_1_name"></span><br>
-            Score: <span id="player_1_score">0</span>p
-          </div>
-          <div id="player_2">
-            P2: CPU<br>
-            Score: <span id="player_2_score">0</span>p
-          </div>
+        <div class="game_info">
+            Round : <span id="round_nr">-</span><br>
+            Thorws: <span id="thorw_nr">-</span>
         </div>
         <canvas id="canvas" width="640" height="350">
           <p>Browser does not support the canvas tag</p>
         </canvas>
       </td> <!-- end game container -->
 
-      <td class="highscore-img">
-        <img src="img/twogorillas.gif" >
-      </td>
+      <td class="highscore"> <!-- Start highscore -->
+        <!-- <img src="img/twogorillas.gif" > -->
+        <h3>*** Highscore ***</h3>
+        <table id="highscore-table"  class="highscore-table center"></table>
+      </td> <!-- end highscore -->
 
     </tr>
     <tr>

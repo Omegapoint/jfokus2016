@@ -39,12 +39,12 @@ function highscoreTableUpdate(){
     var row = table.insertRow(i+1);
 
     var cell = row.insertCell(0);
-    cell.innerHTML = "<b onclick="+"getUserInfo("+i+")"+">"+(i+1)+"</b>";
+    cell.innerHTML = "<span onclick="+"getUserInfo("+i+")"+">"+(i+1)+"</span>";
 
     var cell = row.insertCell(1);
-    cell.innerHTML = "<b onclick="+"getUserInfo("+i+")"+">"+highscoreList[i].name+"</b>";
+    cell.innerHTML = "<span onclick="+"getUserInfo("+i+")"+">"+highscoreList[i].name+"</span>";
     var cell = row.insertCell(2);
-    cell.innerHTML = "<b onclick="+"getUserInfo("+i+")"+">"+highscoreList[i].score+"</b>";
+    cell.innerHTML = "<span onclick="+"getUserInfo("+i+")"+">"+highscoreList[i].score+"</span>";
   }
 
 };

@@ -69,7 +69,6 @@ function savePlayerCodeToLocalStorage(){
       return;
     }
   }
-  console.log("Player not found, add new");
   var currentPlayer = JSON.parse(localStorage['currentPlayer']);
   var newPlayerCode = {
     email: currentPlayer.email,
