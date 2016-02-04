@@ -295,12 +295,12 @@ define(
                     highscoreTableUpdate();
 
                     if(w == 1){
-                        w = currentPlayer.name;
+                        w = runningGamePlayer.name;
                     }else{
                         w = "CPU";
                     }
                     openModalWith("The winner is " + w + "<br>Score: " + scoreDiff);
-
+                    document.getElementById('play').disable = false;
                     //TODO: Uncomment if you want to have a json as highscore backup ;)
                     // var textToSave = JSON.stringify(highscoreList);
                     // var filename = 'scores-'+Date.now()+".json";

@@ -51,6 +51,7 @@ requirejs(
 
     play = document.getElementById('play');
     play.addEventListener("click", function(event) {
+      document.getElementById('play').disable = true;
       savePlayerCode();
       saveToGameCode();
       rounds = 1;
