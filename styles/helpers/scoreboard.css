@@ -1,0 +1,12 @@
+.scoreboard {
+  text-align: center;
+  height: 360px;
+  width: 33%;
+  font-size: 26px;
+}
+.player_row{
+  text-decoration: underline;
+}
+.score_row{
+  font-size: 72px;
+}
