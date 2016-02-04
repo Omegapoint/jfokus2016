@@ -160,7 +160,7 @@ define(
          * params {Integer} player Which player are we doing this for?
          */
         App.prototype.throwBanana = function(force, angle, player) {
-            this.audioBanana.play(); 
+            this.audioBanana.play();
             var that = this;
             if (player === 2) {
                 angle = -angle;
@@ -189,7 +189,7 @@ define(
          * params {Object} player Which player is this banana coming from?
          */
         App.prototype.animateBanana = function(player) {
-     
+
             var that, now, time;
             that = this;
             this.timeout = setTimeout(function() {
@@ -238,7 +238,7 @@ define(
             var y = player.banana.y();
             for (var i = 0; i < this.buildings.length; i++) {
                 if (this.buildings[i].checkColission(x, y)){
-                    this.audioHit.play(); 
+                    this.audioHit.play();
                     return true;
                 }
             }
@@ -289,7 +289,7 @@ define(
                         'name' : currentPlayer.name ,
                         'email': currentPlayer.email,
                         'score': scoreToSave,
-                        'code' : code //TODO: is this the code when starting the game? kan du byta till rätt variable annars
+                        'code' : currentPlayer.code
                     };
 
                     var highscoreList = JSON.parse(localStorage['highscoreList']);

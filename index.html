@@ -59,7 +59,7 @@
       <div class="ai_input" id="textbox">   <!-- Start input code -->
         <div class="menu">
             <button id="play">Play</button>
-            <button onclick="savePlayerCode()">Save to cache</button>
+            <button onclick="savePlayerCode()">Save</button>
             <button onclick="resetPlayerCode()">Get latest save</button>
             <button onclick="clearPlayerCode()">Clear Code</button>
             <span class="menu_title" id="message_to_player"></span>
@@ -138,11 +138,11 @@
         <br>
         <span id="load_player_msg">  </span>
         <hr>
-        <button class="modal-btn-ok" onclick="loadPlayerByEmail()">
-          < <ok>Search for player</ok> >
-        </button>
         <button class="modal-btn-ok" onclick="closeModal('load_player_modal')">
           < <ok>Cancel</ok> >
+        </button>
+        <button class="modal-btn-ok" onclick="loadPlayerByEmail()">
+          < <ok>Search for player</ok> >
         </button>
       </div>
     </div>

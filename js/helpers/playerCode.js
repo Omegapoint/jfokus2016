@@ -24,43 +24,68 @@ require([
 });
 
 function savePlayerCode(){
-  var currentPlayer = JSON.parse(localStorage['currentPlayer']);
-  currentPlayer.code = textareaPlayerCode.getValue();
-  localStorage['currentPlayer'] = JSON.stringify(currentPlayer);
+  savePlayerCodeToLocalStorage();
+  saveCurrentPlayerCode();
   setLatestSavedCode();
-  var savedTxt = "Saved ("+lastestSave+")";
-  document.getElementById('message_to_player').innerHTML = savedTxt;
+  setMessageToPlayer("Saved ("+lastestSave+")");
 }
 function clearPlayerCode(){
   textareaPlayerCode.setValue(templateStartCode);
-  var savedTxt = "Clear code";
-  document.getElementById('message_to_player').innerHTML = savedTxt;
+  setMessageToPlayer("Code cleared");
 }
 function resetPlayerCode(){
   var currentPlayer = JSON.parse(localStorage['currentPlayer']);
   textareaPlayerCode.setValue(currentPlayer.code);
-  var savedTxt = "Code is reset to latest save (at "+lastestSave+")";
-  document.getElementById('message_to_player').innerHTML = savedTxt;
+  setMessageToPlayer("Code is reset to latest save (at "+lastestSave+")");
 }
 
 function setLatestSavedCode(){
-  lastestSave = getCurrentTimestamp();
-}
-function getCurrentTimestamp(){
   var now = new Date();
-  return now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
+  lastestSave = now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
 }
+
 function loadPlayerByEmail(){
   var searchMail = document.getElementById('search_email').value;
-  var highscoreList = JSON.parse(localStorage['highscoreList']);
-  for (var i = 0; i < highscoreList.length; i++) {
-    if(highscoreList[i].email == searchMail){
-      textareaPlayerCode.setValue(highscoreList[i].code);
-      localStorage['currentPlayer'] = JSON.stringify(highscoreList[i]);
-      document.getElementById('player_1_name').innerHTML = highscoreList[i].name;
+  var savedPlayerCode = JSON.parse(localStorage['savedPlayerCode']);
+  for (var i = 0; i < savedPlayerCode.length; i++) {
+    if(savedPlayerCode[i].email == searchMail){
+      textareaPlayerCode.setValue(savedPlayerCode[i].code);
+      localStorage['currentPlayer'] = JSON.stringify(savedPlayerCode[i]);
+      document.getElementById('player_1_name').innerHTML = savedPlayerCode[i].name;
       closeModal('load_player_modal');
       return;
     }
   }
   document.getElementById('load_player_msg').innerHTML = "No player with that email found"
+}
+
+function savePlayerCodeToLocalStorage(){
+  var currentPlayer = JSON.parse(localStorage['currentPlayer']);
+  var savedPlayerCode = JSON.parse(localStorage['savedPlayerCode']);
+  for (var i = 0; i < savedPlayerCode.length; i++) {
+    if(currentPlayer.email == savedPlayerCode[i].email){
+      savedPlayerCode[i].code = textareaPlayerCode.getValue();
+      localStorage['savedPlayerCode'] = JSON.stringify(savedPlayerCode);
+      return;
+    }
+  }
+  console.log("Player not found, add new");
+  var currentPlayer = JSON.parse(localStorage['currentPlayer']);
+  var newPlayerCode = {
+    email: currentPlayer.email,
+    code : textareaPlayerCode.getValue()
+  };
+  savedPlayerCode.push(newPlayerCode);
+  localStorage['savedPlayerCode'] = JSON.stringify(savedPlayerCode);
+  return;
+}
+
+function saveCurrentPlayerCode(){
+  var currentPlayer = JSON.parse(localStorage['currentPlayer']);
+  currentPlayer.code = textareaPlayerCode.getValue();
+  localStorage['currentPlayer'] = JSON.stringify(currentPlayer);
+}
+
+function setMessageToPlayer(messageToPlayer){
+    document.getElementById('message_to_player').innerHTML = messageToPlayer;
 }

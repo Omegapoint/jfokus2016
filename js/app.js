@@ -31,8 +31,8 @@ var templateStartCode = ""+
   "  returnValues['memory'] = \"OP Gorillas is fun! :)\";\n"+
   "  return returnValues;\n"+
   "};\n";
-  
-highscoreList = [{ 
+
+highscoreList = [{
   name :'Omegapoint',
   email:'info@omegapoint.se',
   code : templateStartCode+"//By OP",
@@ -49,6 +49,18 @@ highscoreList = [{
   score :15
 }];
 localStorage['highscoreList'] = JSON.stringify(highscoreList);
+
+savedPlayerCode = [{
+  email:'info@omegapoint.se',
+  code : templateStartCode+"//By test OP"
+},{
+  email :'anna@panna.se',
+  code :templateStartCode+"//By test Me"
+},{
+  email :'noone@was.here',
+  code  :templateStartCode+"//By test no one"
+}];
+localStorage['savedPlayerCode'] = JSON.stringify(savedPlayerCode);
 
 highscoreTableUpdate();
 
@@ -69,6 +81,7 @@ requirejs(
 
     play = document.getElementById('play');
     play.addEventListener("click", function(event) {
+      savePlayerCode();
       rounds  = 0;
       app.scores['player_1'] = 0;
       app.scores['player_2'] = 0;
