@@ -73,6 +73,7 @@ function savePlayerCodeToLocalStorage(){
   var currentPlayer = JSON.parse(localStorage['currentPlayer']);
   var newPlayerCode = {
     email: currentPlayer.email,
+    name: currentPlayer.name,
     code : textareaPlayerCode.getValue()
   };
   savedPlayerCode.push(newPlayerCode);
