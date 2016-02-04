@@ -1,3 +1,9 @@
+var emptyPerson = {
+  name: '-',
+  email: '-',
+  code: '-',
+  score: 0
+};
 //creating a new comparator for sorting
 function compare(player1,player2) {
   if (player1.score < player2.score)
@@ -9,7 +15,13 @@ function compare(player1,player2) {
 };
 
 function highscoreTableUpdate(){
-  highscoreList = JSON.parse(localStorage['highscoreList']);
+  var nbrOfPlayersOnHighScore = 5;
+  if(localStorage['highscoreList']){
+    highscoreList = JSON.parse(localStorage['highscoreList']);
+  }else{
+    highscoreList = [];
+  }
+
   if(highscoreList.length>1){
     highscoreList.sort(compare);
     if(highscoreList[0].score < highscoreList[highscoreList.length-1].score){
@@ -30,10 +42,11 @@ function highscoreTableUpdate(){
   var cell = row.insertCell(2);
   cell.innerHTML = "<u>Score</u>";
 
-  if (highscoreList.length < 5) {
-    nbrOfPlayersOnHighScore = highscoreList.length;
-  }else{
-    lnbrOfPlayersOnHighScore = 5;
+  if (highscoreList.length < nbrOfPlayersOnHighScore) {
+    var highscoreDiff = nbrOfPlayersOnHighScore - highscoreList.length;
+    for (var i = 0; i < highscoreDiff; i++) {
+      highscoreList.push(emptyPerson);
+    }
   }
 
   for (i = 0; i < nbrOfPlayersOnHighScore; i++) {

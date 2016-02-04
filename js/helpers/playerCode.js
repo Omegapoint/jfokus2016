@@ -51,7 +51,8 @@ function loadPlayerByEmail(){
     if(savedPlayerCode[i].email == searchMail){
       textareaPlayerCode.setValue(savedPlayerCode[i].code);
       localStorage['currentPlayer'] = JSON.stringify(savedPlayerCode[i]);
-      document.getElementById('player_1_name').innerHTML = savedPlayerCode[i].name;
+      setLatestSavedCode();
+      setMessageToPlayer("Loaded code (at "+lastestSave+")");
       closeModal('load_player_modal');
       return;
     }
@@ -84,7 +85,12 @@ function saveCurrentPlayerCode(){
   currentPlayer.code = textareaPlayerCode.getValue();
   localStorage['currentPlayer'] = JSON.stringify(currentPlayer);
 }
+function saveToGameCode(){
+  localStorage['runningGamePlayer'] = localStorage['currentPlayer'];
+  document.getElementById('player_1_name').innerHTML = JSON.parse(localStorage['runningGamePlayer']).name;
+}
 
 function setMessageToPlayer(messageToPlayer){
-    document.getElementById('message_to_player').innerHTML = messageToPlayer;
+    var totalMsg = "["+JSON.parse(localStorage['currentPlayer']).name+"] "+messageToPlayer;
+    document.getElementById('message_to_player').innerHTML = totalMsg;
 }

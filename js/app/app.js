@@ -281,12 +281,12 @@ define(
                     var scoreToSave = this.scores['player_1'] - this.scores['player_2'];
                     var scoreDiff = Math.abs(scoreToSave);
                     gameIsFinished = true;
-                    var currentPlayer = JSON.parse(localStorage["currentPlayer"]);
+                    var runningGamePlayer = JSON.parse(localStorage['runningGamePlayer']);
                     var jsonToSave = {
-                        'name' : currentPlayer.name ,
-                        'email': currentPlayer.email,
+                        'name' : runningGamePlayer.name ,
+                        'email': runningGamePlayer.email,
                         'score': scoreToSave,
-                        'code' : currentPlayer.code
+                        'code' : runningGamePlayer.code
                     };
 
                     var highscoreList = JSON.parse(localStorage['highscoreList']);

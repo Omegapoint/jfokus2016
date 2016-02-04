@@ -19,7 +19,7 @@ var roundsInGame = 3;     //The total number of rounds in a game.
 var nThrows = {player_1: 0,player_2: 0}; //How many throws for each pal
 
 var gameIsFinished = false; //Variable for controlling the state of the game
-document.getElementById("player_1_name").innerHTML = JSON.parse(localStorage['currentPlayer']).name;
+
 var templateStartCode = ""+
   "function runPlayer(lastBananaHit, opponent, wind, memory){\n"+
   "  var angle = 30 + opponent['y'];\n"+
@@ -31,36 +31,6 @@ var templateStartCode = ""+
   "  returnValues['memory'] = \"OP Gorillas is fun! :)\";\n"+
   "  return returnValues;\n"+
   "};\n";
-
-highscoreList = [{
-  name :'Omegapoint',
-  email:'info@omegapoint.se',
-  code : templateStartCode+"//By OP",
-  score:5
-},{
-  name :'Anna',
-  email:'anna@panna.se',
-  code :templateStartCode+"//By Me",
-  score:13
-},{
-  name  :'NoOne',
-  email :'noone@was.here',
-  code  :templateStartCode+"//By no one",
-  score :15
-}];
-localStorage['highscoreList'] = JSON.stringify(highscoreList);
-
-savedPlayerCode = [{
-  email:'info@omegapoint.se',
-  code : templateStartCode+"//By test OP"
-},{
-  email :'anna@panna.se',
-  code :templateStartCode+"//By test Me"
-},{
-  email :'noone@was.here',
-  code  :templateStartCode+"//By test no one"
-}];
-localStorage['savedPlayerCode'] = JSON.stringify(savedPlayerCode);
 
 highscoreTableUpdate();
 
@@ -82,6 +52,7 @@ requirejs(
     play = document.getElementById('play');
     play.addEventListener("click", function(event) {
       savePlayerCode();
+      saveToGameCode();
       rounds = 1;
       app.scores['player_1'] = 0;
       app.scores['player_2'] = 0;

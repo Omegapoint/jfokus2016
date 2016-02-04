@@ -1,6 +1,6 @@
 function executeTurn(otherPlayerPos, hitPos, wind) {
 
-	var code = textareaPlayerCode.getValue(); 
+	var code = JSON.parse(localStorage['runningGamePlayer']).code;
 
 	var bananaHitPos = hitPos;
 	var opponentAsJson = new Object();
