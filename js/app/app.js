@@ -28,6 +28,7 @@ define(
             this.buildings = [];
             this.frameRate = 15; // Note, this may change
             this.wind = new Wind(this.context);
+            this.updateScoreBoard();
         }
 
 
@@ -49,7 +50,6 @@ define(
                 this.reCreateGorillas();
             }
             this.wind.create();
-            this.updateScore();
         };
 
         /**
@@ -111,8 +111,6 @@ define(
          * clear: Reset the canvas
          */
         App.prototype.clear = function() {
-
-
             return this.canvas.width = this.canvas.width;
         };
 
@@ -127,7 +125,6 @@ define(
          * createGorillas: Builds out Player_1 && Player_2
          */
         App.prototype.createGorillas = function() {
-
             var buildingOnePosition, buildingTwoPosition, building;
 
             // Build and position Player_1
@@ -147,8 +144,6 @@ define(
          * reCreateGorillas: Re-Build players on reCreate
          */
         App.prototype.reCreateGorillas = function() {
-
-
             this.player_1.reCreate();
             this.player_2.reCreate();
         };
@@ -176,12 +171,16 @@ define(
             return 5;
         };
 
-        /**
-         * updateScore: Draws/ReDraws the score with updated stats
-         */
-        App.prototype.updateScore = function() {
+        App.prototype.updateScoreBoard = function() {
             document.getElementById('player_2_score').innerHTML=this.scores.player_2;
             document.getElementById('player_1_score').innerHTML=this.scores.player_1;
+            document.getElementById('round_nr').innerHTML=rounds;
+            if (rounds == 1) {
+              this.updateThrows(0);
+            }
+        };
+        App.prototype.updateThrows = function(nbr) {
+            document.getElementById('throw_nr').innerHTML=nbr;
         };
 
         /**
@@ -189,7 +188,6 @@ define(
          * params {Object} player Which player is this banana coming from?
          */
         App.prototype.animateBanana = function(player) {
-
             var that, now, time;
             that = this;
             this.timeout = setTimeout(function() {
@@ -223,6 +221,7 @@ define(
             if (x <= (this.width / 2) + 10 && x >= (this.width / 2) - 10 && y <= 27 && y >= 17) {
                 this.scores['player_' + player.playerNumber] = this.scores['player_' + player.playerNumber] + 5;
                 this.audioHitSun.play();
+                this.updateScoreBoard();
                 return true;
             }
             return false;
@@ -246,7 +245,6 @@ define(
         };
 
 
-
         /**
          * bananaHitGorilla: Check if banana has hit a player
          * params {Object} player Which player tossed the banana
@@ -266,7 +264,7 @@ define(
                 this.scores['player_' + winner.playerNumber] = this.scores['player_' + winner.playerNumber] + 10 - turnsLeft['player_' + winner.playerNumber];
 
                 rounds++;
-                this.updateScore();
+                this.updateScoreBoard();
                 if (rounds > roundsInGame) {
                     var w = null;
                     var winningScore = null;
@@ -303,7 +301,7 @@ define(
                         w = "CPU";
                     }
                     openModalWith("The winner is " + w + "<br>Score: " + scoreDiff);
-
+                    rounds = 1;
                     //TODO: Uncomment if you want to have a json as highscore backup ;)
                     // var textToSave = JSON.stringify(highscoreList);
                     // var filename = 'scores-'+Date.now()+".json";
@@ -314,7 +312,7 @@ define(
                 }else{
                     this.audioNewRound.play();
                 }
-
+                this.updateScoreBoard();
                 this.timeout = setTimeout(function() {
                     that.startTime = new Date();
                     winner.animate = true;
@@ -351,7 +349,6 @@ define(
                 player_1: 0,
                 player_2: 0
             };
-
             this.startTime = startTime;
             this.timeout = setTimeout(function() {
                 while (!(player.animate === true && player.animations < 12)) {
@@ -381,6 +378,7 @@ define(
             turnsInGame++;
 
             turnsLeft['player_' + player.playerNumber]++;
+            this.updateThrows(turnsLeft['player_' + player.playerNumber]);
             if (turnsLeft['player_' + player.playerNumber] <= maximumNumberOfTurns && !gameIsFinished) {
                 this.runPlayer(nextPlayer);
             } else if(gameIsFinished) {
@@ -394,24 +392,21 @@ define(
               turnsLeft['player_2'] = 0;
 
               rounds++;
+              this.updateScoreBoard();
               this.nextPlayerTurn(player);
-
             }
-
         };
 
 
         App.prototype.runPlayer = function(player) {
-
             //TODO: Här ska vi ta reda på wind och skit och ge detta till spelarna...!
             var playerWind = this.wind.windSpeed;
-
-
             var deltaX = this.player_2.x - this.player_1.x;
             var deltaY = this.player_1.y - this.player_2.y;
             var playerPos = [deltaX, deltaY];
 
             if (player == 1) {
+                turnsInGame++;
                 var bananaHitPosition = [0,0];
 
                 if (this.player_1.banana) {
@@ -419,14 +414,9 @@ define(
                   var deltaBananaY = this.player_2.banana.y() - this.player_2.y ;
                   bananaHitPosition = [deltaBananaX, deltaBananaY];
                 }
-
-
                 executeTurn(playerPos, bananaHitPosition, playerWind);
                 this.throwBanana(agent_force, agent_angle, player);
             } else {
-
-
-
                 runAgent(2, playerPos, [2, 2]);
                 this.throwBanana(agent_2_force, agent_2_angle, player);
             }

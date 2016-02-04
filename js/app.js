@@ -14,7 +14,7 @@ var turnsInGame = 0;      //The number of games in each round
 var maximumNumberOfTurns = 10;
 var turnsLeft = {player_1: 0,player_2: 0};
 
-var rounds = 0;           //Starting round
+var rounds = 1;           //Starting round
 var roundsInGame = 3;     //The total number of rounds in a game.
 var nThrows = {player_1: 0,player_2: 0}; //How many throws for each pal
 
@@ -82,7 +82,7 @@ requirejs(
     play = document.getElementById('play');
     play.addEventListener("click", function(event) {
       savePlayerCode();
-      rounds  = 0;
+      rounds  = 1;
       app.scores['player_1'] = 0;
       app.scores['player_2'] = 0;
 
