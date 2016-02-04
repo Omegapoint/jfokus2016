@@ -8,7 +8,7 @@
   <link href="node_modules/codemirror/theme/dracula.css" type="text/css" rel="stylesheet"></link>
   <link href="styles/base.css" type="text/css" rel="stylesheet"></link>
   <link href="node_modules/codemirror/addon/lint/lint.css" type="text/css" rel="stylesheet"></link>
-  
+
 
   <script data-main="js/app.js" src="js/require.js"></script>
   <script src="js/helpers/playerCode.js"></script>
@@ -30,7 +30,7 @@
   <table class="top-container">
     <tr>
       <td class="highscore"> <!-- Start highscore -->
-        <h3>*** Highscore***</h3>
+        <h3>*** Highscore ***</h3>
         <table id="highscore-table"  class="highscore-table"></table>
       </td> <!-- end highscore -->
 
@@ -116,6 +116,9 @@
             </tr>
           </table>
           <hr>
+          <button type="submit" class="modal-btn-ok" onclick="closeModal('new_player')" formnovalidate>
+            < <ok>Cancel</ok> >
+          </button>
           <button type="submit" class="modal-btn-ok">
             < <ok>Create new player</ok> >
           </button>
@@ -139,7 +142,7 @@
           < <ok>Search for player</ok> >
         </button>
         <button class="modal-btn-ok" onclick="closeModal('load_player_modal')">
-          < <ok>Close</ok> >
+          < <ok>Cancel</ok> >
         </button>
       </div>
     </div>
@@ -160,7 +163,7 @@
         </table>
         <br><br>
          Return values<br/><br />
-         The function must return the Json-structure:<br> 
+         The function must return the Json-structure:<br>
          {"velocity": float,
           "angle": float,
           "memory": var}<br><br>
