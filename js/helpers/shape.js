@@ -1,7 +1,6 @@
 define(
   function () {
 
-    // Constructor
     function Shape ( context ) {
       this.context = context;
       this.canvas = document.getElementById('canvas');
@@ -58,7 +57,5 @@ define(
       this.context.fill();
     };
 
-    // Return our Shape Object
     return Shape;
-
 });

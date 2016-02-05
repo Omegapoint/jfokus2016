@@ -22,9 +22,9 @@ function closeModalAndCreatePlayer(){
     code: textareaPlayerCode.getValue()
   };
   localStorage['currentPlayer'] = JSON.stringify(currentPlayer);
-
   enableStartGame = true;
   textareaPlayerCode.setOption("readOnly", false); //Ready to write code!
+  setMessageToPlayer('player has been creted');
   closeModal('new_player');
 }
 

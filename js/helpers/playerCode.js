@@ -77,7 +77,6 @@ function savePlayerCodeToLocalStorage(){
   };
   savedPlayerCode.push(newPlayerCode);
   localStorage['savedPlayerCode'] = JSON.stringify(savedPlayerCode);
-  return;
 }
 
 function saveCurrentPlayerCode(){
