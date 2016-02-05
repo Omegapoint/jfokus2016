@@ -12,6 +12,9 @@ requirejs(['app/app', 'agent'],
     play.addEventListener("click", function(event) {
       document.getElementById('play').disable = true;
       savePlayerCode();
+      if(!isValidPlayerInputCode()){
+        return;
+      }
       saveToGameCode();
       rounds = 1;
       app.scores['player_1'] = 0;

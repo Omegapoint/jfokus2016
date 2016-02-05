@@ -264,13 +264,11 @@ define(['objects/wind', 'objects/sun', 'objects/building', 'objects/gorilla'],
                     var w = null;
                     var winningScore = null;
                     if (this.scores[1] > this.scores[2]) {
-                        this.audioWinner.play();
                         w = "1";
                         winningScore = this.scores[1];
                     } else if(this.scores[1] == this.scores[2]) {
-                        this.audioLoser.play();
+                        winningScore = 0
                     } else {
-                        this.audioLoser.play();
                         w = "2";
                         winningScore = this.scores[2];
                     }
@@ -291,11 +289,14 @@ define(['objects/wind', 'objects/sun', 'objects/building', 'objects/gorilla'],
                     highscoreTableUpdate();
 
                     if(scoreToSave > 0){
+                        this.audioWinner.play();
                         openModalWith("The winner is " +runningGamePlayer.name+ "<br>Score: " + scoreDiff);
                     }else if(scoreToSave == 0){
                         openModalWith("DRAW...");
+                        this.audioLoser.play();
                     }else{
                       openModalWith("The winner is CPU<br>Score: " + scoreDiff);
+                      this.audioLoser.play();
                     }
 
                     document.getElementById('play').disable = false;

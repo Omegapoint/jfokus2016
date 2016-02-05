@@ -15,6 +15,7 @@
   <script src="js/helpers/highscore.js"></script>
   <script src="js/helpers/playerCode.js"></script>
   <script src="js/helpers/shortKeys.js"></script>
+  <script src="js/helpers/validatePlayerCode.js"></script>
   <script src="js/gameplay.js"></script>
   <script src="js/agent.js"></script>
 
@@ -171,7 +172,7 @@
           <tr><td align="right">Variable</td><td align="left">Type</td> <td>Description</td></tr>
            <tr><td align="right">lastBananaHit</td><td align="left">[float, float], undefined</td> <td>If no previous hit: undefined. Otherwise the variable contains the distance to the hit position of the previous throw.</td></tr>
             <tr><td align="right">opponent</td><td align="left">[float, float]</td> <td>The distance to your opponent, [x-axis, y-axis].</td></tr>
-             <tr><td align="right">wind</td><td align="left">float</td> <td>The wind can be either positive or negative, depending on the direction.</td></tr>
+             <tr><td align="right">wind</td><td align="left">float</td> <td>The wind can be between -15 and 15, depending on the direction.</td></tr>
               <tr><td align="right">memory</td><td></td> <td>A variable free to use, each time the function is called the memory from last called is set as input parameter.</td></tr>
 
         </table>
@@ -183,8 +184,8 @@
           "memory": var}<br><br>
         <table border=1>
           <tr><td align="right">Variable</td><td align="left">Type</td> <td>Description</td></tr>
-           <tr><td align="right">velocity</td><td align="left">float</td> <td>The desired force of your throw.</td></tr>
-            <tr><td align="right">angle</td><td align="left">float</td> <td>The angle of the throw.</td></tr>
+           <tr><td align="right">velocity</td><td align="left">float</td> <td>The desired force of your throw, the gorillas can't use force stronger than 150. In that case they will die.</td></tr>
+            <tr><td align="right">angle</td><td align="left">float</td> <td>The angle of the throw, a gorilla can throw between 0-360 (degrees) otherwise thier arms will twist and they will die.</td></tr>
               <tr><td align="right">memory</td><td></td> <td>A variable free to use, each time the function is called the memory from last called is set as input parameter.</td></tr>
 
         </table>

@@ -31,7 +31,6 @@ var nThrows = {player_1: 0,player_2: 0}; //How many throws for each pal
 var gameIsFinished = false; //Variable for controlling the state of the game
 var textareaPlayerCode;
 var lastestSave = "Code is not saved";
-
 var audioButton = new Audio('audio/button-select.wav');
 
 var RulesModalText = "About<br><br>"+
