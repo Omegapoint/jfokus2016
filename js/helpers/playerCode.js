@@ -60,11 +60,6 @@ function loadPlayerByEmail(){
 
 function savePlayerCodeToLocalStorage(){
   var currentPlayer = JSON.parse(localStorage['currentPlayer']);
-  if(localStorage['savedPlayerCode']){
-    console.log("finns");
-  }else{
-    console.log("finns inte")
-  }
   var savedPlayerCode = JSON.parse(localStorage['savedPlayerCode']);
   document.getElementById('play').disable = false;
   for (var i = 0; i < savedPlayerCode.length; i++) {

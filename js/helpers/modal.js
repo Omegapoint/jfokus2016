@@ -45,7 +45,7 @@ window.addEventListener("keydown", function (event) {
        clearPlayerCode();
     }
     else if (event.keyCode == 76) { // l
-      console.log("TODO: load player modal");
+      openModal('load_player_modal');
     }
     else if (event.keyCode == 78) { // n
       openModal('new_player');
