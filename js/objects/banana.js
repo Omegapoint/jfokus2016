@@ -1,11 +1,6 @@
 define(
-
-  // Dependencies ex: ['foo/bar', 'foobar'],
-
-  // Module + passing of dependencies (if any)
   function () {
 
-    // Constructor
     function Banana ( context, initx, inity, force, angle, wind ) {
       this.context = context;
       this.initx = initx;

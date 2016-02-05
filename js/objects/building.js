@@ -1,12 +1,6 @@
-define(
-
-  // Dependencies ex: ['foo/bar', 'foobar'],
-  ['helpers/shape'],
-
-  // Module + passing of dependencies (if any)
+define(['helpers/shape'],
   function ( Shape ) {
 
-    // Constructor
     function Building ( context, canvasHeight ) {
       this.context = context;
       this.canvas = document.getElementById('canvas');

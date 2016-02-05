@@ -1,5 +1,3 @@
-var textareaPlayerCode;
-var lastestSave = "Code is not saved";
 require([
   "../node_modules/codemirror/lib/codemirror",
   "../node_modules/codemirror/mode/javascript/javascript", "../node_modules/codemirror/addon/hint/show-hint",
@@ -62,7 +60,13 @@ function loadPlayerByEmail(){
 
 function savePlayerCodeToLocalStorage(){
   var currentPlayer = JSON.parse(localStorage['currentPlayer']);
+  if(localStorage['savedPlayerCode']){
+    console.log("finns");
+  }else{
+    console.log("finns inte")
+  }
   var savedPlayerCode = JSON.parse(localStorage['savedPlayerCode']);
+  document.getElementById('play').disable = false;
   for (var i = 0; i < savedPlayerCode.length; i++) {
     if(currentPlayer.email == savedPlayerCode[i].email){
       savedPlayerCode[i].code = textareaPlayerCode.getValue();

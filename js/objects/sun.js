@@ -1,16 +1,10 @@
-define(
-
-  // Dependencies ex: ['foo/bar', 'foobar'],
-  ['helpers/shape'],
-
-  // Module + passing of dependencies (if any)
+define(['helpers/shape'],
   function ( Shape ) {
 
     // Constants
     var SUN_BODY_COLOR = "rgb( 255, 255, 0 )",
         SUN_EYES_COLOR = "rgb( 0, 0, 160 )";
 
-    // Constructor
     function Sun ( context ) {
       this.context = context;
       this.canvas = document.getElementById('canvas');

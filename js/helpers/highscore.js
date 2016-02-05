@@ -1,20 +1,10 @@
-var emptyPerson = {
-  name: '-',
-  email: '-',
-  code: '-',
-  score: 0
-};
-//creating a new comparator for sorting
-function compare(player1,player2) {
-  if (player1.score < player2.score)
-  return -1;
-  else if (player1.score > player2.score)
-  return 1;
-  else
-  return 0;
-};
-
 function highscoreTableUpdate(){
+  var nullPlayer = {
+    name: '-',
+    email: '-',
+    code: '-',
+    score: 0
+  };
   var nbrOfPlayersOnHighScore = 5;
   if(localStorage['highscoreList']){
     highscoreList = JSON.parse(localStorage['highscoreList']);
@@ -45,11 +35,14 @@ function highscoreTableUpdate(){
   if (highscoreList.length < nbrOfPlayersOnHighScore) {
     var highscoreDiff = nbrOfPlayersOnHighScore - highscoreList.length;
     for (var i = 0; i < highscoreDiff; i++) {
-      highscoreList.push(emptyPerson);
+      highscoreList.push(nullPlayer);
     }
   }
 
   for (i = 0; i < nbrOfPlayersOnHighScore; i++) {
+    if(highscoreList[i].score < 0){
+      highscoreList[i] = nullPlayer;
+    }
     if(i == 0){
       var a1 = "<font color=\"#FFFF52\">";
       var a2 = "</font>";
@@ -68,7 +61,14 @@ function highscoreTableUpdate(){
   }
 
 };
-
+function compare(player1,player2) {
+  if (player1.score < player2.score)
+  return -1;
+  else if (player1.score > player2.score)
+  return 1;
+  else
+  return 0;
+};
 function getUserInfo(playerindex){
   var p = highscoreList[playerindex];
   openModalWith(

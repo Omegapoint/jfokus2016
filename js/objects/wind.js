@@ -1,11 +1,6 @@
 define(
-
-  // Dependencies ex: ['foo/bar', 'foobar'],
-
-  // Module + passing of dependencies (if any)
   function () {
 
-    // Constructor
     function Wind ( context ) {
       this.context = context;
       this.canvas = document.getElementById('canvas');

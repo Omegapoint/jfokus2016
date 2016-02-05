@@ -1,46 +1,5 @@
-var agent_angle = Number.MIN_VALUE;
-var agent_force = Number.MIN_VALUE;
-var agent_memory = {};
-var lastColission;
-
-var agent_2_angle = 10;
-var agent_2_force = 10;
-var agent_2_memory = {};
-
-var nextTurn = false;
-var player2Play = 1;
-
-var turnsInGame = 0;      //The number of games in each round
-var maximumNumberOfTurns = 10;
-var turnsLeft = {player_1: 0,player_2: 0};
-
-var rounds = 1;           //Starting round
-var roundsInGame = 3;     //The total number of rounds in a game.
-var nThrows = {player_1: 0,player_2: 0}; //How many throws for each pal
-
-var gameIsFinished = false; //Variable for controlling the state of the game
-
-var templateStartCode = ""+
-  "function runPlayer(lastBananaHit, opponent, wind, memory){\n"+
-  "  var angle = 30 + opponent['y'];\n"+
-  "  var velocity = 5 - wind + (opponent['x'] * 0.05);\n"+
-  "  var returnValues = new Object();\n"+
-  "\n"+
-  "  returnValues['velocity'] = velocity;\n"+
-  "  returnValues['angle'] = angle;"+
-  "  returnValues['memory'] = \"OP Gorillas is fun! :)\";\n"+
-  "  return returnValues;\n"+
-  "};\n";
-
 highscoreTableUpdate();
-
-requirejs(
-
-  // Dependencies ex: ['foo/bar', 'foobar'],
-  ['app/app', 'agent'],
-
-  // Module + passing of dependencies (if any)
-
+requirejs(['app/app', 'agent'],
   function ( App ) {
     // Variable setup
     var app, p1angle, p1velocity;
@@ -69,7 +28,7 @@ requirejs(
         var currentPlayer = 1; //Player 1 starts
         var turn = 0;
 
-         var deltaX = app.player_2.x - app.player_1.x;
+        var deltaX = app.player_2.x - app.player_1.x;
         var deltaY = app.player_1.y - app.player_2.y;
             var playerPos = [deltaX, deltaY];
 

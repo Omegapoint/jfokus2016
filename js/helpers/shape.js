@@ -1,8 +1,4 @@
 define(
-
-  // Dependencies ex: ['foo/bar', 'foobar'],
-
-  // Module + passing of dependencies (if any)
   function () {
 
     // Constructor

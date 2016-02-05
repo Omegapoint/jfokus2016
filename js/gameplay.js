@@ -1,5 +1,4 @@
 function executeTurn(otherPlayerPos, hitPos, wind) {
-
 	var code = JSON.parse(localStorage['runningGamePlayer']).code;
 
 	var bananaHitPos = hitPos;
@@ -8,11 +7,10 @@ function executeTurn(otherPlayerPos, hitPos, wind) {
   		opponentAsJson['y'] = otherPlayerPos[1];
 
 	var windCopy = wind;
-
 	var funName = "player" + Date.now();
 	eval(code);
-	var playerReturn = runPlayer(bananaHitPos, opponentAsJson, windCopy, agent_memory);
 
+	var playerReturn = runPlayer(bananaHitPos, opponentAsJson, windCopy, agent_memory);
 
 	agent_angle = playerReturn['angle'];
 	agent_force = playerReturn['velocity'];

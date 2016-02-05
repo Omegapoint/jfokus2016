@@ -1,9 +1,4 @@
-define(
-
-  // Dependencies ex: ['foo/bar', 'foobar'],
-  ['helpers/shape', 'objects/banana'],
-
-  // Module + passing of dependencies (if any)
+define(['helpers/shape', 'objects/banana'],
   function ( Shape, Banana ) {
 
     // TODO: Cleanup the create method
@@ -12,7 +7,6 @@ define(
     var BODY_COLOR = 'rgb( 255, 170, 82 )',
         BODY_LINE  = 'rgb( 0, 0, 160 )';
 
-    // Constructor
     function Gorilla ( context, playerNumber ) {
       this.context = context;
       this.playerNumber = playerNumber;
