@@ -10,7 +10,8 @@
   border: 5px solid #888888;
 }
 .game_info {
-  font-size: 20px;
+  color: #FFFF52;
+  font-size: 24px;
   text-align: left;
   position: absolute;
   padding: 10px;
@@ -22,7 +23,7 @@
   box-sizing: border-box;
   border: 5px solid #888888;
   font-weight: normal;
-  font-size: 14px;
+  font-size: 20px;
   background-color: #0000a0;
   width: 100%;
 }
@@ -30,4 +31,7 @@
   display:block;
   text-align:center;
   color:white;
+}
+.ai_input_code{
+  height: 100%;
 }

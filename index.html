@@ -14,6 +14,7 @@
   <script src="js/helpers/modal.js"></script>
   <script src="js/helpers/highscore.js"></script>
   <script src="js/helpers/playerCode.js"></script>
+  <script src="js/helpers/shortKeys.js"></script>
   <script src="js/gameplay.js"></script>
   <script src="js/agent.js"></script>
 
@@ -68,7 +69,7 @@
       </td> <!-- end highscore -->
 
     </tr>
-    <tr>
+    <tr class="ai_row">
       <div class="ai_input" id="textbox">   <!-- Start input code -->
         <div class="menu">
             <button id="play">Play</button>
@@ -77,7 +78,7 @@
             <button onclick="clearPlayerCode()">Clear Code</button>
             <span class="menu_title" id="message_to_player"></span>
         </div>
-        <textarea class="ai_input_code" id="textarea_player_code" rows="20" cols="50">
+        <textarea class="ai_input_code" id="textarea_player_code" rows="50" cols="50">
         </textarea>
       </div>  <!-- end input code -->
     </tr>
@@ -105,7 +106,7 @@
         <br/>
         New Player<br>
         <br>
-        <form onsubmit="closeModalAndCreatePlayer()">
+        <form onsubmit="createPlayerAndCloseModal()">
           <table>
             <tr>
               <td><label for="player_name">Enter handle: </label></td>

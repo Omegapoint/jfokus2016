@@ -93,3 +93,16 @@ function setMessageToPlayer(messageToPlayer){
     var totalMsg = "["+JSON.parse(localStorage['currentPlayer']).name+"] "+messageToPlayer;
     document.getElementById('message_to_player').innerHTML = totalMsg;
 }
+function createPlayerAndCloseModal(){
+  var playerName = document.getElementById('player_name').value;
+  var currentPlayer = {
+    name: playerName,
+    email: document.getElementById('player_email').value,
+    code: textareaPlayerCode.getValue()
+  };
+  localStorage['currentPlayer'] = JSON.stringify(currentPlayer);
+  enableStartGame = true;
+  textareaPlayerCode.setOption("readOnly", false); //Ready to write code!
+  setMessageToPlayer('player has been creted');
+  closeModal('new_player');
+}

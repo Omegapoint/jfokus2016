@@ -431,7 +431,5 @@ define(
             return (x < 0 || x > this.width || y > this.height) ? false : true;
         };
 
-        // Return our App Object
         return App;
-
     });

@@ -21,8 +21,6 @@ var nThrows = {player_1: 0,player_2: 0}; //How many throws for each pal
 var gameIsFinished = false; //Variable for controlling the state of the game
 var textareaPlayerCode;
 var lastestSave = "Code is not saved";
-var modal = null;
-var isAltPressed = false;
 
 var audioButton = new Audio('audio/button-select.wav');
 
@@ -44,7 +42,7 @@ var templateStartCode = ""+
 "\n"+
 "  returnValues['velocity'] = velocity;\n"+
 "  returnValues['angle'] = angle;"+
-"  returnValues['memory'] = \"OP Gorillas is fun! :)\";\n"+
+"  returnValues['memory'] = \"Omegapoint Gorillas is fun! :)\";\n"+
 "  return returnValues;\n"+
 "};\n";
 var emptyCurrentPlayer = {
