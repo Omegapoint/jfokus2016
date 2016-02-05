@@ -10,7 +10,7 @@ define(
       this.projectionX = 0;
       this.projectionY = 0;
       this.scale = 0.09;
-      this.gravity = 9.8; // TODO: Make this something the user can change
+      this.gravity = 9.8;
       this.calcInitialPosition();
       this.startTime = 0;
       this.wind = wind;

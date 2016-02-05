@@ -1,3 +1,13 @@
+var testMaxX = 0;
+var testMinX = 0;
+var testMaxAngla = 0;
+var testMinAngle = 0;
+var testMaxY = 0;
+var testMinY = 0;
+var testMaxForce = 0;
+var testMinForce = 0;
+
+
 var agent_angle = Number.MIN_VALUE;
 var agent_force = Number.MIN_VALUE;
 var agent_memory = {};

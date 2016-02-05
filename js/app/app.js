@@ -1,12 +1,6 @@
-define(
-
-    // Dependencies ex: ['foo/bar', 'foobar'],
-    ['objects/wind', 'objects/sun', 'objects/building', 'objects/gorilla'],
-
-    // Module + passing of dependencies (if any)
+define(['objects/wind', 'objects/sun', 'objects/building', 'objects/gorilla'],
     function(Wind, Sun, Building, Gorilla) {
 
-        // App Constructor
         function App() {
             this.audioBanana = new Audio('audio/banana.wav');
             this.audioHit = new Audio('audio/hit.wav');
@@ -265,6 +259,8 @@ define(
                 this.updateScoreBoard();
                 rounds++;
                 if (rounds > roundsInGame) {
+                    rounds--;
+                    this.updateScoreBoard();
                     var w = null;
                     var winningScore = null;
                     if (this.scores[1] > this.scores[2]) {
@@ -294,12 +290,14 @@ define(
                     localStorage['highscoreList'] = JSON.stringify(highscoreList);
                     highscoreTableUpdate();
 
-                    if(w == 1){
-                        w = runningGamePlayer.name;
+                    if(scoreToSave > 0){
+                        openModalWith("The winner is " +runningGamePlayer.name+ "<br>Score: " + scoreDiff);
+                    }else if(scoreToSave == 0){
+                        openModalWith("DRAW...");
                     }else{
-                        w = "CPU";
+                      openModalWith("The winner is CPU<br>Score: " + scoreDiff);
                     }
-                    openModalWith("The winner is " + w + "<br>Score: " + scoreDiff);
+
                     document.getElementById('play').disable = false;
                     //TODO: Uncomment if you want to have a json as highscore backup ;)
                     // var textToSave = JSON.stringify(highscoreList);

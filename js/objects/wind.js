@@ -18,26 +18,27 @@ define(
      * create: Build out the Wind display
      */
     Wind.prototype.create = function () {
+      this.scaleLength = 5;
+      this.scaleHight = 5;
+      this.scaleEdge = 2;
       if ( this.windSpeed !== 0 ) {
-        this.windLine = this.windSpeed * 3 * ( this.canvas.width / 320 );
-        this.context.strokeStyle = 'rgb( 245, 11, 11 )';
+        this.windLine = this.windSpeed * this.scaleLength * ( this.canvas.width / 320 );
+        this.context.strokeStyle = 'rgb( 173, 0, 0 )';
         this.context.beginPath();
-        this.context.moveTo( this.canvas.width / 2, this.canvas.height - 5 );
-        this.context.lineTo( this.canvas.width / 2 + this.windLine, this.canvas.height - 5 );
+        this.context.moveTo( this.canvas.width / this.scaleEdge, this.canvas.height - this.scaleHight );
+        this.context.lineTo( this.canvas.width / this.scaleEdge + this.windLine, this.canvas.height - this.scaleHight );
         if ( this.windSpeed > 0 ) {
-          this.arrowDir = -2;
+          this.arrowDir = -this.scaleEdge;
         } else {
-          this.arrowDir = 2;
+          this.arrowDir = this.scaleEdge;
         }
-        this.context.moveTo( this.canvas.width / 2 + this.windLine, this.canvas.height - 5 );
-        this.context.lineTo( this.canvas.width / 2 + this.windLine + this.arrowDir, this.canvas.height - 5 - 2 );
-        this.context.moveTo( this.canvas.width / 2 + this.windLine, this.canvas.height - 5 );
-        this.context.lineTo( this.canvas.width / 2 + this.windLine + this.arrowDir, this.canvas.height - 5 + 2 );
+        this.context.moveTo( this.canvas.width / this.scaleEdge + this.windLine, this.canvas.height - this.scaleHight );
+        this.context.lineTo( this.canvas.width / this.scaleEdge + this.windLine + this.arrowDir, this.canvas.height - this.scaleHight - 2 );
+        this.context.moveTo( this.canvas.width / this.scaleEdge + this.windLine, this.canvas.height - this.scaleHight );
+        this.context.lineTo( this.canvas.width / this.scaleEdge + this.windLine + this.arrowDir, this.canvas.height - this.scaleHight + 2 );
         this.context.stroke();
       }
     };
 
-    // Return our Wind Object
     return Wind;
-
 });
