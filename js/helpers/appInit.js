@@ -1,13 +1,3 @@
-var testMaxX = 0;
-var testMinX = 0;
-var testMaxAngla = 0;
-var testMinAngle = 0;
-var testMaxY = 0;
-var testMinY = 0;
-var testMaxForce = 0;
-var testMinForce = 0;
-
-
 var agent_angle = Number.MIN_VALUE;
 var agent_force = Number.MIN_VALUE;
 var agent_memory = {};
@@ -26,12 +16,10 @@ var turnsLeft = {player_1: 0,player_2: 0};
 
 var rounds = 1;           //Starting round
 var roundsInGame = 3;     //The total number of rounds in a game.
-var nThrows = {player_1: 0,player_2: 0}; //How many throws for each pal
 
-var gameIsFinished = false; //Variable for controlling the state of the game
+var gameIsFinished = false;
 var textareaPlayerCode;
 var lastestSave = "Code is not saved";
-var audioButton = new Audio('audio/button-select.wav');
 
 var RulesModalText = "About<br><br>"+
   "The Javascript code in the textbox below control Player 1 (The monkey to the left). "+
