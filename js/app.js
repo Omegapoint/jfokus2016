@@ -8,6 +8,7 @@ function ( App ) {
 
 
   document.getElementById('play').addEventListener("click", function(event) {
+    document.getElementById('new_player_btn').disabled = true;
     document.getElementById('play').disabled = true;
     document.getElementById('stop').disabled = false;
     savePlayerCode();

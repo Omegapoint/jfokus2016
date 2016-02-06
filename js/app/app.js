@@ -372,6 +372,7 @@ function(Wind, Sun, Building, Gorilla) {
     }
 
     openModalWith(text);
+    document.getElementById('new_player_btn').disabled = false;
     document.getElementById('play').disabled = false;
     document.getElementById('stop').disabled = true;
   };

@@ -105,6 +105,7 @@ function createPlayerAndCloseModal(){
 };
 function stopGame(){
   isGameRunning = false;
+  document.getElementById('new_player_btn').disabled = false;
   document.getElementById('play').disabled = false;
   document.getElementById('stop').disabled = true;
 }
