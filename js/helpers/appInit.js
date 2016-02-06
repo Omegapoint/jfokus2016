@@ -34,6 +34,10 @@ var templateStartCode = ""+
 "  returnValues['memory'] = \"Omegapoint Gorillas is fun! :)\";\n"+
 "  return returnValues;\n"+
 "};\n";
+
+var titleMusic = new Audio('audio/intro.ogg');
+titleMusic.play();
+
 var emptyCurrentPlayer = {
   name: '-',
   email: '-',
@@ -58,8 +62,9 @@ if(!localStorage['highscoreList']){
   localStorage['highscoreList'] = JSON.stringify([]);
 }
 // Reset localStorage
-
+/*
 localStorage['currentPlayer'] = JSON.stringify(emptyCurrentPlayer);
 localStorage['savedPlayerCode'] = JSON.stringify(emptySavedPlayers);
 localStorage['runningGamePlayer'] = JSON.stringify(emptyCurrentPlayer);
 localStorage['highscoreList'] = JSON.stringify([]);
+*/

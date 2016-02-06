@@ -1,7 +1,6 @@
 highscoreTableUpdate();
 requirejs(['app/app', 'agent'],
 function ( App ) {
-  // Variable setup
   var app, p1angle, p1velocity;
 
   app = new App();

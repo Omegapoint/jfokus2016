@@ -2,12 +2,10 @@ define(['objects/wind', 'objects/sun', 'objects/building', 'objects/gorilla'],
 function(Wind, Sun, Building, Gorilla) {
 
   function App() {
-    this.audioBanana = new Audio('audio/banana.wav');
-    this.audioHit = new Audio('audio/hit.wav');
-    this.audioHitSun = new Audio('audio/sun_hit.ogg');
-    this.audioWinner = new Audio('audio/winner.wav');
-    this.audioLoser = new Audio('audio/losing.wav');
-    this.audioNewRound = new Audio('audio/level-up.wav');
+    this.audioHit = new Audio('audio/hit.ogg');
+    this.audioHitSun = new Audio('audio/select.wav');
+    this.audioGameOver = new Audio('audio/winner.ogg');
+    this.audioNewRound = new Audio('audio/level-up.ogg');
     this.empty = true;
     this.canvas = document.getElementById('canvas');
     this.width = this.canvas.width;
@@ -117,6 +115,9 @@ function(Wind, Sun, Building, Gorilla) {
   * createGorillas: Builds out Player_1 && Player_2
   */
   App.prototype.createGorillas = function() {
+    if(titleMusic.paused){
+      this.audioNewRound.play();
+    }
     var buildingOnePosition, buildingTwoPosition, building;
 
     // Build and position Player_1
@@ -144,7 +145,6 @@ function(Wind, Sun, Building, Gorilla) {
   * throwBanana: Start the banana animation
   */
   App.prototype.throwBanana = function(force, angle, player) {
-    this.audioBanana.play();
     var that = this;
     if (player === 2) {
       angle = -angle;
@@ -174,6 +174,7 @@ function(Wind, Sun, Building, Gorilla) {
         return;
       }
       if (that.bananaHitGorilla(player)){
+        that.audioGameOver.play();
         return;
       }
       if (that.bananaHasHit(player)) {
@@ -247,8 +248,6 @@ function(Wind, Sun, Building, Gorilla) {
       if (this.rounds > roundsInGame) {
         isGameRunning = false;
         this.saveToHighscoreList();
-      }else{
-        this.audioNewRound.play();
       }
       this.updateScoreBoard();
       return true;
@@ -368,15 +367,13 @@ function(Wind, Sun, Building, Gorilla) {
   App.prototype.openGameOverModal = function(name,scoreToSave){
     var text = "<h3>Game Over!</h3>";
     if(scoreToSave > 0){
-      this.audioWinner.play();
       text += "The winner is "+name+"<br>Score: "+scoreToSave;
     }else if(scoreToSave == 0){
       text += "DRAW...";
-      this.audioLoser.play();
     }else{
       text += "The winner is CPU<br>Score: "+(-scoreToSave);
-      this.audioLoser.play();
     }
+
     openModalWith(text);
     document.getElementById('play').disabled = false;
     document.getElementById('stop').disabled = true;

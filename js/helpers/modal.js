@@ -1,4 +1,4 @@
-var audioButton = new Audio('audio/button-select.wav');
+var audioButton = new Audio('audio/select.wav');
 var modal;
 
 function openModal(modalId){
