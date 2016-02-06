@@ -7,17 +7,13 @@ var agent_2_angle = 10;
 var agent_2_force = 10;
 var agent_2_memory = {};
 
-var nextTurn = false;
-var player2Play = 1;
-
-var turnsInGame = 0;      //The number of games in each round
 var maximumNumberOfTurns = 10;
 var turnsLeft = {player_1: 0,player_2: 0};
 
 var rounds = 1;           //Starting round
 var roundsInGame = 3;     //The total number of rounds in a game.
 
-var gameIsFinished = false;
+var gameIsFinished = true;
 var textareaPlayerCode;
 var lastestSave = "Code is not saved";
 

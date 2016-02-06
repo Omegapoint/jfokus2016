@@ -19,12 +19,10 @@ requirejs(['app/app', 'agent'],
       rounds = 1;
       app.scores['player_1'] = 0;
       app.scores['player_2'] = 0;
-      turnsInGame = 0;
       app.updateScoreBoard();
       gameIsFinished = false;
       turnsLeft['player_1'] = 0;
       turnsLeft['player_1'] = 0;
-      nextTurn = true;
 
       var playerWind = app.wind.windSpeed;
 
