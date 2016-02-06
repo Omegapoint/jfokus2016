@@ -255,7 +255,7 @@ function(Wind, Sun, Building, Gorilla) {
       this.timeout = setTimeout(function() {
         that.animateColission(deadPlayer);
       }, 5);
-      this.scores['player_' + winner.playerNumber] = this.scores['player_' + winner.playerNumber] + 10 - turnsLeft['player_' + winner.playerNumber];
+      this.scores['player_' + winner.playerNumber] = this.scores['player_' + winner.playerNumber] + 10 - this.turnsLeft['player_' + winner.playerNumber];
       this.updateScoreBoard();
       rounds++;
       if (rounds > roundsInGame) {
@@ -343,10 +343,7 @@ function(Wind, Sun, Building, Gorilla) {
   */
   App.prototype.animateWin = function(player, startTime) {
     var that = this;
-    turnsLeft = {
-      player_1: 0,
-      player_2: 0
-    };
+    this.turnsLeft = {player_1: 0,player_2: 0};
     this.startTime = startTime;
     this.timeout = setTimeout(function() {
       while (!(player.animate === true && player.animations < 12)) {
@@ -373,20 +370,18 @@ function(Wind, Sun, Building, Gorilla) {
     player.timer = 0;
     var nextPlayer = (player.playerNumber === 2) ? 1 : 2;
 
-    turnsLeft['player_' + player.playerNumber]++;
-    this.updateThrows(turnsLeft['player_' + player.playerNumber]);
-    if (turnsLeft['player_' + player.playerNumber] <= maximumNumberOfTurns && !gameIsFinished) {
-      this.runPlayer(nextPlayer);
-    } else if(gameIsFinished) {
+    this.turnsLeft['player_' + player.playerNumber]++;
+    this.updateThrows(this.turnsLeft['player_' + player.playerNumber]);
+    if(gameIsFinished) {
       return;
-    }else if (turnsLeft['player_' + player.playerNumber] > maximumNumberOfTurns){
+    }
+    if (this.turnsLeft['player_' + player.playerNumber] <= maximumNumberOfTurns) {
+      this.runPlayer(nextPlayer);
+    } else {
       this.empty = true;
       this.buildings = [];
-
       this.createScene();
-      turnsLeft['player_1'] = 0;
-      turnsLeft['player_2'] = 0;
-
+      this.turnsLeft = {player_1: 0,player_2: 0};
       rounds++;
       this.updateScoreBoard();
       this.nextPlayerTurn(player);
