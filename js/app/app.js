@@ -115,9 +115,6 @@ function(Wind, Sun, Building, Gorilla) {
   * createGorillas: Builds out Player_1 && Player_2
   */
   App.prototype.createGorillas = function() {
-    if(titleMusic.paused){
-      this.audioNewRound.play();
-    }
     var buildingOnePosition, buildingTwoPosition, building;
 
     // Build and position Player_1
@@ -174,7 +171,6 @@ function(Wind, Sun, Building, Gorilla) {
         return;
       }
       if (that.bananaHitGorilla(player)){
-        that.audioGameOver.play();
         return;
       }
       if (that.bananaHasHit(player)) {
@@ -248,6 +244,9 @@ function(Wind, Sun, Building, Gorilla) {
       if (this.rounds > roundsInGame) {
         isGameRunning = false;
         this.saveToHighscoreList();
+        this.audioNewRound.play();
+      }else{
+        this.audioGameOver.play();
       }
       this.updateScoreBoard();
       return true;
@@ -350,9 +349,7 @@ function(Wind, Sun, Building, Gorilla) {
 
   App.prototype.updateHitSunScore = function(player){
     var that = this;
-    console.log("hit sun log "+that.scores['player_' + player.playerNumber]);
     that.scores['player_' + player.playerNumber] += 10;
-    console.log("hit sun log "+that.scores['player_' + player.playerNumber]);
     that.audioHitSun.play();
     that.sunShock = true;
     that.updateScoreBoard();
