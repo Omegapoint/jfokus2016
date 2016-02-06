@@ -16,7 +16,7 @@ function ( App ) {
       return;
     }
     saveToGameCode();
-    rounds = 1;
+    app.rounds = 1;
     app.turnsLeft = {player_1: 0,player_2: 0};
     app.scores = {player_1: 0,player_2: 0};
     app.updateScoreBoard();

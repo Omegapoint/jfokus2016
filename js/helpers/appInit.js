@@ -8,9 +8,8 @@ var agent_2_force = 10;
 var agent_2_memory = {};
 
 var maximumNumberOfTurns = 10;
-
-var rounds = 1;           //Starting round
-var roundsInGame = 3;     //The total number of rounds in a game.
+//var rounds = 1;
+var roundsInGame = 3;
 
 var gameIsFinished = true;
 var textareaPlayerCode;

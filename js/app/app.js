@@ -168,10 +168,10 @@ function(Wind, Sun, Building, Gorilla) {
   App.prototype.updateScoreBoard = function() {
     document.getElementById('player_2_score').innerHTML=this.scores.player_2;
     document.getElementById('player_1_score').innerHTML=this.scores.player_1;
-    document.getElementById('round_nr').innerHTML=rounds;
-    if (rounds == 1) {
-      this.updateThrows(0);
-    }
+    document.getElementById('round_nr').innerHTML=this.rounds;
+    // if (this.rounds == 1) {
+    //   this.updateThrows(0);
+    // }
   };
   App.prototype.updateThrows = function(nbr) {
     document.getElementById('throw_nr').innerHTML=nbr;
@@ -257,8 +257,8 @@ function(Wind, Sun, Building, Gorilla) {
       }, 5);
       this.scores['player_' + winner.playerNumber] = this.scores['player_' + winner.playerNumber] + 10 - this.turnsLeft['player_' + winner.playerNumber];
       this.updateScoreBoard();
-      rounds++;
-      if (rounds > roundsInGame) {
+      this.rounds++;
+      if (this.rounds > roundsInGame) {
         gameIsFinished = true;
         this.updateScoreBoard();
         var w = null;
@@ -382,7 +382,7 @@ function(Wind, Sun, Building, Gorilla) {
       this.buildings = [];
       this.createScene();
       this.turnsLeft = {player_1: 0,player_2: 0};
-      rounds++;
+      this.rounds++;
       this.updateScoreBoard();
       this.nextPlayerTurn(player);
     }
