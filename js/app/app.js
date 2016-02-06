@@ -288,7 +288,7 @@ function(Wind, Sun, Building, Gorilla) {
       that.createScene();
       player.animateWin();
       that.animateWin(player, that.startTime);
-    }, 800);
+    }, 500);
   };
 
   /**

@@ -1,9 +1,6 @@
 define(['helpers/shape', 'objects/banana'],
   function ( Shape, Banana ) {
-
-    // TODO: Cleanup the create method
-
-    // STATIC PRIVATES
+    
     var BODY_COLOR = 'rgb( 255, 170, 82 )',
         BODY_LINE  = 'rgb( 0, 0, 160 )';
 
@@ -29,8 +26,6 @@ define(['helpers/shape', 'objects/banana'],
      * create: Build the player out
      * Depending on state, hands will be either down or up for throwing
      * else, we display the player as dead.
-     * params {Integer} x
-     * params {Integer} y
      */
     Gorilla.prototype.create = function ( x, y ) {
 
@@ -104,7 +99,6 @@ define(['helpers/shape', 'objects/banana'],
         }
       } else {
         // Draw the Arms
-        // default for now... both arms down
         for ( var i = -5; i < -1; i++ ) {
           this.context.strokeStyle = BODY_COLOR;
           // Left Arm
@@ -121,9 +115,6 @@ define(['helpers/shape', 'objects/banana'],
 
     /**
      * animateArms: If we are dancing, lets pick the right arms to dance with
-     * params {String} arm Which arm do we want to control
-     * params {Array} arc Where to draw the arms
-     * params {String} direction
      */
     Gorilla.prototype.animateArms = function ( arm, arc, direction ) {
       this.context.strokeStyle = BODY_COLOR;
@@ -152,9 +143,6 @@ define(['helpers/shape', 'objects/banana'],
 
     /**
      * getBanana: create a new banana object
-     * params {Integer} force
-     * params {Integer} angle
-     * params {Object} wind
      */
     Gorilla.prototype.getBanana = function ( force, angle, wind ) {
       this.banana = new Banana( this.context, this.x, this.y - 17, force, angle, wind );
@@ -185,13 +173,8 @@ define(['helpers/shape', 'objects/banana'],
 
     /**
      * throwBanana: Lets render the players arm up when throwing
-     * params {Integer} time
      */
     Gorilla.prototype.throwBanana = function ( time ) {
-
-      // Not sure if this is the cleanest way to do this but it works
-      // This will reset the direction for each arm so that we render it correctly
-      // During the "throw"
       if ( this.timer < 1 ) {
         this.animate = true;
         if ( this.playerNumber === 1 ) {
@@ -210,9 +193,6 @@ define(['helpers/shape', 'objects/banana'],
 
     /**
      * checkColission: See if player has been hit
-     * params {Integer} x
-     * params {Integer} y
-     * returns {Boolean}
      */
     Gorilla.prototype.checkColission = function ( x, y ) {
       if ( this.y <= y && x > this.x - this.width / 2 && x < this.x + this.width / 2 ) {
@@ -226,11 +206,8 @@ define(['helpers/shape', 'objects/banana'],
      * animateWin: Lets animate
      */
     Gorilla.prototype.animateWin = function () {
-      // TODO: make sure gorilla does his dance
       this.animations++;
     };
 
-    // Return our Gorilla Object
     return Gorilla;
-
 });
