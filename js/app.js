@@ -20,7 +20,7 @@ function ( App ) {
     app.turnsLeft = {player_1: 0,player_2: 0};
     app.scores = {player_1: 0,player_2: 0};
     app.updateScoreBoard();
-    gameIsFinished = false;
+    app.gameIsFinished = false;
 
     var playerWind = app.wind.windSpeed;
 

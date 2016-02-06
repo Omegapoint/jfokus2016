@@ -14,13 +14,12 @@ function(Wind, Sun, Building, Gorilla) {
     this.height = this.canvas.height;
     this.context = this.canvas.getContext('2d');
     this.sunShock = false;
-    this.winner = [];
     this.scores = {
       player_1: 0,
       player_2: 0
     };
     this.buildings = [];
-    this.frameRate = 15; // Note, this may change
+    this.frameRate = 15;
     this.wind = new Wind(this.context);
     this.updateScoreBoard();
   }
@@ -33,7 +32,6 @@ function(Wind, Sun, Building, Gorilla) {
     this.clear();
     this.createSun();
     if (this.empty) {
-
       this.empty = false;
       this.createBuildings();
       this.createGorillas();
@@ -144,9 +142,6 @@ function(Wind, Sun, Building, Gorilla) {
 
   /**
   * throwBanana: Start the banana animation
-  * params {Integer} force Input from user for velocity
-  * params {Integer} angle Input from user for Angle
-  * params {Integer} player Which player are we doing this for?
   */
   App.prototype.throwBanana = function(force, angle, player) {
     this.audioBanana.play();
@@ -165,26 +160,22 @@ function(Wind, Sun, Building, Gorilla) {
     return 5;
   };
 
-  App.prototype.updateScoreBoard = function() {
-    document.getElementById('player_2_score').innerHTML=this.scores.player_2;
-    document.getElementById('player_1_score').innerHTML=this.scores.player_1;
-    document.getElementById('round_nr').innerHTML=this.rounds;
-  };
-  App.prototype.updateThrows = function(nbr) {
-    document.getElementById('throw_nr').innerHTML=nbr;
-  };
-
   /**
   * animateBanana: Draw the banana across the screen until we have hit something
-  * params {Object} player Which player is this banana coming from?
   */
   App.prototype.animateBanana = function(player) {
     var that, now, time;
     that = this;
     this.timeout = setTimeout(function() {
       that.createScene();
-      if (that.bananaHitSun(player)) that.sunShock = true;
-      if (that.bananaHitGorilla(player)) return;
+      if (that.bananaHitSun(player)){
+        that.updateHitSunScore(player);
+        that.nextPlayerTurn(player);
+        return;
+      }
+      if (that.bananaHitGorilla(player)){
+        return;
+      }
       if (that.bananaHasHit(player)) {
         that.nextPlayerTurn(player);
         return;
@@ -203,16 +194,11 @@ function(Wind, Sun, Building, Gorilla) {
 
   /**
   * bananaHitSun: Check if the banana has passed through the sun
-  * params {Object} player Which player is throwing this banana
-  * returns {Boolean}
   */
   App.prototype.bananaHitSun = function(player) {
     var x = player.banana.x();
     var y = player.banana.y();
     if (x <= (this.width / 2) + 10 && x >= (this.width / 2) - 10 && y <= 27 && y >= 17) {
-      this.scores['player_' + player.playerNumber] = this.scores['player_' + player.playerNumber] + 5;
-      this.audioHitSun.play();
-      this.updateScoreBoard();
       return true;
     }
     return false;
@@ -220,8 +206,6 @@ function(Wind, Sun, Building, Gorilla) {
 
   /**
   * bananaHasHit: Did we hit something?
-  * params {Object} player Which player was throwing said banana
-  * returns {Boolean}
   */
   App.prototype.bananaHasHit = function(player) {
     var x = player.banana.x();
@@ -238,76 +222,14 @@ function(Wind, Sun, Building, Gorilla) {
 
   /**
   * bananaHitGorilla: Check if banana has hit a player
-  * params {Object} player Which player tossed the banana
-  * returns {Boolean}
   */
   App.prototype.bananaHitGorilla = function(player) {
     var that = this;
     var x = player.banana.x();
     var y = player.banana.y();
     if (this.player_2.checkColission(x, y) || this.player_1.checkColission(x, y)) {
-      var deadPlayer = (this.player_2.dead === true) ? this.player_2 : this.player_1;
       var winner = (this.player_2.dead === false) ? this.player_2 : this.player_1;
-      this.winner.push(winner.playerNumber);
-      this.timeout = setTimeout(function() {
-        that.animateColission(deadPlayer);
-      }, 5);
-      this.scores['player_' + winner.playerNumber] = this.scores['player_' + winner.playerNumber] + 10 - this.turnsLeft['player_' + winner.playerNumber];
-      this.updateScoreBoard();
-      this.rounds++;
-      if (this.rounds > roundsInGame) {
-        gameIsFinished = true;
-        this.updateScoreBoard();
-        var w = null;
-        var winningScore = null;
-        if (this.scores[1] > this.scores[2]) {
-          w = "1";
-          winningScore = this.scores[1];
-        } else if(this.scores[1] == this.scores[2]) {
-          winningScore = 0
-        } else {
-          w = "2";
-          winningScore = this.scores[2];
-        }
-        var scoreToSave = this.scores['player_1'] - this.scores['player_2'];
-        var scoreDiff = Math.abs(scoreToSave);
-
-        var runningGamePlayer = JSON.parse(localStorage['runningGamePlayer']);
-        var jsonToSave = {
-          'name' : runningGamePlayer.name ,
-          'email': runningGamePlayer.email,
-          'score': scoreToSave,
-          'code' : runningGamePlayer.code
-        };
-
-        var highscoreList = JSON.parse(localStorage['highscoreList']);
-        highscoreList.push(jsonToSave);
-        localStorage['highscoreList'] = JSON.stringify(highscoreList);
-        highscoreTableUpdate();
-
-        if(scoreToSave > 0){
-          this.audioWinner.play();
-          openModalWith("The winner is " +runningGamePlayer.name+ "<br>Score: " + scoreDiff);
-        }else if(scoreToSave == 0){
-          openModalWith("DRAW...");
-          this.audioLoser.play();
-        }else{
-          openModalWith("The winner is CPU<br>Score: " + scoreDiff);
-          this.audioLoser.play();
-        }
-
-        document.getElementById('play').disable = false;
-        //TODO: Uncomment if you want to have a json as highscore backup ;)
-        // var textToSave = JSON.stringify(highscoreList);
-        // var filename = 'scores-'+Date.now()+".json";
-        // var doc1 = document.createElement('a');
-        // doc1.setAttribute('href', 'data:text/plain;charset=utf-u,' + encodeURIComponent(textToSave));
-        // doc1.setAttribute('download', filename);
-        // doc1.click();
-      }else{
-        this.audioNewRound.play();
-      }
-      this.updateScoreBoard();
+      that.updateHitGorillaScore(winner.playerNumber);
       this.timeout = setTimeout(function() {
         that.startTime = new Date();
         winner.animate = true;
@@ -316,13 +238,27 @@ function(Wind, Sun, Building, Gorilla) {
         that.animateWin(winner, that.startTime);
       }, this.frameRate);
 
+
+      var deadPlayer = (this.player_2.dead === true) ? this.player_2 : this.player_1;
+      this.timeout = setTimeout(function() {
+        that.animateColission(deadPlayer);
+      }, 5);
+
+      if (this.rounds > roundsInGame) {
+        this.gameIsFinished = true;
+        this.saveToHighscoreList();
+      }else{
+        this.audioNewRound.play();
+      }
+      this.updateScoreBoard();
       return true;
+    }else{
+      return false;
     }
   };
 
   /**
   * animateColission: fire off explosson
-  * params {Object} player Player that was hit
   */
   App.prototype.animateColission = function(player) {
     var that = this;
@@ -335,8 +271,6 @@ function(Wind, Sun, Building, Gorilla) {
 
   /**
   * animateWin: Lets make that Gorilla Dance
-  * params {Object} player The player to have dance
-  * params {Integer} startTime When did this win happen?
   */
   App.prototype.animateWin = function(player, startTime) {
     var that = this;
@@ -369,7 +303,7 @@ function(Wind, Sun, Building, Gorilla) {
 
     this.turnsLeft['player_' + player.playerNumber]++;
     this.updateThrows(this.turnsLeft['player_' + player.playerNumber]);
-    if(gameIsFinished) {
+    if(this.gameIsFinished) {
       return;
     }
     if (this.turnsLeft['player_' + player.playerNumber] <= maximumNumberOfTurns) {
@@ -378,13 +312,13 @@ function(Wind, Sun, Building, Gorilla) {
       this.empty = true;
       this.buildings = [];
       this.createScene();
+
       this.turnsLeft = {player_1: 0,player_2: 0};
       this.rounds++;
       this.updateScoreBoard();
       this.nextPlayerTurn(player);
     }
   };
-
 
   App.prototype.runPlayer = function(player) {
     var playerWind = this.wind.windSpeed;
@@ -410,12 +344,78 @@ function(Wind, Sun, Building, Gorilla) {
 
   /**
   * withinBoundries: Lets see if the banana is still within the playing field
-  * params {Integer} x
-  * params {Integer} y
-  * returns {Boolean}
   */
   App.prototype.withinBoundries = function(x, y) {
     return (x < 0 || x > this.width || y > this.height) ? false : true;
+  };
+
+  App.prototype.updateHitSunScore = function(player){
+    var that = this;
+    console.log("hit sun log "+that.scores['player_' + player.playerNumber]);
+    that.scores['player_' + player.playerNumber] += 10;
+    console.log("hit sun log "+that.scores['player_' + player.playerNumber]);
+    that.audioHitSun.play();
+    that.sunShock = true;
+    that.updateScoreBoard();
+  };
+
+  App.prototype.updateHitGorillaScore = function (playerNumber) {
+    this.scores['player_' + playerNumber] += 10 - this.turnsLeft['player_' + playerNumber];
+    this.updateScoreBoard();
+    this.rounds++;
+  };
+
+  App.prototype.openGameOverModal = function(name,scoreToSave){
+    var text = "<h3>Game Over!</h3>";
+    if(scoreToSave > 0){
+      this.audioWinner.play();
+      text += "The winner is "+name+"<br>Score: "+scoreToSave;
+    }else if(scoreToSave == 0){
+      text += "DRAW...";
+      this.audioLoser.play();
+    }else{
+      text += "The winner is CPU<br>Score: "+(-scoreToSave);
+      this.audioLoser.play();
+    }
+    openModalWith(text)
+  };
+
+  App.prototype.saveToHighscoreList = function(){
+    var scoreToSave = this.scores['player_1'] - this.scores['player_2'];
+    var runningGamePlayer = JSON.parse(localStorage['runningGamePlayer']);
+    var jsonToSave = {
+      'name' : runningGamePlayer.name ,
+      'email': runningGamePlayer.email,
+      'score': scoreToSave,
+      'code' : runningGamePlayer.code
+    };
+
+    var highscoreList = JSON.parse(localStorage['highscoreList']);
+    highscoreList.push(jsonToSave);
+    localStorage['highscoreList'] = JSON.stringify(highscoreList);
+    highscoreTableUpdate();
+    this.openGameOverModal(runningGamePlayer.name,scoreToSave);
+
+    document.getElementById('play').disable = false;
+    //this.saveHighscoreToFile(highscoreList);
+  };
+
+  App.prototype.updateScoreBoard = function() {
+    document.getElementById('player_2_score').innerHTML=this.scores.player_2;
+    document.getElementById('player_1_score').innerHTML=this.scores.player_1;
+    document.getElementById('round_nr').innerHTML=this.rounds;
+  };
+  App.prototype.updateThrows = function(nbr) {
+    document.getElementById('throw_nr').innerHTML=nbr;
+  };
+
+  App.prototype.saveHighscoreToFile = function(highscoreList){
+    var textToSave = JSON.stringify(highscoreList);
+    var filename = 'scores-'+Date.now()+".json";
+    var doc1 = document.createElement('a');
+    doc1.setAttribute('href', 'data:text/plain;charset=utf-u,' + encodeURIComponent(textToSave));
+    doc1.setAttribute('download', filename);
+    doc1.click();
   };
 
   return App;

@@ -1,50 +1,45 @@
-require([
-  "../node_modules/codemirror/lib/codemirror",
-  "../node_modules/codemirror/mode/javascript/javascript", "../node_modules/codemirror/addon/hint/show-hint",
-  "../node_modules/codemirror/addon/hint/javascript-hint", "../node_modules/codemirror/addon/edit/closebrackets",
-  "../node_modules/codemirror/addon/edit/matchbrackets", "../node_modules/codemirror/addon/lint/lint.js",
-  "../node_modules/codemirror/addon/lint/javascript-lint.js"], function (CodeMirror) {
-  textareaPlayerCode = CodeMirror.fromTextArea(document.getElementById("textarea_player_code"), {
-    mode : 'javascript',
-    theme: '3024-night',
-    tabSize : 2,
-    lint : true,
-    autofocus : true,
-    lineNumbers : true,
-    matchBrackets : true,
-    autoCloseBrackets : true,
-    gutters: ['CodeMirror-lint-markers'],
-    extraKeys: {
-      'Ctrl-Space': 'autocomplete'
-    }
-  });
-  textareaPlayerCode.setValue(templateStartCode);
-});
-
 function savePlayerCode(){
   savePlayerCodeToLocalStorage();
   saveCurrentPlayerCode();
   setLatestSavedCode();
   setMessageToPlayer("Saved ("+lastestSave+")");
-}
+};
+
 function clearPlayerCode(){
   textareaPlayerCode.setValue(templateStartCode);
   setMessageToPlayer("Code cleared");
-}
+};
+
 function resetPlayerCode(){
   var currentPlayer = JSON.parse(localStorage['currentPlayer']);
   textareaPlayerCode.setValue(currentPlayer.code);
   setMessageToPlayer("Code is reset to latest save (at "+lastestSave+")");
-}
+};
 
 function setLatestSavedCode(){
   var now = new Date();
-  lastestSave = now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
-}
+
+  var hours = now.getHours();
+  if (hours < 10) {
+    hours = "0"+hours;
+  }
+  var min = now.getMinutes();
+  if (min < 10) {
+    min = "0"+min;
+  }
+
+  var sec = now.getSeconds();
+  if (sec < 10) {
+    sec = "0"+sec;
+  }
+
+  lastestSave = hours+":"+min+":"+sec;
+};
 
 function loadPlayerByEmail(){
   var searchMail = document.getElementById('search_email').value;
   var savedPlayerCode = JSON.parse(localStorage['savedPlayerCode']);
+
   for (var i = 0; i < savedPlayerCode.length; i++) {
     if(savedPlayerCode[i].email == searchMail){
       textareaPlayerCode.setValue(savedPlayerCode[i].code);
@@ -55,8 +50,8 @@ function loadPlayerByEmail(){
       return;
     }
   }
-  document.getElementById('load_player_msg').innerHTML = "No player with that email found"
-}
+  document.getElementById('load_player_msg').innerHTML = "No player with that email found";
+};
 
 function savePlayerCodeToLocalStorage(){
   var currentPlayer = JSON.parse(localStorage['currentPlayer']);
@@ -77,22 +72,24 @@ function savePlayerCodeToLocalStorage(){
   };
   savedPlayerCode.push(newPlayerCode);
   localStorage['savedPlayerCode'] = JSON.stringify(savedPlayerCode);
-}
+};
 
 function saveCurrentPlayerCode(){
   var currentPlayer = JSON.parse(localStorage['currentPlayer']);
   currentPlayer.code = textareaPlayerCode.getValue();
   localStorage['currentPlayer'] = JSON.stringify(currentPlayer);
-}
+};
+
 function saveToGameCode(){
   localStorage['runningGamePlayer'] = localStorage['currentPlayer'];
   document.getElementById('player_1_name').innerHTML = JSON.parse(localStorage['runningGamePlayer']).name;
-}
+};
 
 function setMessageToPlayer(messageToPlayer){
     var totalMsg = "["+JSON.parse(localStorage['currentPlayer']).name+"] "+messageToPlayer;
     document.getElementById('message_to_player').innerHTML = totalMsg;
-}
+};
+
 function createPlayerAndCloseModal(){
   var playerName = document.getElementById('player_name').value;
   var currentPlayer = {
@@ -105,4 +102,4 @@ function createPlayerAndCloseModal(){
   textareaPlayerCode.setOption("readOnly", false); //Ready to write code!
   setMessageToPlayer('player has been creted');
   closeModal('new_player');
-}
+};

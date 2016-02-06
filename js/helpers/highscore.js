@@ -61,6 +61,7 @@ function highscoreTableUpdate(){
   }
 
 };
+
 function compare(player1,player2) {
   if (player1.score < player2.score)
   return -1;
@@ -69,6 +70,7 @@ function compare(player1,player2) {
   else
   return 0;
 };
+
 function getUserInfo(playerindex){
   var p = highscoreList[playerindex];
   openModalWith(

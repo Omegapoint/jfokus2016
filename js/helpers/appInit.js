@@ -1,7 +1,6 @@
 var agent_angle = Number.MIN_VALUE;
 var agent_force = Number.MIN_VALUE;
 var agent_memory = {};
-var lastColission;
 
 var agent_2_angle = 10;
 var agent_2_force = 10;
@@ -10,7 +9,6 @@ var agent_2_memory = {};
 var maximumNumberOfTurns = 10;
 var roundsInGame = 3;
 
-var gameIsFinished = true;
 var textareaPlayerCode;
 var lastestSave = "Code is not saved";
 

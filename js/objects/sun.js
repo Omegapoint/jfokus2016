@@ -1,7 +1,6 @@
 define(['helpers/shape'],
   function ( Shape ) {
 
-    // Constants
     var SUN_BODY_COLOR = "rgb( 255, 255, 0 )",
         SUN_EYES_COLOR = "rgb( 0, 0, 160 )";
 
@@ -16,7 +15,6 @@ define(['helpers/shape'],
 
     /**
      * create: Begin sun build-out
-     * params {Boolean} hit
      */
     Sun.prototype.create = function ( hit ) {
       if ( hit ) this.mouth = true;
@@ -51,8 +49,6 @@ define(['helpers/shape'],
      * createRays: Build sun rays
      */
     Sun.prototype.createRays = function () {
-      // Helper Method
-      // TODO: may extract this
       function createRay ( a ) {
         this.context.moveTo( this.position, this.height );
         return this.context.lineTo( this.position + 20 * Math.cos(a), this.height + 20 * Math.sin(a) );
@@ -83,7 +79,5 @@ define(['helpers/shape'],
       }
     };
 
-    // Return our Sun Object
     return Sun;
-
 });
