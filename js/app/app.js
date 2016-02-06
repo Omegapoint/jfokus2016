@@ -169,9 +169,6 @@ function(Wind, Sun, Building, Gorilla) {
     document.getElementById('player_2_score').innerHTML=this.scores.player_2;
     document.getElementById('player_1_score').innerHTML=this.scores.player_1;
     document.getElementById('round_nr').innerHTML=this.rounds;
-    // if (this.rounds == 1) {
-    //   this.updateThrows(0);
-    // }
   };
   App.prototype.updateThrows = function(nbr) {
     document.getElementById('throw_nr').innerHTML=nbr;

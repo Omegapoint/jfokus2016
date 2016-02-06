@@ -8,7 +8,6 @@ var agent_2_force = 10;
 var agent_2_memory = {};
 
 var maximumNumberOfTurns = 10;
-//var rounds = 1;
 var roundsInGame = 3;
 
 var gameIsFinished = true;
