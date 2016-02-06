@@ -25,6 +25,9 @@
   background-color: #888888;
   color: white;
 }
+.menu button:disabled{
+  color: #0000a0;
+}
 .menu_title{
   float: right;
   color: #FFFF52;

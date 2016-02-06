@@ -8,6 +8,7 @@ var agent_2_memory = {};
 
 var maximumNumberOfTurns = 10;
 var roundsInGame = 3;
+var isGameRunning = true;
 
 var textareaPlayerCode;
 var lastestSave = "Code is not saved";
@@ -57,9 +58,8 @@ if(!localStorage['highscoreList']){
   localStorage['highscoreList'] = JSON.stringify([]);
 }
 // Reset localStorage
-/*
+
 localStorage['currentPlayer'] = JSON.stringify(emptyCurrentPlayer);
 localStorage['savedPlayerCode'] = JSON.stringify(emptySavedPlayers);
 localStorage['runningGamePlayer'] = JSON.stringify(emptyCurrentPlayer);
 localStorage['highscoreList'] = JSON.stringify([]);
-*/

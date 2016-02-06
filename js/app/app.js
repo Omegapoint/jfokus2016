@@ -245,7 +245,7 @@ function(Wind, Sun, Building, Gorilla) {
       }, 5);
 
       if (this.rounds > roundsInGame) {
-        this.gameIsFinished = true;
+        isGameRunning = false;
         this.saveToHighscoreList();
       }else{
         this.audioNewRound.play();
@@ -303,7 +303,7 @@ function(Wind, Sun, Building, Gorilla) {
 
     this.turnsLeft['player_' + player.playerNumber]++;
     this.updateThrows(this.turnsLeft['player_' + player.playerNumber]);
-    if(this.gameIsFinished) {
+    if(!isGameRunning) {
       return;
     }
     if (this.turnsLeft['player_' + player.playerNumber] <= maximumNumberOfTurns) {
@@ -377,7 +377,9 @@ function(Wind, Sun, Building, Gorilla) {
       text += "The winner is CPU<br>Score: "+(-scoreToSave);
       this.audioLoser.play();
     }
-    openModalWith(text)
+    openModalWith(text);
+    document.getElementById('play').disabled = false;
+    document.getElementById('stop').disabled = true;
   };
 
   App.prototype.saveToHighscoreList = function(){

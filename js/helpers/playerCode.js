@@ -103,3 +103,9 @@ function createPlayerAndCloseModal(){
   setMessageToPlayer('player has been creted');
   closeModal('new_player');
 };
+function stopGame(){
+  console.log("STOPS");
+  isGameRunning = false;
+  document.getElementById('play').disabled = false;
+  document.getElementById('stop').disabled = true;
+}

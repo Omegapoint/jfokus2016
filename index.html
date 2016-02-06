@@ -23,7 +23,6 @@
 </head>
 <body>
   <div class=menu><!-- Start menu -->
-    <!--<button id="play">Start Game</button>-->
     <button onclick="openModal('new_player')">New Player</button>
     <button onclick="openModal('load_player_modal')">Load Player</button>
     <button onclick="openModal('api_info')">Api</button>
@@ -75,6 +74,7 @@
       <div class="ai_input" id="textbox">   <!-- Start input code -->
         <div class="menu">
             <button id="play">Play</button>
+            <button id="stop" onclick="stopGame()">Stop</button>
             <button onclick="savePlayerCode()">Save</button>
             <button onclick="resetPlayerCode()">Get latest save</button>
             <button onclick="clearPlayerCode()">Clear Code</button>
@@ -192,7 +192,7 @@
         </table>
         <hr>
         <button class="modal-btn-ok" onclick="closeModal('api_info')">
-          < <ok><u>O</u>k</ok> >
+          < <ok>Ok</ok> >
         </button>
         <br/>
       </div>

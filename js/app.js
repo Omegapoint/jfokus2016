@@ -8,9 +8,9 @@ function ( App ) {
   app.createScene();
 
 
-  play = document.getElementById('play');
-  play.addEventListener("click", function(event) {
-    document.getElementById('play').disable = true;
+  document.getElementById('play').addEventListener("click", function(event) {
+    document.getElementById('play').disabled = true;
+    document.getElementById('stop').disabled = false;
     savePlayerCode();
     if(!isValidPlayerInputCode()){
       return;
@@ -20,7 +20,7 @@ function ( App ) {
     app.turnsLeft = {player_1: 0,player_2: 0};
     app.scores = {player_1: 0,player_2: 0};
     app.updateScoreBoard();
-    app.gameIsFinished = false;
+    isGameRunning = true;
 
     var playerWind = app.wind.windSpeed;
 
