@@ -12,6 +12,7 @@ function(Wind, Sun, Building, Gorilla) {
     this.height = this.canvas.height;
     this.context = this.canvas.getContext('2d');
     this.sunShock = false;
+    this.rounds = 0;
     this.scores = {
       player_1: 0,
       player_2: 0
