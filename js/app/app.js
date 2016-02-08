@@ -239,22 +239,12 @@ function(Wind, Sun, Building, Gorilla) {
         that.animateWin(winner, that.startTime);
       }, this.frameRate);
 
-
       var deadPlayer = (this.player_2.dead === true) ? this.player_2 : this.player_1;
       this.timeout = setTimeout(function() {
         that.animateColission(deadPlayer);
       }, 5);
 
-      this.rounds++;
-      if (this.rounds > this.roundsInGame) {
-        isGameRunning = false;
-        this.rounds = 1;
-        this.saveToHighscoreList();
-        this.audioNewRound.play();
-      }else{
-        this.audioGameOver.play();
-      }
-      this.updateScoreBoard();
+      that.goToNextRound();
       return true;
     }else{
       return false;
@@ -296,6 +286,19 @@ function(Wind, Sun, Building, Gorilla) {
     }, 500);
   };
 
+  App.prototype.goToNextRound = function(){
+    this.rounds++;
+    if (this.rounds > this.roundsInGame) {
+      isGameRunning = false;
+      this.rounds = 1;
+      this.saveToHighscoreList();
+      this.audioNewRound.play();
+    }else{
+      this.audioGameOver.play();
+    }
+    this.updateScoreBoard();
+  };
+
   /**
   * nextPlayerTurn: change turns
   * params {Object} player Pass in the current player
@@ -316,9 +319,8 @@ function(Wind, Sun, Building, Gorilla) {
       this.empty = true;
       this.buildings = [];
       this.createScene();
-
       this.turnsLeft = {player_1: 0,player_2: 0};
-      this.rounds++;
+      this.goToNextRound();
       this.updateScoreBoard();
       this.nextPlayerTurn(player);
     }
