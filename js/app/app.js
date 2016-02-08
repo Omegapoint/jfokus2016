@@ -356,14 +356,8 @@ function(Wind, Sun, Building, Gorilla) {
   App.prototype.updateHitSunScore = function(player){
     var that = this;
     
-    var playerScore = that.scores['player_' + player.playerNumber];
-
-    if(playerScore > 0 ) {
-      playerScore = playerScore * 2;
-    } else {
-      playerScore = 3;
-    }
-    that.scores['player_' + player.playerNumber] = playerScore;
+   
+    that.scores['player_' + player.playerNumber] =+ 10;
 
     that.audioHitSun.play();
     that.sunShock = true;
