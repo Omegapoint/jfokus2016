@@ -244,6 +244,7 @@ function(Wind, Sun, Building, Gorilla) {
 
       if (this.rounds > roundsInGame) {
         isGameRunning = false;
+        this.rounds = 1;
         this.saveToHighscoreList();
         this.audioNewRound.play();
       }else{
@@ -273,7 +274,7 @@ function(Wind, Sun, Building, Gorilla) {
   */
   App.prototype.animateWin = function(player, startTime) {
     var that = this;
-    this.turnsLeft = {player_1: 0,player_2: 0};
+    turnsLeft = {player_1: 0,player_2: 0};
     this.startTime = startTime;
     this.timeout = setTimeout(function() {
       while (!(player.animate === true && player.animations < 12)) {
@@ -300,19 +301,19 @@ function(Wind, Sun, Building, Gorilla) {
     player.timer = 0;
     var nextPlayer = (player.playerNumber === 2) ? 1 : 2;
 
-    this.turnsLeft['player_' + player.playerNumber]++;
-    this.updateThrows(this.turnsLeft['player_' + player.playerNumber]);
+    turnsLeft['player_' + player.playerNumber]++;
+    this.updateThrows(turnsLeft['player_' + player.playerNumber]);
     if(!isGameRunning) {
       return;
     }
-    if (this.turnsLeft['player_' + player.playerNumber] <= maximumNumberOfTurns) {
+    if (turnsLeft['player_' + player.playerNumber] <= maximumNumberOfTurns) {
       this.runPlayer(nextPlayer);
     } else {
       this.empty = true;
       this.buildings = [];
       this.createScene();
 
-      this.turnsLeft = {player_1: 0,player_2: 0};
+      turnsLeft = {player_1: 0,player_2: 0};
       this.rounds++;
       this.updateScoreBoard();
       this.nextPlayerTurn(player);
@@ -360,15 +361,13 @@ function(Wind, Sun, Building, Gorilla) {
     }
     that.scores['player_' + player.playerNumber] = playerScore;
 
-
-
     that.audioHitSun.play();
     that.sunShock = true;
     that.updateScoreBoard();
   };
 
   App.prototype.updateHitGorillaScore = function (playerNumber) {
-    this.scores['player_' + playerNumber] += 10 - this.turnsLeft['player_' + playerNumber];
+    this.scores['player_' + playerNumber] += 10 - turnsLeft['player_' + playerNumber];
     this.updateScoreBoard();
     this.rounds++;
   };

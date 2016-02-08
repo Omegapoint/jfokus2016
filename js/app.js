@@ -20,7 +20,7 @@ requirejs(['app/app', 'agent'],
       app.updateScoreBoard();
       gameIsFinished = false;
       turnsLeft['player_1'] = 0;
-      turnsLeft['player_1'] = 0;
+      turnsLeft['player_2'] = 0;
       nextTurn = true;
 
       var playerWind = app.wind.windSpeed;
@@ -49,8 +49,6 @@ requirejs(['app/app', 'agent'],
     });
 
     //This is where we get the variables from player 1
-
-
     // Global appfunctions
     // TODO: find a better solution for these
     // May create an event module to listen / fire events

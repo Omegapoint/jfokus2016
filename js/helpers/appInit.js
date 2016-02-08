@@ -10,6 +10,11 @@ var maximumNumberOfTurns = 10;
 var roundsInGame = 3;
 var isGameRunning = true;
 
+this.turnsLeft = {
+      player_1: 0,
+      player_2: 0
+    };
+
 var textareaPlayerCode;
 var lastestSave = "Code is not saved";
 
