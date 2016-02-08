@@ -1,3 +1,4 @@
+highscoreTableUpdate();
 define(['objects/wind', 'objects/sun', 'objects/building', 'objects/gorilla'],
 function(Wind, Sun, Building, Gorilla) {
 
@@ -6,6 +7,9 @@ function(Wind, Sun, Building, Gorilla) {
     this.audioHitSun = new Audio('audio/select.wav');
     this.audioGameOver = new Audio('audio/winner.ogg');
     this.audioNewRound = new Audio('audio/level-up.ogg');
+
+    this.maximumNumberOfTurns = 10;
+    this.roundsInGame = 3;
     this.empty = true;
     this.canvas = document.getElementById('canvas');
     this.width = this.canvas.width;
@@ -13,10 +17,8 @@ function(Wind, Sun, Building, Gorilla) {
     this.context = this.canvas.getContext('2d');
     this.sunShock = false;
     this.rounds = 1;
-    this.scores = {
-      player_1: 0,
-      player_2: 0
-    };
+    this.scores = {player_1: 0,player_2: 0};
+    this.turnsLeft = {player_1: 0,player_2: 0};
     this.buildings = [];
     this.frameRate = 15;
     this.wind = new Wind(this.context);
@@ -243,7 +245,8 @@ function(Wind, Sun, Building, Gorilla) {
         that.animateColission(deadPlayer);
       }, 5);
 
-      if (this.rounds > roundsInGame) {
+      this.rounds++;
+      if (this.rounds > this.roundsInGame) {
         isGameRunning = false;
         this.rounds = 1;
         this.saveToHighscoreList();
@@ -307,7 +310,7 @@ function(Wind, Sun, Building, Gorilla) {
     if(!isGameRunning) {
       return;
     }
-    if (this.turnsLeft['player_' + player.playerNumber] <= maximumNumberOfTurns) {
+    if (this.turnsLeft['player_' + player.playerNumber] <= this.maximumNumberOfTurns) {
       this.runPlayer(nextPlayer);
     } else {
       this.empty = true;
@@ -376,7 +379,6 @@ function(Wind, Sun, Building, Gorilla) {
   App.prototype.updateHitGorillaScore = function (playerNumber) {
     this.scores['player_' + playerNumber] += 10 - this.turnsLeft['player_' + playerNumber];
     this.updateScoreBoard();
-    this.rounds++;
   };
 
   App.prototype.openGameOverModal = function(name,scoreToSave){

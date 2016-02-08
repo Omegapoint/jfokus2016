@@ -6,12 +6,11 @@ var agent_2_angle = 10;
 var agent_2_force = 10;
 var agent_2_memory = {};
 
-var maximumNumberOfTurns = 10;
-var roundsInGame = 3;
 var isGameRunning = true;
-
 var textareaPlayerCode;
-var lastestSave = "Code is not saved";
+
+var titleMusic = new Audio('audio/intro.ogg');
+titleMusic.play();
 
 var RulesModalText = "About<br><br>"+
   "The Javascript code in the textbox below control Player 1 (The monkey to the left). "+
@@ -34,9 +33,6 @@ var templateStartCode = ""+
 "  returnValues['memory'] = \"Omegapoint Gorillas is fun! :)\";\n"+
 "  return returnValues;\n"+
 "};\n";
-
-var titleMusic = new Audio('audio/intro.ogg');
-titleMusic.play();
 
 var emptyCurrentPlayer = {
   name: '-',

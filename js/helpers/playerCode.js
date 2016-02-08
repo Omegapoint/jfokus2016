@@ -1,3 +1,5 @@
+var lastestSave = "not saved";
+
 function savePlayerCode(){
   savePlayerCodeToLocalStorage();
   saveCurrentPlayerCode();
@@ -98,16 +100,13 @@ function createPlayerAndCloseModal(){
     code: textareaPlayerCode.getValue()
   };
   localStorage['currentPlayer'] = JSON.stringify(currentPlayer);
-  enableStartGame = true;
   textareaPlayerCode.setOption("readOnly", false); //Ready to write code!
   setMessageToPlayer('player has been creted');
   closeModal('new_player');
 };
 function stopGame(){
   isGameRunning = false;
-  gameIsFinished = true;
-  rounds = 3;
   document.getElementById('new_player_btn').disabled = false;
   document.getElementById('play').disabled = false;
-  document.getElementById('stop').disabled = false;
+  document.getElementById('stop').disabled = true;
 };

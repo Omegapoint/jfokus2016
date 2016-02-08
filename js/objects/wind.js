@@ -20,7 +20,7 @@ define(
     Wind.prototype.create = function () {
       if ( this.windSpeed !== 0 ) {
         this.windLine = this.windSpeed * 10 * ( this.canvas.width / 320 );
-        this.context.strokeStyle = 'rgb( 173, 0, 0 )';
+        this.context.strokeStyle = 'rgb( 255, 255, 0 )';
         this.context.beginPath();
         this.context.moveTo( this.canvas.width / 2, this.canvas.height - 5 );
         this.context.lineTo( this.canvas.width / 2 + this.windLine, this.canvas.height - 5 );

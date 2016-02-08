@@ -6,6 +6,7 @@ function highscoreTableUpdate(){
     score: 0
   };
   var nbrOfPlayersOnHighScore = 5;
+  
   if(localStorage['highscoreList']){
     highscoreList = JSON.parse(localStorage['highscoreList']);
   }else{
