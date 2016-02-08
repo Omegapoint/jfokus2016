@@ -164,11 +164,11 @@ function(Wind, Sun, Building, Gorilla) {
   App.prototype.animateBanana = function(player) {
     var that, now, time;
     that = this;
+   
     this.timeout = setTimeout(function() {
       that.createScene();
       if (that.bananaHitSun(player)){
-        console.log("okay hehehehehhehe");
-        that.updateHitSunScore(player);
+        that.updateHitSunScore(player.playerNumber);
         that.nextPlayerTurn(player);
         return;
       }

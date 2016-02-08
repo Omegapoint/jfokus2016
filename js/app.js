@@ -16,13 +16,13 @@ requirejs(['app/app', 'agent'],
       savePlayerCode();
       saveToGameCode();
       rounds = 1;
+      
+      turnsInGame = 0;
+      app.rounds = 1;
+      app.updateScoreBoard();
       app.scores['player_1'] = 0;
       app.scores['player_2'] = 0;
-      turnsInGame = 0;
-      rounds = 1;
-      app.updateScoreBoard();
-      gameIsFinished = false;
-      isGameRunning = true;
+      
       turnsLeft = {player_1: 0,player_2: 0};
       nextTurn = true;
 
@@ -41,10 +41,15 @@ requirejs(['app/app', 'agent'],
         bHP['x'] = null;
         bHP['y'] = null;
 
-        if (app.player_1.banana && app.player_2.banana) {
-          bHP['x'] =  app.player_2.x - app.player_2.banana.x();
-          bHP['y'] = app.player_2.banana.y() - app.player_2.y ;
+        if (app.player_1.banana) {
+          bHP['x'] =  app.player_1.x - app.player_1.banana.x();
+          bHP['y'] = app.player_1.banana.y() - app.player_1.y ;
         }
+
+        gameIsFinished = false;
+        isGameRunning = true;
+
+
         executeTurn(playerPos, bHP, playerWind);
 
         app.throwBanana(agent_force, agent_angle, currentPlayer);
