@@ -330,8 +330,8 @@ function(Wind, Sun, Building, Gorilla) {
       var bananaHitPosition = [0,0];
 
       if (this.player_1.banana) {
-        var deltaBananaX =  this.player_2.x - this.player_2.banana.x();
-        var deltaBananaY = this.player_2.banana.y() - this.player_2.y ;
+        var deltaBananaX =  this.player_1.x - this.player_1.banana.x();
+        var deltaBananaY = this.player_1.banana.y() - this.player_1.y ;
         bananaHitPosition = [deltaBananaX, deltaBananaY];
       }
       executeTurn(playerPos, bananaHitPosition, playerWind);
