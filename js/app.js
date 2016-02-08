@@ -19,10 +19,10 @@ requirejs(['app/app', 'agent'],
       
       turnsInGame = 0;
       app.rounds = 1;
-      app.updateScoreBoard();
+      
       app.scores['player_1'] = 0;
       app.scores['player_2'] = 0;
-      
+      app.updateScoreBoard();
       turnsLeft = {player_1: 0,player_2: 0};
       nextTurn = true;
 
