@@ -166,7 +166,7 @@ function(Wind, Sun, Building, Gorilla) {
     that = this;
     this.timeout = setTimeout(function() {
       that.createScene();
-      if (that. (player)){
+      if (that.bananaHitSun(player)){
         that.updateHitSunScore(player);
         that.nextPlayerTurn(player);
         return;
@@ -350,15 +350,17 @@ function(Wind, Sun, Building, Gorilla) {
 
   App.prototype.updateHitSunScore = function(player){
     var that = this;
-    //that.scores['player_' + player.playerNumber] += 10;
-
+    
     var playerScore = that.scores['player_' + player.playerNumber];
+
     if(playerScore > 0 ) {
-      playerScore = playerScore * 2:
+      playerScore = playerScore * 2;
     } else {
       playerScore = 3;
     }
     that.scores['player_' + player.playerNumber] = playerScore;
+
+
 
     that.audioHitSun.play();
     that.sunShock = true;
