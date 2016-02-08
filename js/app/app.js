@@ -146,6 +146,7 @@ function(Wind, Sun, Building, Gorilla) {
   */
   App.prototype.throwBanana = function(force, angle, player) {
     var that = this;
+
     if (player === 2) {
       angle = -angle;
       force = -force;
@@ -339,8 +340,8 @@ function(Wind, Sun, Building, Gorilla) {
         bHP['y'] = null;
 
         if (this.player_1.banana) {
-          bHP['x'] = this.player_2.x - this.player_2.banana.x();
-          bHP['y'] = this.player_2.banana.y() - this.player_2.y ;
+          bHP['x'] = this.player_1.banana.x() - this.player_1.x;
+          bHP['y'] = this.player_1.y - this.player_1.banana.y();
         }
 
 
@@ -361,7 +362,6 @@ function(Wind, Sun, Building, Gorilla) {
 
   App.prototype.updateHitSunScore = function(player){
     var that = this;
-
     var playerNumber = 'player_' + player;
 
     var ps = this.scores[playerNumber];
