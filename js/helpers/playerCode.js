@@ -106,7 +106,6 @@ function createPlayerAndCloseModal(){
 function stopGame(){
   isGameRunning = false;
   gameIsFinished = true;
-  console.log('stop');
   document.getElementById('new_player_btn').disabled = false;
   document.getElementById('play').disabled = false;
   document.getElementById('stop').disabled = true;
