@@ -164,7 +164,7 @@ function(Wind, Sun, Building, Gorilla) {
   App.prototype.animateBanana = function(player) {
     var that, now, time;
     that = this;
-   
+
     this.timeout = setTimeout(function() {
       that.createScene();
       if (that.bananaHitSun(player)){
@@ -328,7 +328,7 @@ function(Wind, Sun, Building, Gorilla) {
     var playerPos = [deltaX, deltaY];
 
     if (player == 1) {
-      
+
         var bHP = new Object();
         bHP['x'] = null;
         bHP['y'] = null;
@@ -356,19 +356,17 @@ function(Wind, Sun, Building, Gorilla) {
 
   App.prototype.updateHitSunScore = function(player){
     var that = this;
-   
+
     var playerNumber = 'player_' + player;
 
     var ps = this.scores[playerNumber];
-    
-    console.log("Sun hit! " + playerNumber + " --> " + ps);
 
     if(ps > 0) {
         ps = ps + 10;
     } else {
       ps = 10;
     }
-   
+
     this.scores[playerNumber] = ps;
     this.audioHitSun.play();
     this.sunShock = true;
