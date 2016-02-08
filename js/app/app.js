@@ -12,6 +12,7 @@ function(Wind, Sun, Building, Gorilla) {
     this.height = this.canvas.height;
     this.context = this.canvas.getContext('2d');
     this.sunShock = false;
+    this.rounds = 0;
     this.scores = {
       player_1: 0,
       player_2: 0
@@ -165,7 +166,7 @@ function(Wind, Sun, Building, Gorilla) {
     that = this;
     this.timeout = setTimeout(function() {
       that.createScene();
-      if (that.bananaHitSun(player)){
+      if (that. (player)){
         that.updateHitSunScore(player);
         that.nextPlayerTurn(player);
         return;
@@ -349,7 +350,16 @@ function(Wind, Sun, Building, Gorilla) {
 
   App.prototype.updateHitSunScore = function(player){
     var that = this;
-    that.scores['player_' + player.playerNumber] += 10;
+    //that.scores['player_' + player.playerNumber] += 10;
+
+    var playerScore = that.scores['player_' + player.playerNumber];
+    if(playerScore > 0 ) {
+      playerScore = playerScore * 2:
+    } else {
+      playerScore = 3;
+    }
+    that.scores['player_' + player.playerNumber] = playerScore;
+
     that.audioHitSun.play();
     that.sunShock = true;
     that.updateScoreBoard();
