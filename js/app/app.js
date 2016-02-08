@@ -12,7 +12,7 @@ function(Wind, Sun, Building, Gorilla) {
     this.height = this.canvas.height;
     this.context = this.canvas.getContext('2d');
     this.sunShock = false;
-    this.rounds = 0;
+    this.rounds = 1;
     this.scores = {
       player_1: 0,
       player_2: 0
@@ -355,9 +355,9 @@ function(Wind, Sun, Building, Gorilla) {
 
   App.prototype.updateHitSunScore = function(player){
     var that = this;
-    
+    console.log("Sun hit! " + that.scores['player_' + player.playerNumber]);
    
-    that.scores['player_' + player.playerNumber] =+ 10;
+    that.scores['player_' + player.playerNumber] += 10;
 
     that.audioHitSun.play();
     that.sunShock = true;

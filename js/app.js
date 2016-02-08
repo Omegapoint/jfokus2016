@@ -19,6 +19,7 @@ requirejs(['app/app', 'agent'],
       app.scores['player_1'] = 0;
       app.scores['player_2'] = 0;
       turnsInGame = 0;
+      rounds = 1;
       app.updateScoreBoard();
       gameIsFinished = false;
       isGameRunning = true;
