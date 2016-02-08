@@ -30,11 +30,11 @@ var RulesModalText = "About<br><br>"+
 
 var templateStartCode = ""+
 "function runPlayer(lastBananaHit, opponent, wind, memory){\n"+
-"console.log('banana:' + lastBananaHit['x'] + ' ' + lastBananaHit['y'])\n"+
-"console.log('wind:' + wind)\n"+
-"console.log('memory:' + memory)\n"+
-"console.log('opponent:' + opponent['x'] + ' ' + opponent['y'])\n"+
-"console.log(' ')\n\n"+
+//"console.log('banana:' + lastBananaHit['x'] + ' ' + lastBananaHit['y'])\n"+
+//"console.log('wind:' + wind)\n"+
+//"console.log('memory:' + memory)\n"+
+//"console.log('opponent:' + opponent['x'] + ' ' + opponent['y'])\n"+
+//"console.log(' ')\n\n"+
 "  var angle = 30 + opponent['y'];\n"+
 "  var velocity = 5 - wind + (opponent['x'] * 0.05);\n"+
 "\n"+

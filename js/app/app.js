@@ -167,6 +167,7 @@ function(Wind, Sun, Building, Gorilla) {
     this.timeout = setTimeout(function() {
       that.createScene();
       if (that.bananaHitSun(player)){
+        console.log("okay hehehehehhehe");
         that.updateHitSunScore(player);
         that.nextPlayerTurn(player);
         return;
@@ -355,13 +356,23 @@ function(Wind, Sun, Building, Gorilla) {
 
   App.prototype.updateHitSunScore = function(player){
     var that = this;
-    console.log("Sun hit! " + that.scores['player_' + player.playerNumber]);
    
-    that.scores['player_' + player.playerNumber] += 10;
+    var playerNumber = 'player_' + player;
 
-    that.audioHitSun.play();
-    that.sunShock = true;
-    that.updateScoreBoard();
+    var ps = this.scores[playerNumber];
+    
+    console.log("Sun hit! " + playerNumber + " --> " + ps);
+
+    if(ps > 0) {
+        ps = ps + 10;
+    } else {
+      ps = 10;
+    }
+   
+    this.scores[playerNumber] = ps;
+    this.audioHitSun.play();
+    this.sunShock = true;
+    this.updateScoreBoard();
   };
 
   App.prototype.updateHitGorillaScore = function (playerNumber) {
