@@ -11,8 +11,8 @@ requirejs(['app/app', 'agent'],
     play = document.getElementById('play');
     play.addEventListener("click", function(event) {
       document.getElementById('new_player_btn').disabled = true;
-      document.getElementById('play').disable = true;
-      document.getElementById('stop').disable = false;
+      document.getElementById('play').disabled = true;
+      document.getElementById('stop').disabled = false;
       savePlayerCode();
       saveToGameCode();
       rounds = 1;
