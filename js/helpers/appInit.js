@@ -25,12 +25,12 @@ var RulesModalText = "About<br><br>"+
   "Score<br><br>Hitting the opponent gives you 10 points minus the number of throws "+
   "consumed during the round. So if you hit your opponent after three bananas you get 7"+
   " points for example. A draw means 0 points for both players. If you hit the sun you "+
-  "get an addional 10 points for that round, even if you lose that round. When the game "+
+  "double your current points, even if you lose that round. When the game "+
   "is finished, the winner gets the difference between the two scores as the winning score.";
 
 var templateStartCode = ""+
 "function runPlayer(lastBananaHit, opponent, wind, memory){\n"+
-"console.log('banana:' + lastBananaHit)\n"+
+"console.log('banana:' + lastBananaHit['x'] + ' ' + lastBananaHit['y'])\n"+
 "console.log('wind:' + wind)\n"+
 "console.log('memory:' + memory)\n"+
 "console.log('opponent:' + opponent['x'] + ' ' + opponent['y'])\n"+

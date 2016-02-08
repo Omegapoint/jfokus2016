@@ -327,14 +327,18 @@ function(Wind, Sun, Building, Gorilla) {
     var playerPos = [deltaX, deltaY];
 
     if (player == 1) {
-      var bananaHitPosition = [0,0];
+      
+        var bHP = new Object();
+        bHP['x'] = null;
+        bHP['y'] = null;
 
-      if (this.player_1.banana) {
-        var deltaBananaX =  this.player_1.x - this.player_1.banana.x();
-        var deltaBananaY = this.player_1.banana.y() - this.player_1.y ;
-        bananaHitPosition = [deltaBananaX, deltaBananaY];
-      }
-      executeTurn(playerPos, bananaHitPosition, playerWind);
+        if (this.player_1.banana) {
+          bHP['x'] = this.player_2.x - this.player_2.banana.x();
+          bHP['y'] = this.player_2.banana.y() - this.player_2.y ;
+        }
+
+
+      executeTurn(playerPos, bHP, playerWind);
       this.throwBanana(agent_force, agent_angle, player);
     } else {
       runAgent(2, playerPos, [2, 2]);

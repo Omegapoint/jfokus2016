@@ -19,8 +19,8 @@ requirejs(['app/app', 'agent'],
       turnsInGame = 0;
       app.updateScoreBoard();
       gameIsFinished = false;
-      turnsLeft['player_1'] = 0;
-      turnsLeft['player_2'] = 0;
+      isGameRunning = true;
+      turnsLeft = {player_1: 0,player_2: 0};
       nextTurn = true;
 
       var playerWind = app.wind.windSpeed;
@@ -34,15 +34,15 @@ requirejs(['app/app', 'agent'],
 
 
         var bananaHitPosition = [0,0];
+        var bHP = new Object();
+        bHP['x'] = null;
+        bHP['y'] = null;
 
         if (app.player_1.banana && app.player_2.banana) {
-          var deltaBananaX =  app.player_2.x - app.player_2.banana.x();
-          var deltaBananaY = app.player_2.banana.y() - app.player_2.y ;
-          bananaHitPosition = [deltaBananaX, deltaBananaY];
+          bHP['x'] =  app.player_2.x - app.player_2.banana.x();
+          bHP['y'] = app.player_2.banana.y() - app.player_2.y ;
         }
-
-
-        executeTurn(playerPos, bananaHitPosition, playerWind);
+        executeTurn(playerPos, bHP, playerWind);
 
         app.throwBanana(agent_force, agent_angle, currentPlayer);
 
