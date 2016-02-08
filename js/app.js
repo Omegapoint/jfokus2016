@@ -16,15 +16,14 @@ requirejs(['app/app', 'agent'],
       savePlayerCode();
       saveToGameCode();
       rounds = 1;
-      
+
       turnsInGame = 0;
       app.rounds = 1;
-      
+
       app.scores['player_1'] = 0;
       app.scores['player_2'] = 0;
       app.updateScoreBoard();
-      turnsLeft = {player_1: 0,player_2: 0};
-      nextTurn = true;
+      app.turnsLeft = {player_1: 0,player_2: 0};
 
       var playerWind = app.wind.windSpeed;
 

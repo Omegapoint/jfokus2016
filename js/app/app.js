@@ -275,7 +275,7 @@ function(Wind, Sun, Building, Gorilla) {
   */
   App.prototype.animateWin = function(player, startTime) {
     var that = this;
-    turnsLeft = {player_1: 0,player_2: 0};
+    this.turnsLeft = {player_1: 0,player_2: 0};
     this.startTime = startTime;
     this.timeout = setTimeout(function() {
       while (!(player.animate === true && player.animations < 12)) {
@@ -302,19 +302,19 @@ function(Wind, Sun, Building, Gorilla) {
     player.timer = 0;
     var nextPlayer = (player.playerNumber === 2) ? 1 : 2;
 
-    turnsLeft['player_' + player.playerNumber]++;
-    this.updateThrows(turnsLeft['player_' + player.playerNumber]);
+    this.turnsLeft['player_' + player.playerNumber]++;
+    this.updateThrows(this.turnsLeft['player_' + player.playerNumber]);
     if(!isGameRunning) {
       return;
     }
-    if (turnsLeft['player_' + player.playerNumber] <= maximumNumberOfTurns) {
+    if (this.turnsLeft['player_' + player.playerNumber] <= maximumNumberOfTurns) {
       this.runPlayer(nextPlayer);
     } else {
       this.empty = true;
       this.buildings = [];
       this.createScene();
 
-      turnsLeft = {player_1: 0,player_2: 0};
+      this.turnsLeft = {player_1: 0,player_2: 0};
       this.rounds++;
       this.updateScoreBoard();
       this.nextPlayerTurn(player);
@@ -374,7 +374,7 @@ function(Wind, Sun, Building, Gorilla) {
   };
 
   App.prototype.updateHitGorillaScore = function (playerNumber) {
-    this.scores['player_' + playerNumber] += 10 - turnsLeft['player_' + playerNumber];
+    this.scores['player_' + playerNumber] += 10 - this.turnsLeft['player_' + playerNumber];
     this.updateScoreBoard();
     this.rounds++;
   };
