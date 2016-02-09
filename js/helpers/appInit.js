@@ -1,6 +1,6 @@
 var agent_angle = Number.MIN_VALUE;
 var agent_force = Number.MIN_VALUE;
-var agent_memory = {};
+var agent_memory = null;
 
 var agent_2_angle = 10;
 var agent_2_force = 10;
@@ -24,13 +24,20 @@ var RulesModalText = "About<br><br>"+
 
 var templateStartCode = ""+
 "function runPlayer(lastBananaHit, opponent, wind, memory){\n"+
-"  var angle = 30 + opponent['y'];\n"+
-"  var velocity = 5 - wind + (opponent['x'] * 0.05);\n"+
+"  if(memory === null) {memory = 0;}\n"+
+"  else if(memory > 50) {memory = 10;}\n"+
+"  if(lastBananaHit['x'] > opponent['x']) {\n"+
+"    memory -= 7;\n"+
+"  } else {\n"+
+"    memory += 7;\n"+
+"  } \n"+
+"  var angle = 60;\n"+
+"  var velocity = 5 - wind + memory;\n"+
 "\n"+
 "  var returnValues = new Object();\n"+
 "  returnValues['velocity'] = velocity;\n"+
 "  returnValues['angle'] = angle;\n"+
-"  returnValues['memory'] = \"Omegapoint Gorillas is fun! :)\";\n"+
+"  returnValues['memory'] = memory;\n"+
 "  return returnValues;\n"+
 "};\n";
 
